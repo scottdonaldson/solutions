@@ -1,4 +1,2 @@
-solutions
-=========
-
-solutions
+Website for Solutions Engineering
+=================================

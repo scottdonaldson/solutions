@@ -1,0 +1,15 @@
+/* TEAM */
+
+Parsley & Sprouts
+http://www.parsleyandsprouts.com
+
+Designer: Lisa Otto
+
+Developer: Scott Donaldson
+Site: http://www.scottdonaldson.net
+Twitter: @scottpdonaldson
+
+/* SITE */
+
+Last update: xxxx/xx/xx
+Standards: HTML5, CSS3
