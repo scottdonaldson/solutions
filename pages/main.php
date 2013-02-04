@@ -6,40 +6,74 @@ get_header();
 the_post(); ?>
 
 <section id="capabilities" class="clearfix">
-	<h2>Physical results you can touch, test, and&nbsp;tweak.</h2>
-	
-	<img src="<?php echo bloginfo('template_url'); ?>/images/prototyping.png" alt="Quick-Turn Prototyping">
-	
-	<div class="right">
-		<p>Solutions Engineering has developed an expertise in knowing when and how to prototype critical phases of the engineering design in order to rapidly and inexpensively test key technical parts of the design to lower risk, save you money and get results faster.</p>
-
-		<a class="more hoverable sans" href="">Learn More</a>
-	</div>
+	<?php
+	if (get_field('content')) { 
+		while (has_sub_field('content')) { ?>
+			<div id="<?php echo sanitize_title(get_sub_field('name')); ?>">
+				<h2><?php the_sub_field('tagline'); ?></h2>
+				<div class="left">
+					<img src="<?php the_sub_field('illustration'); ?>" alt="<?php the_sub_field('name'); ?>">
+				</div>
+				<div class="right">
+					<p><?php the_sub_field('description'); ?></p>
+					<a class="more hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo sanitize_title(get_sub_field('name')); ?>">Learn more</a>
+				</div>
+			</div>
+		<?php }
+	} ?>
 </section>
 
 <div class="capabilities clearfix">
-	<div class="capability support">
-		<a href="#"><img src="<?php echo bloginfo('template_url'); ?>/images/support-icon.png" alt="Pre-Project Support"></a>
-		<h3>Pre-Project Support</h3></div>
-	<div class="capability design">
-		<a href="#"><img src="<?php echo bloginfo('template_url'); ?>/images/design-icon.png" alt="Electronics Design"></a>
-		<h3>Electronics Design</h3></div>
-	<div class="capability prototyping">
-		<a href="#"><img src="<?php echo bloginfo('template_url'); ?>/images/prototyping-icon.png" alt="Quick-Turn Prototyping"></a>
-		<h3>Quick-Turn Prototyping</h3></div>
-	<div class="capability validation">
-		<a href="#"><img src="<?php echo bloginfo('template_url'); ?>/images/validation-icon.png" alt="Design Validation"></a>
-		<h3>Design Validation</h3></div>
-	<div class="capability compliance">
-		<a href="#"><img src="<?php echo bloginfo('template_url'); ?>/images/compliance-icon.png" alt="FDA/MDD Compliance"></a>
-		<h3>FDA/MDD Compliance</h3></div>
-	<div class="capability management">
-		<a href="#"><img src="<?php echo bloginfo('template_url'); ?>/images/management-icon.png" alt="Project Management"></a>
-		<h3>Project Management</h3></div>
+	<?php
+	if (get_field('content')) {
+		while (has_sub_field('content')) { ?>
+			<div class="capability" data-capability="<?php echo sanitize_title(get_sub_field('name')); ?>">
+				<div>	
+					<img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>">
+				</div>
+				<h3><?php the_sub_field('name'); ?></h3>
+			</div>
+		<?php }
+	} ?>
 </div>
 
-<section id="featured">
-	<h2 class="header">Featured Products</h2>
-</section>
+<?php 
+if (get_field('products')) { 
+	$p = 0; ?>
+	<section id="featured" class="clearfix">
+		<h2 class="header">Featured Products</h2>
+		<?php while (has_sub_field('products')) { ?>
+			<div class="product clearfix <?php if ($p > 0) { echo 'sample'; } ?>">
+				<img src="<?php the_sub_field('image'); ?>">
+				<h3><?php the_sub_field('name'); ?></h3>
+				<p><?php the_sub_field('description'); ?></p>
+			</div>
+			<?php $p++;
+		} ?>
+	</section>
+<?php } ?>
+
+<script>
+jQuery(document).ready(function($){
+	var browsing = false,
+		capability = $('.capability'),
+		capabilities = $('#capabilities > div');
+
+	capability.click(function(){
+		$this = $(this);
+		capabilities.eq($this.index()).show().siblings().hide();
+	});
+
+	var products = $('.product').not(':first'),
+		i = 0;
+	products.click(function(){
+		$this = $(this);
+		if (i%2 === 0) {
+			$this.removeClass('sample');
+		}
+		i++;
+	});
+});
+</script>
 
 <?php get_footer(); ?>
