@@ -12,17 +12,21 @@ the_post(); ?>
 		<?php 
 		if (get_field('capability')) { 
 			while (has_sub_field('capability')) { ?>
-				<img src="<?php the_sub_field('icon'); ?>">
+				<a href="#<?php echo sanitize_title(get_sub_field('name')); ?>">	
+					<img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>">
+				</a>
 			<?php 
 			} ?> 
 	</div>
 		<?php
 		while (has_sub_field('capability')) { ?>
-			<div class="content">
-				<h3><?php the_sub_field('name'); ?></h3>
+			<div class="content" id="<?php echo sanitize_title(get_sub_field('name')); ?>">
+				<h3 class="big"><?php the_sub_field('name'); ?></h3>
 				<?php while (has_sub_field('info')) { ?>
-					<strong><?php the_sub_field('point'); ?></strong>
-					<p><?php the_sub_field('description'); ?></p>
+					<div class="clearfix">
+						<p><strong><?php the_sub_field('point'); ?></strong></p>
+						<p><?php the_sub_field('description'); ?></p>
+					</div>
 				<?php } ?>
 			</div>
 		<?php }
@@ -30,5 +34,41 @@ the_post(); ?>
 		
 	</div>
 </div>
+
+<script>
+jQuery(document).ready(function($){
+	if (window.location.hash.length == 0) {
+		window.history.pushState('', document.title, '#pre-project-support');
+	}
+	var container = $('#full_capabilities'),
+		content = container.find('.content'),
+		height = 0,
+		icons = $('.icons a');
+	content.each(function(){
+		$this = $(this);
+		// Find the tallest of the bunch
+		if ($this.outerHeight() > height) {
+			height = $this.outerHeight();
+		}
+	});
+	// Set height of container equal to the height of the tallest content
+	container.height(height);
+	// Give each of the icons a bottom margin so they fill the vertical space
+	icons.css({
+		'margin-bottom': (height - 120 * 6 + 20) / 5
+	});
+
+	// When clicking on icons, we want to fade in and out, so we need to override
+	// default anchor behavior
+	icons.click(function(e){
+		e.preventDefault();
+		$this = $(this);
+		// console.log(content.filter($this.attr('href')));
+		content.filter($this.attr('href')).fadeIn().siblings('.content').fadeOut();
+
+		window.history.pushState('', document.title, $this.attr('href'));
+	});
+});
+</script>
 
 <?php get_footer(); ?>
