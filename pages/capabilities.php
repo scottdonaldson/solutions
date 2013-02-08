@@ -24,8 +24,8 @@ the_post(); ?>
 				<h3 class="big"><?php the_sub_field('name'); ?></h3>
 				<?php while (has_sub_field('info')) { ?>
 					<div class="clearfix">
-						<p><strong><?php the_sub_field('point'); ?></strong></p>
-						<p><?php the_sub_field('description'); ?></p>
+						<p class="point"><?php the_sub_field('point'); ?></p>
+						<p class="description"><?php the_sub_field('description'); ?></p>
 					</div>
 				<?php } ?>
 			</div>
@@ -53,10 +53,6 @@ jQuery(document).ready(function($){
 	});
 	// Set height of container equal to the height of the tallest content
 	container.height(height);
-	// Give each of the icons a bottom margin so they fill the vertical space
-	icons.css({
-		'margin-bottom': (height - 120 * 6 + 20) / 5
-	});
 
 	// When clicking on icons, we want to fade in and out, so we need to override
 	// default anchor behavior
