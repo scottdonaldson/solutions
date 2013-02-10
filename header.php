@@ -1,3 +1,7 @@
+<?php
+// Define paths
+define('MAIN', dirname(__FILE__) . '/'); ?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,8 +25,6 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-    
-    <?php /* As of Dec. 2012, we are still supporting IE7. Sigh... */ ?>
 
 	<!--[if lt IE 7]>
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>

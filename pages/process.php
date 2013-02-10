@@ -11,7 +11,7 @@ the_post(); ?>
 	<div class="step step-1">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="active">1</h3>
+		<h3 class="round"><span class="hoverable">1</span></h3>
 		<section>
 			<h4 class="header">Project Initiation</h4>
 			<p>Proposal, feasibility assessment customer purchase order</p>
@@ -29,7 +29,7 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3></h3>
+		<h3 class="icon-pencil"></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-3">
@@ -44,7 +44,7 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3></h3>
+		<h3 class="icon-pencil"></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-4">
@@ -59,7 +59,7 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3></h3>
+		<h3 class="icon-pencil"></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-5">
@@ -74,7 +74,7 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3></h3>
+		<h3 class="icon-pencil"></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-6">
@@ -86,7 +86,7 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3></h3>
+		<h3 class="icon-pencil"></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-7">
@@ -101,14 +101,60 @@ the_post(); ?>
 
 <script>
 jQuery(document).ready(function($){
-	var sections = $('#process section');
+	var steps = $('#process .step'),
+		sections = steps.find('section'),
+		bar = steps.find('.bar'),
+		line = steps.find('.line'),
+		next,
+		isShowing = false;
 
-	sections.each(function(){
-		$this = $(this);
-		$this.css({
-			'top': -$this.height()/2 + 30
-		});
+	line.height(0);
+	var barWidth = bar.first().width();
+	bar.not(':first').width(0);
+	steps.not(':eq(0)').find('h3, section').hide();
+	steps.first().addClass('active shown');
+
+	var nextStep = function(current){
+		if (!isShowing) {
+			isShowing = true;
+			next = current.next('.step') ? current.next('.step') : false;
+			
+			if (next) {
+				current.removeClass('active').find('.line').animate({
+					'height': 200
+				}, function(){
+					next.animate({'height': 200})
+						.find('h3').fadeIn(function(){
+						next.addClass('active shown').find('.bar').stop().animate({
+							'margin-left': 0,
+							'width': barWidth
+						}, function(){
+							next.find('section').fadeIn().css({
+								'top': -next.find('section').height/2 + 30
+							});
+							isShowing = false;
+						});
+					});
+				});
+			}
+		}
+	};
+	setTimeout(function(){
+		nextStep(steps.first());
+	}, 500);
+
+	$(document).click(function(){
+		var last = $('.shown').last();
+		nextStep(last);
 	});
+	/* $(window).scroll(function(){
+		steps.each(function(){
+			$this = $(this);
+			if ($this.hasClass('shown') && $(window).scrollTop() > $this.offset().top - $(window).height/2) {
+				nextStep($this);
+			}
+		});
+	}); */
 });
 </script>
 

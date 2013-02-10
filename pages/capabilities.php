@@ -5,32 +5,34 @@ Template Name: Capabilities
 get_header(); 
 the_post(); ?>
 
+<?php 
+// Include capabilities
+include( MAIN . 'caps.php'); ?>
+
 <h1 class="visuallyhidden">Contact</h1>
 
 <div id="full_capabilities" class="clearfix">
 	<div class="icons">
 		<?php 
-		if (get_field('capability')) { 
-			while (has_sub_field('capability')) { ?>
-				<a href="#<?php echo sanitize_title(get_sub_field('name')); ?>">	
-					<img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>">
-				</a>
-			<?php 
-			} ?> 
+		foreach ($capabilities as $cap=>$name) { ?>
+			<a class="round" href="#<?php echo $cap; ?>">
+				<span class="hoverable icon-<?php echo $cap; ?>"></span>
+			</a>
+		<?php 
+		} ?> 
 	</div>
 		<?php
-		while (has_sub_field('capability')) { ?>
-			<div class="content" id="<?php echo sanitize_title(get_sub_field('name')); ?>">
-				<h3 class="big"><?php the_sub_field('name'); ?></h3>
-				<?php while (has_sub_field('info')) { ?>
+		foreach ($capabilities as $cap=>$name) { ?>
+			<div class="content" id="<?php echo $cap; ?>">
+				<h3 class="big"><?php echo $name; ?></h3>
+				<?php while (has_sub_field($cap)) { ?>
 					<div class="clearfix">
 						<p class="point"><?php the_sub_field('point'); ?></p>
 						<p class="description"><?php the_sub_field('description'); ?></p>
 					</div>
 				<?php } ?>
 			</div>
-		<?php }
-		} ?>
+		<?php } ?>
 		
 	</div>
 </div>
@@ -38,12 +40,27 @@ the_post(); ?>
 <script>
 jQuery(document).ready(function($){
 	if (window.location.hash.length == 0) {
-		window.history.pushState('', document.title, '#pre-project-support');
+		// If we're not coming to a specific capability,
+		// assume that we're here to check out pre-project support
+		window.history.pushState('', document.title, '#support');
 	}
+	$('html, body').animate({
+		'scrollTop': 0
+	}, 1);
+
 	var container = $('#full_capabilities'),
 		content = container.find('.content'),
 		height = 0,
 		icons = $('.icons a');
+	
+	// Set the right one to active
+	icons.each(function(){
+		$this = $(this);
+		if ($this.attr('href') == window.location.hash) {
+			$this.addClass('active');
+		}
+	});
+	// Given all the content...
 	content.each(function(){
 		$this = $(this);
 		// Find the tallest of the bunch
@@ -59,6 +76,7 @@ jQuery(document).ready(function($){
 	icons.click(function(e){
 		e.preventDefault();
 		$this = $(this);
+		$this.addClass('active').siblings().removeClass('active');
 		// console.log(content.filter($this.attr('href')));
 		content.filter($this.attr('href')).fadeIn().siblings('.content').fadeOut();
 

@@ -5,39 +5,42 @@ Template Name: Main
 get_header(); 
 the_post(); ?>
 
+<?php 
+// Include capabilities
+include( MAIN . 'caps.php'); ?>
+
 <section id="capabilities" class="clearfix">
 	<?php
-	if (get_field('content')) { 
-		$i = 0;
-		while (has_sub_field('content')) { ?>
-			<div id="<?php echo sanitize_title(get_sub_field('name')); ?>" <?php if ($i == 0) { echo 'class="initial shown"'; } ?>>
-				<h2><?php the_sub_field('tagline'); ?></h2>
-				<div class="left">
-					<img src="<?php the_sub_field('illustration'); ?>" alt="<?php the_sub_field('name'); ?>">
-				</div>
-				<div class="right">
-					<p><?php the_sub_field('description'); ?></p>
-					<a class="more hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo sanitize_title(get_sub_field('name')); ?>">Learn more</a>
+	$i = 0;
+	foreach ($capabilities as $cap => $name) { ?>
+		<div id="<?php echo $cap; ?>" <?php if ($i == 0) { echo 'class="initial shown"'; } ?>>
+			<h2><?php the_field($cap.'_tagline'); ?></h2>
+			<div class="left">
+				<img src="<?php echo bloginfo('template_url').'/images/'.$cap.'.png'; ?>" alt="<?php echo $name; ?>">
+			</div>
+			<div class="right">
+				<p><?php the_field($cap.'_description'); ?></p>
+				<div class="box more">
+					<a class="hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo $cap; ?>">Learn more</a>
 				</div>
 			</div>
-		<?php 
-		$i++;
-		}
+		</div>
+	<?php 
+	$i++;
 	} ?>
 </section>
 
 <div class="capabilities clearfix">
 	<?php
-	if (get_field('content')) {
-		while (has_sub_field('content')) { ?>
-			<div class="capability" data-capability="<?php echo sanitize_title(get_sub_field('name')); ?>">
-				<div>	
-					<img src="<?php the_sub_field('icon'); ?>" alt="<?php the_sub_field('name'); ?>">
-				</div>
-				<h3><?php the_sub_field('name'); ?></h3>
+	foreach ($capabilities as $cap => $name) { ?>
+		<div class="capability" data-capability="<?php echo $cap; ?>">
+			<div class="dummy"></div>
+			<div class="round">
+				<span class="hoverable icon-<?php echo $cap; ?>"></span>
 			</div>
-		<?php }
-	} ?>
+			<h3><?php echo $name; ?></h3>
+		</div>
+	<?php } ?>
 </div>
 
 <?php 
@@ -77,10 +80,13 @@ jQuery(document).ready(function($){
 		capabilities = $('#capabilities > div'),
 		shown = $('.shown');
 
-	container.height(container.outerHeight());	
+	container.height(container.height());	
+
+	capability.first().addClass('active');
 
 	capability.click(function(){
 		$this = $(this);
+		$this.addClass('active').siblings().removeClass('active');
 		shown = $('.shown');
 		shownHeight = shown.outerHeight();
 		if (!capabilities.eq($this.index()).hasClass('shown')) {
