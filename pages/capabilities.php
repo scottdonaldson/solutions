@@ -24,7 +24,7 @@ include( MAIN . 'caps.php'); ?>
 		<?php
 		foreach ($capabilities as $cap=>$name) { ?>
 			<div class="content" id="<?php echo $cap; ?>">
-				<h3 class="big"><?php echo $name; ?></h3>
+				<h3><?php echo $name; ?></h3>
 				<?php while (has_sub_field($cap)) { ?>
 					<div class="clearfix">
 						<p class="point"><?php the_sub_field('point'); ?></p>
@@ -60,16 +60,25 @@ jQuery(document).ready(function($){
 			$this.addClass('active');
 		}
 	});
-	// Given all the content...
-	content.each(function(){
-		$this = $(this);
-		// Find the tallest of the bunch
-		if ($this.outerHeight() > height) {
-			height = $this.outerHeight();
-		}
+	// Function to find biggest height, given all content,
+	// and set the container equal to this biggest height
+	var findHeight = function(){
+		height = 0;
+		content.each(function(){
+			$this = $(this);
+			// Find the tallest of the bunch
+			if ($this.outerHeight() > height) {
+				height = $this.outerHeight();
+			}
+		});	
+		// Set height of container equal to the height of the tallest content
+		container.height(height);
+	}
+	findHeight();
+	$(window).resize(function(){
+		findHeight();
 	});
-	// Set height of container equal to the height of the tallest content
-	container.height(height);
+	
 
 	// When clicking on icons, we want to fade in and out, so we need to override
 	// default anchor behavior
