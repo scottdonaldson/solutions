@@ -89,7 +89,7 @@ the_post(); ?>
 		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
-	<div class="step step-7">
+	<div class="step step-7 final">
 		<div class="bar"></div>
 		<h3 class="round"><div class="hoverable">7</div></h3>
 		<section>
@@ -115,7 +115,7 @@ jQuery(document).ready(function($){
 	steps.first().addClass('active shown');
 
 	var nextStep = function(current){
-		if (!isShowing) {
+		if (!isShowing && !current.hasClass('final')) {
 			isShowing = true;
 			next = current.next('.step') ? current.next('.step') : false;
 			
@@ -147,14 +147,18 @@ jQuery(document).ready(function($){
 		var last = $('.shown').last();
 		nextStep(last);
 	});
-	/* $(window).scroll(function(){
-		steps.each(function(){
-			$this = $(this);
-			if ($this.hasClass('shown') && $(window).scrollTop() > $this.offset().top - $(window).height/2) {
-				nextStep($this);
-			}
-		});
-	}); */
+
+	var step;
+	$(window).scroll(function(){
+		// If the mid-point of our window is below the last shown step,
+		// then show the next step
+		step = $('.shown:last');
+		// console.log('step: ' + step.offset().top);
+		// console.log('window: ' + ($(window).scrollTop() + $(window).height()/2));
+		if ($(window).scrollTop() + $(window).height()/2 > step.offset().top) {
+			nextStep(step);
+		}
+	});
 
 	$(window).resize(function(){
 		barWidth = bar.first().width();
