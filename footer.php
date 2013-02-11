@@ -12,7 +12,8 @@
 					<a class="hoverable clearfix" href="<?php the_permalink(); ?>">
 						<abbr class="sans" title="<?php echo 'Posted on '.get_the_date('M j, Y'); ?>"><?php echo get_the_date('n.j'); ?></abbr>
 						<div class="content">
-							<h3><?php the_title(); ?></h3>
+							<h3 class="sans"><?php the_title(); ?></h3>
+							<?php the_excerpt(); ?>
 						</div>
 					</a>
 				</div>
