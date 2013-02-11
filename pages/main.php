@@ -30,16 +30,19 @@ include( MAIN . 'caps.php'); ?>
 	} ?>
 
 	<nav class="capabilities clearfix">
-		<?php
-		foreach ($capabilities as $cap => $name) { ?>
-			<div class="capability" data-capability="<?php echo $cap; ?>">
-				<div class="dummy"></div>
-				<div class="round">
-					<span class="hoverable icon-<?php echo $cap; ?>"></span>
+		<aside class="cover"></aside>
+		<div><?php // empty div so that capabilities icons have proper indices ?>
+			<?php
+			foreach ($capabilities as $cap => $name) { ?>
+				<div class="capability" data-capability="<?php echo $cap; ?>">
+					<div class="dummy"></div>
+					<div class="round">
+						<span class="hoverable icon-<?php echo $cap; ?>"></span>
+					</div>
+					<h3><?php echo $name; ?></h3>
 				</div>
-				<h3><?php echo $name; ?></h3>
-			</div>
-		<?php } ?>
+			<?php } ?>
+		</div>
 	</nav>
 </section>
 

@@ -14,7 +14,7 @@ function my_jquery_enqueue() {
 
 // Excerpt length and '...'
 function custom_excerpt_length( $length ) {
-    return 12;
+    return 10;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 function new_excerpt_more( $more ) {
