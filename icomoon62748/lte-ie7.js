@@ -16,7 +16,8 @@ window.onload = function() {
 			'icon-validation' : '&#xe007;',
 			'icon-compliance' : '&#xe008;',
 			'icon-management' : '&#xe009;',
-			'icon-pencil' : '&#xe00a;'
+			'icon-pencil' : '&#xe00a;',
+			'icon-close' : '&#xe00b;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

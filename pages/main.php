@@ -48,22 +48,26 @@ if (get_field('products')) {
 	$p = 0; ?>
 	<section id="featured" class="clearfix">
 		<h2 class="header">Featured Products</h2>
-		<?php 
-		// Full images with titles and descriptions
-		while (has_sub_field('products')) { ?>
-			<div class="product clearfix <?php if ($p > 0) { echo 'transparent'; } ?>">
-				<img src="<?php the_sub_field('image'); ?>">
-				<h3><?php the_sub_field('name'); ?></h3>
-				<p><?php the_sub_field('description'); ?></p>
-			</div>
-			<?php $p++;
-		} 
-		// Reset for sample images
-		$p = 0; ?>
+
+		<div id="fulls">
+			<?php 
+			// Full images with titles and descriptions
+			while (has_sub_field('products')) { ?>
+				<div data-n="<?php echo $p; ?>" class="product clearfix <?php if ($p > 0) { echo 'gone'; } ?>">
+					<img src="<?php the_sub_field('image'); ?>">
+					<h3><?php the_sub_field('name'); ?></h3>
+					<p><?php the_sub_field('description'); ?></p>
+				</div>
+				<?php $p++;
+			} 
+			// Reset for sample images
+			$p = 0; ?>
+		</div>
+
 		<div id="samples">
 		<?php while (has_sub_field('products')) {
 			if ($p > 0) { ?>
-				<div class="sample sample-<?php echo $p; ?>">
+				<div data-n="<?php echo $p; ?>" class="sample sample-<?php echo $p; ?>">
 					<img src="<?php the_sub_field('image'); ?>">
 				</div>
 		<?php } 
@@ -78,59 +82,103 @@ jQuery(document).ready(function($){
 	var capability = $('.capability'),
 		container = $('#capabilities'),
 		capabilities = $('#capabilities > div'),
-		shown = $('.shown');
+		shown = $('.shown'),
+		fading = false;
 
-	capability.first().addClass('active');
+	capabilities.first().fadeIn();			// show the first capability...
+	capability.first().addClass('active');	// highlight the first icon...
+	setTimeout(function(){
+		container.height(shown.height());	// set the height of the container equal to its content
+	}, 100);								// (with a slight delay to allow for content to display)
+		$(window).resize(function(){
+			container.height($('.shown').height());
+		});
 
-	capability.click(function(){
-		$this = $(this);
-		$this.addClass('active').siblings().removeClass('active');
-		if (!capabilities.eq($this.index()).hasClass('shown')) {
-			// fade out and remove shown class from the one that's being shown
-			$('.shown').fadeOut(500).removeClass('shown');
-			// find the new one, fade it in, and add the shown class
-			capabilities.eq($this.index()).delay(505).fadeIn().addClass('shown');
-		}
-		shown = $('.shown');
-		container.height(shown.height());
-
-
+	// Set height and width for 'Learn More' hovers
+	// used in sizing the hover on switching capabilities
+	var hovH = $('.hoverable:first').outerHeight(),
+		hovW = $('.hoverable:first').outerWidth();
+	$('.hover').css({
+		'height': hovH,
+		'width': hovW
 	});
 
-	container.height(shown.height());
-	$(window).resize(function(){
-		container.height($('.shown').height());
+	capability.click(function(){
+		if (!fading) {
+			fading = true;
+
+			$this = $(this);
+			$this.addClass('active').siblings().removeClass('active');
+			if (!capabilities.eq($this.index()).hasClass('shown')) {
+				// fade out and remove shown class from the one that's being shown
+				$('.shown').fadeOut(400).removeClass('shown');
+				// find the new one, fade it in, and add the shown class
+				capabilities.eq($this.index()).delay(510).fadeIn().addClass('shown')
+					// size hover
+					.find('.hover').css({
+						'height': hovH,
+						'width': hovW
+					});
+			}
+
+			shown = $('.shown');
+			// resize container
+			container.height(shown.height());
+
+			setTimeout(function(){
+				fading = false;
+			}, 910);
+		}
 	});
 
 	// Put some FitText on the icons
 	var icons = $('.capabilities span');
 	icons.fitText(0.19);
 
-	var products = $('.product').not(':first'),
-		samples = $('.sample img'),
+	// Featured products
+	var fulls = $('#fulls'),
+		products = $('.product').not(':first'),
+		samples = $('.sample'),
 		sample,
-		counter = 1,
-		target, targetHeight;
+		target, targetHeight,
+		n;
+
+	products.append('<div class="close"><div class="bg-hover"></div><div class="icon-close"></div></div>');
+	$('.close').click(function(){
+		$this = $(this);
+		$this.closest('.product').animate({
+			'opacity': 0
+		}, 500, function(){
+			$this.closest('.product').addClass('gone');
+		});
+		n = $this.closest('.product').attr('data-n');
+		samples.filter(function(index){
+			return $(this).attr('data-n') === n;
+		}).show().animate({
+			'left': 0,
+			'margin-right': '1.667%',
+			'opacity': 1
+		});
+	});
 
 	samples.click(function(){
-		sample = $(this);
+		$this = $(this);
 		// Fade out the image
-		sample.fadeOut(300);
-		// Slide all the containing 'sample' divs to the left
-		samples.closest('.sample').each(function(){
-			$(this).animate({
-				'left': -counter * sample.closest('.sample').outerWidth()
-			});
+		$this.animate({
+			'left': -$this.outerWidth(),
+			'margin-right': -$this.outerWidth(),
+			'opacity': 0
+		}, function(){
+			$this.hide();
 		});
-		// increment the counter so we know how far to be moving them
-		counter++;
 
 		// Time to show the featured product
-		target = products.eq(sample.closest('.sample').index());
-		targetHeight = target.find('img').outerHeight() > target.find('h3').height() + target.find('p').height() ? target.find('img').outerHeight() : target.find('h3').height() + target.find('p').height()
-		target.delay(300).animate({
-			'height': targetHeight
-		}, 600);
+		target = products.eq($this.index());
+		setTimeout(function(){
+			target.appendTo(fulls).removeClass('gone').animate({
+				'opacity': 1
+			}, 600);
+		}, 300);
 	});
 });
 </script>
