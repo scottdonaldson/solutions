@@ -13,7 +13,7 @@ include( MAIN . 'caps.php'); ?>
 	<?php
 	$i = 0;
 	foreach ($capabilities as $cap => $name) { ?>
-		<div id="<?php echo $cap; ?>" <?php if ($i == 0) { echo 'class="initial shown"'; } ?>>
+		<div id="<?php echo $cap; ?>" class="clearfix <?php if ($i == 0) { echo 'initial shown'; } ?>">
 			<h2><?php the_field($cap.'_tagline'); ?></h2>
 			<div class="left">
 				<img src="<?php echo bloginfo('template_url').'/images/'.$cap.'.png'; ?>" alt="<?php echo $name; ?>">
@@ -28,20 +28,20 @@ include( MAIN . 'caps.php'); ?>
 	<?php 
 	$i++;
 	} ?>
-</section>
 
-<div class="capabilities clearfix">
-	<?php
-	foreach ($capabilities as $cap => $name) { ?>
-		<div class="capability" data-capability="<?php echo $cap; ?>">
-			<div class="dummy"></div>
-			<div class="round">
-				<span class="hoverable icon-<?php echo $cap; ?>"></span>
+	<nav class="capabilities clearfix">
+		<?php
+		foreach ($capabilities as $cap => $name) { ?>
+			<div class="capability" data-capability="<?php echo $cap; ?>">
+				<div class="dummy"></div>
+				<div class="round">
+					<span class="hoverable icon-<?php echo $cap; ?>"></span>
+				</div>
+				<h3><?php echo $name; ?></h3>
 			</div>
-			<h3><?php echo $name; ?></h3>
-		</div>
-	<?php } ?>
-</div>
+		<?php } ?>
+	</nav>
+</section>
 
 <?php 
 if (get_field('products')) { 
@@ -80,22 +80,31 @@ jQuery(document).ready(function($){
 		capabilities = $('#capabilities > div'),
 		shown = $('.shown');
 
-	container.height(container.height());	
-
 	capability.first().addClass('active');
 
 	capability.click(function(){
 		$this = $(this);
 		$this.addClass('active').siblings().removeClass('active');
-		shown = $('.shown');
-		shownHeight = shown.outerHeight();
 		if (!capabilities.eq($this.index()).hasClass('shown')) {
 			// fade out and remove shown class from the one that's being shown
 			$('.shown').fadeOut(500).removeClass('shown');
 			// find the new one, fade it in, and add the shown class
 			capabilities.eq($this.index()).delay(505).fadeIn().addClass('shown');
 		}
+		shown = $('.shown');
+		container.height(shown.height());
+
+
 	});
+
+	container.height(shown.height());
+	$(window).resize(function(){
+		container.height($('.shown').height());
+	});
+
+	// Put some FitText on the icons
+	var icons = $('.capabilities span');
+	icons.fitText(0.19);
 
 	var products = $('.product').not(':first'),
 		samples = $('.sample img'),
