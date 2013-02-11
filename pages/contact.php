@@ -29,12 +29,6 @@ the_post(); ?>
 		cover = $('.cover'),
 		x, y;
 
-	map.mouseenter(function(){
-		cover.stop().animate({
-			'height': map.height() * 1.5,
-			'width': map.width() * 1.5,
-		}, 500);
-	});
 	map.mousemove(function(e){
 		$this = $(this);
 		x = e.pageX - $this.offset().left;

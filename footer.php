@@ -8,17 +8,20 @@
 			$news = new WP_query('posts_per_page=2');
 			$i = 1;
 			while ($news->have_posts()) : $news->the_post(); ?>
-				<a class="footer-news clearfix <?php if ($i == 2) { echo 'last'; } ?>" href="<?php the_permalink(); ?>">
-					<abbr class="sans" title="<?php echo 'Posted on '.get_the_date('M j, Y'); ?>"><?php echo get_the_date('n.j'); ?></abbr>
-					<div class="content">
-						<h3><?php the_title(); ?></h3>
-						<?php the_excerpt(); ?>
-					</div>
-				</a>
+				<div class="footer-news <?php if ($i == 2) { echo 'last'; } ?>">
+					<a class="hoverable clearfix" href="<?php the_permalink(); ?>">
+						<abbr class="sans" title="<?php echo 'Posted on '.get_the_date('M j, Y'); ?>"><?php echo get_the_date('n.j'); ?></abbr>
+						<div class="content">
+							<h3><?php the_title(); ?></h3>
+						</div>
+					</a>
+				</div>
 			<?php $i++; endwhile; wp_reset_postdata(); ?>
 		</div>
 
-		<a class="archive hoverable sans" href="<?php echo home_url(); ?>/news">Visit the Archive</a>
+		<div>
+			<a class="archive hoverable sans" href="<?php echo home_url(); ?>/news">Visit the Archive</a>
+		</div>
 	</section>
 
 	<section id="contact">

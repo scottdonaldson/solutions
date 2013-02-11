@@ -8,6 +8,11 @@ $(document).ready(function(){
 	// Make menu items hoverable and their parents boxes
 	menuItem.addClass('hoverable');
 
+	// News page needs to add in hoverables here also
+	if (body.hasClass('blog')) {
+		$('.pagination a').wrap('<div class="wrapper">').addClass('hoverable');
+	}
+
 	// Hover effects
 	var hoverable =	$('.hoverable'),
 		hover,
@@ -22,9 +27,10 @@ $(document).ready(function(){
 		// Create the hover div
 		hover = $('<div>', { class: 'hover' });
 
-		// What sort of hover is this?
-		if ($this.hasClass('round')) {
-			// left = 25;
+		// Special cases
+		if ($this.closest('#process').length > 0) {
+			left = 5;
+			top = -8;
 		}
 
 		$this.css({
@@ -38,6 +44,34 @@ $(document).ready(function(){
 				    })
 				);
 	});
+	$(window).resize(function(){
+		$('.hover').each(function(){
+			$this = $(this);
+			$this.css({
+				'height': $this.prev().outerHeight(),
+				'width': $this.prev().outerWidth()
+			});
+		});
+	});
 
 
+	// News in the footer - normalize height (only at large size)
+	/* var footerNews = $('.footer-news'),
+		biggestNews = 0;
+	var getBiggestNews = function(){
+		footerNews.each(function(){
+			biggestNews = 0;
+			$this = $(this);
+			$this.removeAttr('style');
+			if ($this.height() > biggestNews) {
+				biggestNews = $this.height();
+			}
+			footerNews.height(biggestNews);
+		});
+	};
+	getBiggestNews();
+	$(window).resize(function(){
+		getBiggestNews();
+	});
+	*/
 });

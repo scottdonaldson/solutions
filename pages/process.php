@@ -11,7 +11,7 @@ the_post(); ?>
 	<div class="step step-1">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><span class="hoverable">1</span></h3>
+		<h3 class="round"><div class="hoverable">1</div></h3>
 		<section>
 			<h4 class="header">Project Initiation</h4>
 			<p>Proposal, feasibility assessment customer purchase order</p>
@@ -20,7 +20,7 @@ the_post(); ?>
 	<div class="step step-2">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3>2</h3>
+		<h3 class="round"><div class="hoverable">2</div></h3>
 		<section>
 			<h4 class="header">Planning Phase</h4>
 			<p>Develop plan and design inputs (requirements)</p>
@@ -29,13 +29,13 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="icon-pencil"></h3>
+		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-3">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3>3</h3>
+		<h3 class="round"><div class="hoverable">3</div></h3>
 		<section>
 			<h4 class="header">Design Phase</h4>
 			<p>System, electronic, software and mechanical design descriptions</p>
@@ -44,13 +44,13 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="icon-pencil"></h3>
+		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-4">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3>4</h3>
+		<h3 class="round"><div class="hoverable">4</div></h3>
 		<section>
 			<h4 class="header">Implementation Phase</h4>
 			<p>Schematics, drawings, software code, manufacturing procedures, part specifications, vendor selection, etc.</p>
@@ -59,13 +59,13 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="icon-pencil"></h3>
+		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-5">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3>5</h3>
+		<h3 class="round"><div class="hoverable">5</div></h3>
 		<section>
 			<h4 class="header">Verification Phase</h4>
 			<p>Electronic, software, mechanical and integration testing</p>
@@ -74,24 +74,24 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="icon-pencil"></h3>
+		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-6">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3>6</h3>
+		<h3 class="round"><div class="hoverable">6</div></h3>
 		<section><h4 class="header">Validation</h4></section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="icon-pencil"></h3>
+		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-7">
 		<div class="bar"></div>
-		<h3>7</h3>
+		<h3 class="round"><div class="hoverable">7</div></h3>
 		<section>
 			<h4 class="header">Release to Production</h4>
 			<p>Design transfer to customer</p>
@@ -120,16 +120,16 @@ jQuery(document).ready(function($){
 			next = current.next('.step') ? current.next('.step') : false;
 			
 			if (next) {
+				next.addClass('shown');
 				current.removeClass('active').find('.line').animate({
-					'height': 200
-				}, function(){
-					next.animate({'height': 200})
-						.find('h3').fadeIn(function(){
-						next.addClass('active shown').find('.bar').stop().animate({
+					'height': '100%'
+				}, 200, function(){
+					next.find('h3').fadeIn(200, function(){
+						next.addClass('active').find('.bar').stop().animate({
 							'margin-left': 0,
 							'width': barWidth
-						}, function(){
-							next.find('section').fadeIn().css({
+						}, 200, function(){
+							next.find('section').fadeIn(200).css({
 								'top': -next.find('section').height/2 + 30
 							});
 							isShowing = false;
@@ -141,7 +141,7 @@ jQuery(document).ready(function($){
 	};
 	setTimeout(function(){
 		nextStep(steps.first());
-	}, 500);
+	}, 1000);
 
 	$(document).click(function(){
 		var last = $('.shown').last();
@@ -155,6 +155,11 @@ jQuery(document).ready(function($){
 			}
 		});
 	}); */
+
+	$(window).resize(function(){
+		barWidth = bar.first().width();
+		$('.shown .bar').not(':first').width(barWidth);
+	});
 });
 </script>
 
