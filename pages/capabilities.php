@@ -21,20 +21,22 @@ include( MAIN . 'caps.php'); ?>
 		<?php 
 		} ?> 
 	</div>
-		<?php
-		foreach ($capabilities as $cap=>$name) { ?>
-			<div class="content" id="<?php echo $cap; ?>">
-				<h3><?php echo $name; ?></h3>
-				<?php while (has_sub_field($cap)) { ?>
-					<div class="clearfix">
-						<p class="point"><?php the_sub_field('point'); ?></p>
-						<p class="description"><?php the_sub_field('description'); ?></p>
-					</div>
-				<?php } ?>
-			</div>
-		<?php } ?>
-		
-	</div>
+	<?php
+	foreach ($capabilities as $cap=>$name) { ?>
+		<div class="content" id="<?php echo $cap; ?>">
+			<h3><?php echo $name; ?></h3>
+			<?php while (has_sub_field($cap)) { ?>
+				<div class="clearfix">
+					<p class="point"><?php the_sub_field('point'); ?></p>
+					<p class="description"><?php the_sub_field('description'); ?></p>
+				</div>
+			<?php } ?>
+		</div>
+	<?php } ?>
+</div>
+
+<div class="border">
+	<a class="blacklink hoverable sans" href="<?php echo home_url(); ?>/process">Learn more about our process</a>
 </div>
 
 <script>
