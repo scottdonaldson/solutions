@@ -9,11 +9,13 @@
 		<div class="meta">
 			<div class="date sans"><?php $date = get_the_date('n.j.y'); echo $date; ?></div>
 			<div class="share">
-				<a href="" class="icon-facebook"></a>
-				<a href="" class="icon-twitter"></a><br>
-				<a href="" class="icon-linkedin"></a>
-				<a href="" class="icon-google-plus"></a><br>
-				<a class="border blacklink hoverable link" href="<?php the_permalink(); ?>">article link</a>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="icon-facebook"></a>
+				<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" class="icon-twitter"></a><br>
+				<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" class="icon-linkedin"></a>
+				<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="icon-google-plus"></a><br>
+				<div>
+					<a class="border blacklink hoverable link" href="<?php the_permalink(); ?>">article link</a>
+				</div>
 			</div>
 		</div>
 		<div class="content clearfix">
