@@ -21,7 +21,7 @@ include( MAIN . 'caps.php'); ?>
 			<div class="right">
 				<p><?php the_field($cap.'_description'); ?></p>
 				<div class="box more">
-					<a class="hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo $cap; ?>">Learn more</a>
+					<a class="sol-hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo $cap; ?>">Learn more</a>
 				</div>
 			</div>
 		</div>
@@ -37,7 +37,7 @@ include( MAIN . 'caps.php'); ?>
 				<div class="capability" data-capability="<?php echo $cap; ?>">
 					<div class="dummy"></div>
 					<div class="round">
-						<span class="hoverable icon-<?php echo $cap; ?>"></span>
+						<span class="sol-hoverable icon-<?php echo $cap; ?>"></span>
 					</div>
 					<h3><?php echo $name; ?></h3>
 				</div>
@@ -99,9 +99,9 @@ jQuery(document).ready(function($){
 
 	// Set height and width for 'Learn More' hovers
 	// used in sizing the hover on switching capabilities
-	var hovH = $('.hoverable:first').outerHeight(),
-		hovW = $('.hoverable:first').outerWidth();
-	$('.hover').css({
+	var hovH = $('.sol-hoverable:first').outerHeight(),
+		hovW = $('.sol-hoverable:first').outerWidth();
+	$('.sol-hover').css({
 		'height': hovH,
 		'width': hovW
 	});
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
 				// find the new one, fade it in, and add the shown class
 				capabilities.eq($this.index()).delay(510).fadeIn().addClass('shown')
 					// size hover
-					.find('.hover').css({
+					.find('.sol-hover').css({
 						'height': hovH,
 						'width': hovW
 					});

@@ -11,7 +11,7 @@ the_post(); ?>
 	<div class="step step-1">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable">1</div></h3>
+		<h3 class="round"><div class="sol-hoverable">1</div></h3>
 		<section>
 			<h4 class="header">Project Initiation</h4>
 			<p>Proposal, feasibility assessment customer purchase order</p>
@@ -20,7 +20,7 @@ the_post(); ?>
 	<div class="step step-2">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable">2</div></h3>
+		<h3 class="round"><div class="sol-hoverable">2</div></h3>
 		<section>
 			<h4 class="header">Planning Phase</h4>
 			<p>Develop plan and design inputs (requirements)</p>
@@ -29,13 +29,13 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
+		<h3 class="round"><div class="sol-hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-3">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable">3</div></h3>
+		<h3 class="round"><div class="sol-hoverable">3</div></h3>
 		<section>
 			<h4 class="header">Design Phase</h4>
 			<p>System, electronic, software and mechanical design descriptions</p>
@@ -44,13 +44,13 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
+		<h3 class="round"><div class="sol-hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-4">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable">4</div></h3>
+		<h3 class="round"><div class="sol-hoverable">4</div></h3>
 		<section>
 			<h4 class="header">Implementation Phase</h4>
 			<p>Schematics, drawings, software code, manufacturing procedures, part specifications, vendor selection, etc.</p>
@@ -59,13 +59,13 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
+		<h3 class="round"><div class="sol-hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-5">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable">5</div></h3>
+		<h3 class="round"><div class="sol-hoverable">5</div></h3>
 		<section>
 			<h4 class="header">Verification Phase</h4>
 			<p>Electronic, software, mechanical and integration testing</p>
@@ -74,24 +74,24 @@ the_post(); ?>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
+		<h3 class="round"><div class="sol-hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-6">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable">6</div></h3>
+		<h3 class="round"><div class="sol-hoverable">6</div></h3>
 		<section><h4 class="header">Validation</h4></section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
-		<h3 class="round"><div class="hoverable icon-pencil"></div></h3>
+		<h3 class="round"><div class="sol-hoverable icon-pencil"></div></h3>
 		<section><h4 class="header">Design Review</h4></section>
 	</div>
 	<div class="step step-7 final">
 		<div class="bar"></div>
-		<h3 class="round"><div class="hoverable">7</div></h3>
+		<h3 class="round"><div class="sol-hoverable">7</div></h3>
 		<section>
 			<h4 class="header">Release to Production</h4>
 			<p>Design transfer to customer</p>

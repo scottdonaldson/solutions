@@ -13,7 +13,7 @@ the_post();
 			<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" class="icon-linkedin"></a>
 			<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="icon-google-plus"></a><br>
 			<div>
-				<a class="border blacklink hoverable link" href="<?php the_permalink(); ?>">article link</a>
+				<a class="border blacklink sol-hoverable link" href="<?php the_permalink(); ?>">article link</a>
 			</div>
 		</div>
 	</div>

@@ -6,15 +6,15 @@ $(document).ready(function(){
 		menuItem = $('header nav a');
 
 	// Make menu items hoverable and their parents boxes
-	menuItem.addClass('hoverable');
+	menuItem.addClass('sol-hoverable');
 
 	// News page needs to add in hoverables here also
 	if (body.hasClass('blog')) {
-		$('.pagination a').wrap('<div class="wrapper">').addClass('hoverable');
+		$('.pagination a').wrap('<div class="wrapper">').addClass('sol-hoverable');
 	}
 
 	// Hover effects
-	var hoverable =	$('.hoverable'),
+	var hoverable =	$('.sol-hoverable'),
 		hover,
 		z;
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		
 		z = $this.css('z-index') ? $this.css('z-index') + 1 : 1;
 		// Create the hover div
-		hover = $('<div>', { class: 'hover' });
+		hover = $('<div>', { class: 'sol-hover' });
 
 		// Special cases
 		if ($this.closest('#process').length > 0) {

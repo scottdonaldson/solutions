@@ -16,7 +16,7 @@ include( MAIN . 'caps.php'); ?>
 		<?php 
 		foreach ($capabilities as $cap=>$name) { ?>
 			<a class="round" href="#<?php echo $cap; ?>">
-				<span class="hoverable icon-<?php echo $cap; ?>"></span>
+				<span class="sol-hoverable icon-<?php echo $cap; ?>"></span>
 			</a>
 		<?php 
 		} ?> 
@@ -36,7 +36,7 @@ include( MAIN . 'caps.php'); ?>
 </div>
 
 <div class="border">
-	<a class="blacklink hoverable sans" href="<?php echo home_url(); ?>/process">Learn about our process</a>
+	<a class="blacklink sol-hoverable sans" href="<?php echo home_url(); ?>/process">Learn about our process</a>
 </div>
 
 <script>
