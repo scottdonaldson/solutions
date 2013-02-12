@@ -36,7 +36,7 @@ include( MAIN . 'caps.php'); ?>
 </div>
 
 <div class="border">
-	<a class="blacklink hoverable sans" href="<?php echo home_url(); ?>/process">Learn more about our process</a>
+	<a class="blacklink hoverable sans" href="<?php echo home_url(); ?>/process">Learn about our process</a>
 </div>
 
 <script>
@@ -88,8 +88,11 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 		$this = $(this);
 		$this.addClass('active').siblings().removeClass('active');
-		// console.log(content.filter($this.attr('href')));
+
 		content.filter($this.attr('href')).fadeIn().siblings('.content').fadeOut();
+		$('html, body').animate({
+			'scrollTop': container.offset().top - 40
+		}, 800);
 
 		window.history.pushState('', document.title, $this.attr('href'));
 	});
