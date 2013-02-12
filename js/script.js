@@ -45,7 +45,7 @@ $(document).ready(function(){
 				);
 	});
 	$(window).resize(function(){
-		$('.hover').each(function(){
+		$('.sol-hover').each(function(){
 			$this = $(this);
 			$this.css({
 				'height': $this.prev().outerHeight(),
