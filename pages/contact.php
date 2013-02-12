@@ -48,6 +48,15 @@ the_post(); ?>
 </section>
 
 <script>
+	// "Get in touch!"
+	$('h2.huge a').click(function(e){
+		e.preventDefault();
+
+		$('html, body').animate({
+			'scrollTop': $('#contact').offset().top
+		}, 1200);
+	})
+
 	var map = $('.map'),
 		cover = $('.cover'),
 		x, y;
