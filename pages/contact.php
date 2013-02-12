@@ -20,8 +20,29 @@ the_post(); ?>
 	<p class="uppercase"><a href="http://maps.google.com/maps?daddr=287+E+6th+St+%23140,+St+Paul,+MN+55101&hl=en&sll=44.951045,-93.086236&sspn=0.009643,0.022724&geocode=FQXmrQId5J1z-g&mra=ls&t=m&z=16" target="_blank">Get Google directions.</a></p>
 </div>
 
-<section <?php post_class(); ?>>
-	<h2 class="header">Team Leader</h2>
+<section <?php post_class('team'); ?>>
+	<?php 
+	if (count(get_field('team')) == 1) { 
+		echo '<h2 class="header">Team Leader</h2>';
+	} elseif (count(get_field('team')) > 1) {
+		echo '<h2 class="header">The Team</h2>';
+	} 
+	if (get_field('team')) {
+		$t = 0;
+		while (has_sub_field('team')) { ?>
+			<div class="member">
+				<img src="<?php the_sub_field('photo'); ?>" alt="<?php the_sub_field('name'); ?>">
+				
+				<div class="right">
+					<h3><?php the_sub_field('name'); if (get_sub_field('title')) { echo ' - '.get_sub_field('title'); } ?></h3>
+					<a href="mailto:<?php the_sub_field('email'); ?>"><?php the_sub_field('email'); ?></a>
+					<p><?php the_sub_field('bio'); ?></p>
+				</div>
+			</div>
+		<?php 
+		$t++;
+		}
+	} ?>
 </section>
 
 <script>
