@@ -2,9 +2,11 @@
 
 <h1 class="visuallyhidden">News</h1>
 
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<?php 
+$i = 0;
+if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-	<h3 class="title"><?php the_title(); ?></h3>
+	<h3 class="title <?php if ($i == 0) { echo 'first'; } ?>"><?php the_title(); ?></h3>
 	<section <?php post_class('news'); ?>>
 		<div class="meta">
 			<div class="date sans"><?php $date = get_the_date('n.j.y'); echo $date; ?></div>
@@ -41,7 +43,9 @@
 		</div>
 	</section>
 
-<?php endwhile; endif; ?>
+<?php 
+$i++;
+endwhile; endif; ?>
 
 <div class="pagination sans">
     <?php 
