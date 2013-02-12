@@ -20,28 +20,16 @@ $(document).ready(function(){
 
 	hoverable.each(function(){
 		$this = $(this);
-		var left = 10, 
-			top = -10;
 		
 		z = $this.css('z-index') ? $this.css('z-index') + 1 : 1;
 		// Create the hover div
 		hover = $('<div>', { class: 'sol-hover' });
-
-		// Special cases
-		if ($this.closest('#process').length > 0) {
-			left = 5;
-			top = -8;
-		}
 
 		$this.css({
 			'z-index': z
 		}).after( hover
 				    .width($this.outerWidth())
 				    .height($this.outerHeight())
-				    .css({
-				    	'left': left,
-				    	'top': top
-				    })
 				);
 	});
 	$(window).resize(function(){

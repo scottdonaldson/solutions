@@ -12,9 +12,9 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<div class="date sans"><?php $date = get_the_date('n.j.y'); echo $date; ?></div>
 			<div class="share">
 				<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="icon-facebook"></a>
-				<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" class="icon-twitter"></a><br>
+				<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" class="icon-twitter"></a>
 				<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" class="icon-linkedin"></a>
-				<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="icon-google-plus"></a><br>
+				<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="icon-google-plus"></a>
 				<div>
 					<a class="border blacklink sol-hoverable link" href="<?php the_permalink(); ?>">article link</a>
 				</div>
