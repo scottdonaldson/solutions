@@ -18,19 +18,30 @@ $(document).ready(function(){
 		hover,
 		z;
 
-	hoverable.each(function(){
-		$this = $(this);
-		
-		z = $this.css('z-index') ? $this.css('z-index') + 1 : 1;
-		// Create the hover div
-		hover = $('<div>', { class: 'sol-hover' });
+	$(window).load(function(){ // wait for window load so we can get images in there too
+		hoverable.each(function(){
+			$this = $(this);
+			
+			z = $this.css('z-index') ? $this.css('z-index') + 1 : 1;
+			// Create the hover div
+			hover = $('<div>', { class: 'sol-hover' });
 
-		$this.css({
-			'z-index': z
-		}).after( hover
-				    .width($this.outerWidth())
-				    .height($this.outerHeight())
-				);
+			if ($this.closest('.sample').length > 0) { // special case for home page samples
+				$this.css({
+					'z-index': z
+				}).after( hover
+						    .width($this.outerWidth() + 10)
+						    .height($this.outerHeight() + 10)
+						);
+			} else {
+				$this.css({
+					'z-index': z
+				}).after( hover
+						    .width($this.outerWidth())
+						    .height($this.outerHeight())
+						);
+			}
+		});
 	});
 	$(window).resize(function(){
 		$('.sol-hover').each(function(){

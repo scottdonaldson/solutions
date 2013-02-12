@@ -11,12 +11,12 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div class="meta">
 			<div class="date sans"><?php $date = get_the_date('n.j.y'); echo $date; ?></div>
 			<div class="share">
-				<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="round"><span class="icon-facebook sol-hoverable"></span></a>
-				<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" class="round"><span class="icon-twitter sol-hoverable"></span></a>
-				<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" class="round"><span class="icon-linkedin sol-hoverable"></span></a>
-				<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="round"><span class="icon-google-plus sol-hoverable round"></span></a>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="icon-facebook"></a>
+				<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" class="icon-twitter"></a>
+				<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" class="icon-linkedin"></a>
+				<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="icon-google-plus"></a>
 				<div class="border">
-					<a class="blacklink sol-hoverable link" href="<?php the_permalink(); ?>">article link</a>
+					<a class="blacklink sol-hoverable" href="<?php the_permalink(); ?>">article link</a>
 				</div>
 			</div>
 		</div>
@@ -28,7 +28,7 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 				$i = 1;
 				if ($count == 1) {
 					while (has_sub_field('featured_images')) { ?>
-						<img src="<?php the_sub_field('image'); ?>">
+						<img class="featured" src="<?php the_sub_field('image'); ?>">
 					<?php }
 				} elseif ($count == 2) {
 					while (has_sub_field('featured_images')) { ?>
@@ -40,6 +40,7 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 			} 
 			the_content();
 			?>
+			<div class="border"><a href="<?php the_permalink(); ?>" class="blacklink sol-hoverable">article link</a></div>
 		</div>
 	</section>
 

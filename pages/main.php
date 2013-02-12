@@ -14,7 +14,7 @@ include( MAIN . 'caps.php'); ?>
 	$i = 0;
 	foreach ($capabilities as $cap => $name) { ?>
 		<div id="<?php echo $cap; ?>" class="clearfix <?php if ($i == 0) { echo 'initial shown'; } ?>">
-			<h2><?php the_field($cap.'_tagline'); ?></h2>
+			<h2 class="central"><?php the_field($cap.'_tagline'); ?></h2>
 			<div class="left">
 				<img src="<?php echo bloginfo('template_url').'/images/'.$cap.'.png'; ?>" alt="<?php echo $name; ?>">
 			</div>
@@ -71,7 +71,9 @@ if (get_field('products')) {
 		<?php while (has_sub_field('products')) {
 			if ($p > 0) { ?>
 				<div data-n="<?php echo $p; ?>" class="sample sample-<?php echo $p; ?>">
-					<img src="<?php the_sub_field('image'); ?>">
+					<div>
+						<img class="sol-hoverable" src="<?php the_sub_field('image'); ?>">
+					</div>
 				</div>
 		<?php } 
 		$p++;
@@ -128,9 +130,11 @@ jQuery(document).ready(function($){
 			// resize container
 			container.height(shown.height());
 
-			$('html, body').animate({
-				'scrollTop': container.offset().top - 50
-			}, 800);
+			if ($(window).scrollTop() > container.offset().top - 50) {
+				$('html, body').animate({
+					'scrollTop': container.offset().top - 50
+				}, 800);
+			}
 
 			setTimeout(function(){
 				fading = false;

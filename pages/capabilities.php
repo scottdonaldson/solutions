@@ -11,20 +11,11 @@ include( MAIN . 'caps.php'); ?>
 
 <h1 class="visuallyhidden">Contact</h1>
 
-<div id="full_capabilities" class="clearfix">
-	<div class="icons">
-		<?php 
-		foreach ($capabilities as $cap=>$name) { ?>
-			<a class="round" href="#<?php echo $cap; ?>">
-				<span class="sol-hoverable icon-<?php echo $cap; ?>"></span>
-			</a>
-		<?php 
-		} ?> 
-	</div>
+<section id="full_capabilities" class="clearfix">
 	<?php
 	foreach ($capabilities as $cap=>$name) { ?>
 		<div class="content" id="<?php echo $cap; ?>">
-			<h3><?php echo $name; ?></h3>
+			<h3 class="central"><?php echo $name; ?></h3>
 			<?php while (has_sub_field($cap)) { ?>
 				<div class="clearfix">
 					<p class="point"><?php the_sub_field('point'); ?></p>
@@ -32,8 +23,23 @@ include( MAIN . 'caps.php'); ?>
 				</div>
 			<?php } ?>
 		</div>
-	<?php } ?>
-</div>
+	<?php } 
+	// Icons go after capabilities so that they bump to the bottom
+	// at our breakpoint
+	?>
+	<div class="icons">
+		<?php 
+		$c = 0;
+		foreach ($capabilities as $cap=>$name) { ?>
+			<a class="round" href="#<?php echo $cap; ?>">
+				<span class="sol-hoverable icon-<?php echo $cap; ?>"></span>
+			</a>
+			<?php if ($c == 2) { echo '<div class="clearfix"></div>'; } ?>
+		<?php 
+		$c++;
+		} ?> 
+	</div>	
+</section>
 
 <div class="border">
 	<a class="blacklink sol-hoverable sans" href="<?php echo home_url(); ?>/process">Learn about our process</a>
@@ -45,7 +51,9 @@ jQuery(document).ready(function($){
 		// If we're not coming to a specific capability,
 		// assume that we're here to check out pre-project support
 		window.history.pushState('', document.title, '#support');
-	}
+	} 
+	$(window.location.hash).addClass('shown');
+	
 	$('html, body').animate({
 		'scrollTop': 0
 	}, 1);
@@ -89,10 +97,17 @@ jQuery(document).ready(function($){
 		$this = $(this);
 		$this.addClass('active').siblings().removeClass('active');
 
-		content.filter($this.attr('href')).fadeIn().siblings('.content').fadeOut();
-		$('html, body').animate({
-			'scrollTop': container.offset().top - 40
-		}, 800);
+		if (!content.filter($this.attr('href')).hasClass('shown')) {
+			content.fadeOut(400).removeClass('shown');
+			setTimeout(function(){
+				content.filter($this.attr('href')).fadeIn().addClass('shown');
+			}, 405);
+			if ($(window).scrollTop() > container.offset().top - 40) {
+				$('html, body').animate({
+					'scrollTop': container.offset().top - 40
+				}, 800);
+			}
+		}
 
 		window.history.pushState('', document.title, $this.attr('href'));
 	});

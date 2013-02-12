@@ -7,7 +7,7 @@ the_post(); ?>
 
 <h1 class="visuallyhidden">Process</h1>
 
-<div id="process" class="clearfix">
+<section id="process" class="clearfix">
 	<div class="step step-1">
 		<div class="bar"></div>
 		<div class="line"></div>
@@ -97,7 +97,7 @@ the_post(); ?>
 			<p>Design transfer to customer</p>
 		</section>
 	</div>
-</div>
+</section>
 
 <script>
 jQuery(document).ready(function($){
