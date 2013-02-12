@@ -9,7 +9,7 @@
 			$i = 1;
 			while ($news->have_posts()) : $news->the_post(); ?>
 				<div class="footer-news <?php if ($i == 2) { echo 'last'; } ?>">
-					<a class="hoverable clearfix" href="<?php the_permalink(); ?>">
+					<a class="sol-hoverable clearfix" href="<?php the_permalink(); ?>">
 						<abbr class="sans" title="<?php echo 'Posted on '.get_the_date('M j, Y'); ?>"><?php echo get_the_date('n.j'); ?></abbr>
 						<div class="content">
 							<h3 class="sans"><?php the_title(); ?></h3>
@@ -21,7 +21,7 @@
 		</div>
 
 		<div>
-			<a class="archive hoverable sans" href="<?php echo home_url(); ?>/news">Visit the Archive</a>
+			<a class="archive sol-hoverable sans" href="<?php echo home_url(); ?>/news">Visit the Archive</a>
 		</div>
 	</section>
 
