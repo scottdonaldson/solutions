@@ -60,4 +60,4 @@ define('MAIN', dirname(__FILE__) . '/'); ?>
 
 </header>
 
-<div id="main" role="main" class="full-width">
+<div id="main" role="main" class="full-width clearfix">
