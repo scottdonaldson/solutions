@@ -66,8 +66,8 @@ the_post(); ?>
 		x = e.pageX - $this.offset().left;
 		y = e.pageY - $this.offset().top;
 		cover.css({
-			'top': y - 300,
-			'left': x - 700
+			'left': x - 1000,
+			'top': y - 1000
 		});
 	});
 	map.mouseleave(function(){
