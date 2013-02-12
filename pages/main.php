@@ -128,6 +128,10 @@ jQuery(document).ready(function($){
 			// resize container
 			container.height(shown.height());
 
+			$('html, body').animate({
+				'scrollTop': container.offset().top - 50
+			}, 800);
+
 			setTimeout(function(){
 				fading = false;
 			}, 910);
