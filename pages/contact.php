@@ -7,9 +7,11 @@ the_post(); ?>
 
 <h1 class="visuallyhidden">Contact</h1>
 
-<a class="aligncenter" href="#contact">
-	<h2 class="huge">Get in touch with us!</h2>
-</a>
+<h2 class="huge aligncenter">
+	<a href="#contact">
+		Get in touch with us!
+	</a>
+</h2>
 
 <div id="directions" class="clearfix">
 	<div class="map">
