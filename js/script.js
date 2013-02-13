@@ -46,10 +46,18 @@ $(document).ready(function(){
 	$(window).resize(function(){
 		$('.sol-hover').each(function(){
 			$this = $(this);
-			$this.css({
-				'height': $this.prev().outerHeight(),
-				'width': $this.prev().outerWidth()
-			});
+
+			if ($this.closest('.sample').length > 0) {
+				$this.css({
+					'height': $this.prev().outerHeight() + 10,
+					'width': $this.prev().outerWidth() + 10
+				})
+			} else {
+				$this.css({
+					'height': $this.prev().outerHeight(),
+					'width': $this.prev().outerWidth()
+				});
+			}
 		});
 	});
 
