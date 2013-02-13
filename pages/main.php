@@ -92,9 +92,9 @@ jQuery(document).ready(function($){
 
 	capabilities.first().fadeIn();			// show the first capability...
 	capability.first().addClass('active');	// highlight the first icon...
-	setTimeout(function(){
+	$(window).load(function(){
 		container.height(shown.height());	// set the height of the container equal to its content
-	}, 100);								// (with a slight delay to allow for content to display)
+	});	
 		$(window).resize(function(){
 			container.height($('.shown').height());
 		});
