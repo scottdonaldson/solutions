@@ -116,7 +116,8 @@ a, a:visited {
 .icon-compliance:before,
 .icon-management:before,
 .icon-pencil:before,
-.icon-close:before {
+.icon-close:before,
+.icon-plus:before {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -150,6 +151,7 @@ a, a:visited {
 }
 .icon-pencil:before { content: "\e00a"; }
 .icon-close:before { content: "\e00b"; }
+.icon-plus:before { content: "\e00c"; }
 
 h1, h2, h3, h4, h5, h6 { 
 	font-family: 'DIN', Helvetica, Arial, sans-serif; 
@@ -168,9 +170,9 @@ h1, h2, h3, h4, h5, h6 {
 .sol-hover {
 	background-color: $yellow;
 	@include opacity(0);
-	left: 6px;
+	left: 7px;
 	position: absolute;
-	top: -6px;
+	top: -7px;
 	@include transit;
 	z-index: 0;
 
@@ -190,8 +192,8 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	@media screen and (max-width: $v-small) {
-		left: 3px;
-		top: -3px;
+		left: 5px;
+		top: -5px;
 	}
 }
 
@@ -212,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
 	left: 10px;
 	margin-top: 0;
 	margin-bottom: -48px;
-	padding: 10px 10px 20px;
+	padding: 10px 10px 17px;
 	top: -48px;
 	z-index: -1;
 }
@@ -226,7 +228,7 @@ section { // always have headers
 // ----- layout
 
 body {
-	padding: 3% 8%;
+	padding: 3% 8% 0;
 
 	@media screen and (max-width: $large) {
 		padding: 3% 6%;
@@ -247,8 +249,8 @@ body {
 }
 
 #main {
-	margin-top: 6%;
-	margin-bottom: 8%; // a little more to make room for 'Latest News'
+	margin-top: 4%;
+	margin-bottom: 6%; // a little more to make room for 'Latest News'
 }
 
 
@@ -256,10 +258,14 @@ body {
 
 header {
 	border-bottom: 3px solid #000;
-	padding-bottom: 30px;
+	padding: 0 0 30px 20px;
 }
 
-$header-break: 1040px; // custom break point for header
+.logo img {
+	display: block;
+	max-width: 390px;
+	width: 35%;
+}
 
 .menu {
 	@include tight;
@@ -285,7 +291,7 @@ $header-break: 1040px; // custom break point for header
 		}
 	}
 
-	@media screen and (max-width: $header-break) {
+	@media screen and (max-width: $med) {
 		bottom: 0;
 		position: relative;
 		text-align: center;
@@ -312,7 +318,13 @@ $header-break: 1040px; // custom break point for header
 	}
 }
 
-@media screen and (max-width: $header-break) {
+@media screen and (max-width: $med) {
+
+	header {
+		padding-left: 0;
+		padding-bottom: 10px;
+	}
+
 	.logo {
 		display: block;
 		margin-bottom: 25px;
@@ -320,6 +332,8 @@ $header-break: 1040px; // custom break point for header
 		img {
 			display: block;
 			margin: 0 auto;
+			max-width: 100%;
+			width: auto;
 		}
 	}
 }
@@ -332,7 +346,7 @@ $header-break: 1040px; // custom break point for header
 	font-size: 34px;
 	text-align: center;
 	padding: 60px 20% 20px;
-	margin-bottom: -20px;
+	margin-bottom: -40px;
 	top: -60px;
 	z-index: -1;
 
@@ -358,13 +372,13 @@ $header-break: 1040px; // custom break point for header
 	height: 600px;
 	margin-bottom: 220px;
 	overflow: visible;
-	padding-bottom: 12%;
-	// @include transit;
+	padding-bottom: 10%;
+	@include transit;
 
 	& > div {
 		display: none;
 		overflow: visible;
-		padding: 0 30px;
+		padding: 0 40px;
 		&.initial {
 			display: block;
 		}
@@ -378,7 +392,7 @@ $header-break: 1040px; // custom break point for header
 		display: block;
 		margin: 0 auto;
 		padding: 0 30px;
-		max-height: 350px;
+		max-height: 280px;
 
 		@media screen and (max-width: $small) {
 			max-height: none;
@@ -392,6 +406,7 @@ $header-break: 1040px; // custom break point for header
 		
 		@media screen and (max-width: $med) {
 			padding-bottom: 40px;
+			padding-right: 0;
 		}
 		
 		@media screen and (max-width: $small) {
@@ -404,6 +419,10 @@ $header-break: 1040px; // custom break point for header
 		@media screen and (max-width: $small) {
 			padding-bottom: 0;
 		}
+	}
+
+	.right {
+		padding-right: 40px;
 	}
 
 	p {
@@ -472,15 +491,15 @@ $header-break: 1040px; // custom break point for header
 
 	@media screen and (max-width: $med) {
 		margin-bottom: 70px;
-		padding: 0 30px;
+		padding: 0 40px;
 		top: 20px;
-		width: 25%;
+		width: 30%;
 	}
 	@media screen and (max-width: $small) {
 		padding: 0 20px;
 	}
 	@media screen and (max-width: $v-small) {
-		width: 40%;
+		width: 45%;
 	}
 
 	.dummy {
@@ -498,8 +517,8 @@ $header-break: 1040px; // custom break point for header
 		right: 20px;
 
 		@media screen and (max-width: $med) {
-			left: 30px;
-			right: 30px;
+			left: 40px;
+			right: 40px;
 		}
 		@media screen and (max-width: $small) {
 			left: 20px;
@@ -512,6 +531,12 @@ $header-break: 1040px; // custom break point for header
 			height: 100%;
 			padding-top: 18%;
 			width: 100%;
+		}
+	}
+
+	&:hover { // hovering anywhere on the .capability (including text) shows hover
+		.sol-hover {
+			@include opacity(1);
 		}
 	}
 
@@ -559,7 +584,7 @@ $header-break: 1040px; // custom break point for header
 
 		.bg-hover {
 			height: 34px;
-			left: 5px;
+			left: 4px;
 			position: absolute;
 			width: 34px;
 			top: -8px;
@@ -580,7 +605,6 @@ $header-break: 1040px; // custom break point for header
 .sample {
 	float: left;
 	margin-right: 1.667%;
-	@include transition(2s);
 	width: 10%;
 
 	img {
@@ -588,12 +612,29 @@ $header-break: 1040px; // custom break point for header
 		cursor: pointer;
 		display: block;
 		max-width: 100%;
+		@include transition(0.5s);
 		width: 100%;
 	}
 
-	.sol-hover {
-		left: -5px;
-		top: -5px;
+	span { // icon-plus
+		cursor: pointer;
+		display: block;
+		@include opacity(0);
+		font-size: 24px;
+		position: absolute;
+		text-align: center;
+		top: 30%;
+		@include transition(0.5s);
+		width: 100%;
+	}
+
+	&:hover {
+		span {
+			@include opacity(1);
+		}
+		img {
+			@include opacity(0.5);
+		}
 	}
 }
 
@@ -908,11 +949,15 @@ $cap-break: 450px;
 .title {
 	font-size: 30px;
 	margin: 80px 0 10px;
-	padding-right: 180px;
+	padding-right: 34%;
 
 	&.first,
 	.single & {
 		margin-top: 40px;
+	}
+
+	@media screen and (max-width: $large) {
+		padding-right: 26%;
 	}
 
 	@media screen and (max-width: $med) {
@@ -927,18 +972,20 @@ $cap-break: 450px;
 }
 
 .news {
+	border-top: 0; // border goes on .content instead
 	margin-top: 0; // the title lies outside of the section here, so no top margin needed
 	min-height: 220px; // make sure there's enough room for date/social/share
-	padding-right: 240px;
+	padding-right: 34%;
+
+	@media screen and (max-width: $large) {
+		padding-right: 26%;
+	}
 
 	.content {
+		border-top: 3px solid #000;
 
 		p:first-child { // if there's no featured image, give starting content more space
 			padding-top: 20px;
-		}
-
-		@media screen and (max-width: $small) {
-			border-top: 3px solid #000;
 		}
 
 		div.border { // alternate "article link" for small sizes
@@ -950,7 +997,7 @@ $cap-break: 450px;
 				a {
 					display: block;
 					font-size: 14px;
-					padding: 5px;
+					padding: 5px 15px;
 					width: 100%;
 				}
 			}
@@ -958,25 +1005,29 @@ $cap-break: 450px;
 	}
 
 	@media screen and (max-width: $small) {
-		border-top: 0 none;
-		margin-top: 30px;
+		margin-top: 10px;
 		padding-right: 0;
 	}
 }
 
 .meta {
 	position: absolute;
-	right: 20px;
+	right: 8.5%;
 	text-align: center;
 	top: -80px;
-	width: 160px;
+	width: 17%;
+
+	@media screen and (max-width: $large) {
+		right: 3%;
+		width: 18%;
+	}
 
 	@media screen and (max-width: $small) {
 		height: 35px;
 		left: 0;
 		position: relative;
 		text-align: left;
-		top: -10px;
+		top: 0;
 		width: 100%;
 	}
 }
@@ -987,7 +1038,7 @@ $cap-break: 450px;
 	@include border-radius(50px);
 	font-size: 20px;
 	height: 100px;
-	margin: 0 auto 25px;
+	margin: 0 auto 20px;
 	padding-top: 35px;
 	width: 100px;
 
@@ -999,22 +1050,33 @@ $cap-break: 450px;
 		font-size: 16px;
 		height: auto;
 		@include tight;
+		margin-right: 20px;
+		width: auto;
 	}
 }
 
 .share {
-	padding: 0 30px;
+	height: 65px;
 
 	& > a {
 		@include blacklink;
-		display: inline-block;
+		float: left;
 		font-size: 28px;
-		height: 28px;
-		width: 28px;
+		padding: 0 5px;
+		width: 50%;
+
+		&.icon-facebook,
+		&.icon-linkedin {
+			text-align: right;
+		}
+		&.icon-twitter,
+		&.icon-google-plus {
+			text-align: left;
+		}
 
 		&:hover,
 		&:active {
-			color: $blue;
+			color: $bg-blue;
 		}
 
 		span {
@@ -1030,7 +1092,7 @@ $cap-break: 450px;
 
 		@media screen and (max-width: $small) {			
 			font-size: 20px;
-			height: 20px;
+			margin-right: 5px;
 			width: 20px;
 		}
 	}
@@ -1298,13 +1360,16 @@ section.team {
 .secondary {
 	border-top: 3px solid #000;
 	clear: both;
-	padding: 20px;
+	padding: 20px 20px 0;
 
 	@media screen and (max-width: $med) {
 		.alignleft,
 		.alignright {
 			float: none;
 			text-align: center;
+		}
+		.alignleft {
+			margin-bottom: 0.5em;
 		}
 		.alignright {
 			margin-bottom: 0;

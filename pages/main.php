@@ -72,7 +72,8 @@ if (get_field('products')) {
 			if ($p > 0) { ?>
 				<div data-n="<?php echo $p; ?>" class="sample sample-<?php echo $p; ?>">
 					<div>
-						<img class="sol-hoverable" src="<?php the_sub_field('image'); ?>">
+						<img src="<?php the_sub_field('image'); ?>">
+						<span class="icon-plus"></span>
 					</div>
 				</div>
 		<?php } 
