@@ -526,7 +526,6 @@ $header-break: 1040px; // custom break point for header
 .product {
 	margin-bottom: 1.667%;
 	width: 100%;
-	// @include transit;
 
 	img {
 		@include border;
@@ -542,8 +541,8 @@ $header-break: 1040px; // custom break point for header
 
 	&.gone {
 		@include opacity(0);
-		position: absolute;
-		width: 100%;
+		height: 0;
+		margin: 0;
 	}
 
 	.close {
@@ -564,7 +563,7 @@ $header-break: 1040px; // custom break point for header
 			position: absolute;
 			width: 34px;
 			top: -8px;
-			// @include transit;
+			@include transit;
 		}
 
 		&:hover .bg-hover {
@@ -573,16 +572,22 @@ $header-break: 1040px; // custom break point for header
 	}
 }
 
+#samples { 
+	clear: both;
+	@include transition(2s); 
+}
+
 .sample {
 	float: left;
 	margin-right: 1.667%;
+	@include transition(2s);
 	width: 10%;
 
 	img {
 		@include border;
 		cursor: pointer;
 		display: block;
-		max-width: none;
+		max-width: 100%;
 		width: 100%;
 	}
 

@@ -67,7 +67,7 @@ if (get_field('products')) {
 			$p = 0; ?>
 		</div>
 
-		<div id="samples">
+		<div id="samples" class="clearfix">
 		<?php while (has_sub_field('products')) {
 			if ($p > 0) { ?>
 				<div data-n="<?php echo $p; ?>" class="sample sample-<?php echo $p; ?>">
@@ -154,19 +154,22 @@ jQuery(document).ready(function($){
 		target, targetHeight,
 		n;
 
+	products.find('img').hide();
+
 	products.append('<div class="close"><div class="bg-hover"></div><div class="icon-close"></div></div>');
 	$('.close').click(function(){
 		$this = $(this);
-		$this.closest('.product').animate({
-			'opacity': 0
-		}, 500, function(){
-			$this.closest('.product').addClass('gone');
+		$this.closest('.product').fadeOut(500, function(){
+			$this.closest('.product').fadeOut({queue: false}).slideUp({queue: false}).animate({
+				'margin-bottom': 0
+			}, function(){
+				$this.closest('.product').addClass('gone').fadeOut();
+			});
 		});
 		n = $this.closest('.product').attr('data-n');
-		samples.filter(function(index){
+		samples.filter(function(index){ // find the corresponding sample and show it again
 			return $(this).attr('data-n') === n;
-		}).show().animate({
-			'left': 0,
+		}).css({
 			'margin-right': '1.667%',
 			'opacity': 1
 		});
@@ -175,21 +178,22 @@ jQuery(document).ready(function($){
 	samples.click(function(){
 		$this = $(this);
 		// Fade out the image
-		$this.animate({
-			'left': -$this.outerWidth(),
-			'margin-right': -$this.outerWidth(),
-			'opacity': 0
-		}, function(){
-			$this.hide();
+		$this.css({
+			'opacity': 0,
+			'margin-right': '-100%'
 		});
 
 		// Time to show the featured product
 		target = products.eq($this.index());
 		setTimeout(function(){
-			target.appendTo(fulls).removeClass('gone').animate({
-				'opacity': 1
-			}, 600);
-		}, 300);
+			target.appendTo(fulls).find('img').slideDown();
+			target.slideDown().animate({
+				'height': '100%',
+				'margin-bottom': '1.667%'
+			}, function(){
+				target.removeClass('gone').fadeIn();
+			});
+		}, 500);
 	});
 });
 </script>
