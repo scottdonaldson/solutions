@@ -1,0 +1,1319 @@
+/* 
+ *	By config.rb, the CSS will always be minified.
+ */
+
+// ----- layout variables
+
+$large: 1200px;
+$med: 900px;
+$small: 700px;
+$v-small: 600px;
+
+// ----- imports
+
+@import 'compass';
+
+
+// ----- colors
+
+$bg-blue: transparentize(#4088C7, 0.5);  // backgrounds (headers and active items)
+$lt-blue: transparentize(#4088C7, 0.25); // text links
+$blue: #4088C7;							 // hover on text links
+$dk-blue: #2E2C74;						 // headers
+$yellow: transparentize(#ffde17, 0.6);
+
+// ----- mixins
+
+@mixin tight {
+	margin: 0;
+	padding: 0;
+}
+
+@mixin transit {
+	@include transition(0.2s ease-in-out);
+}
+
+@mixin border {
+	border: 3px solid #000;
+}
+.border { @include border; }
+
+
+// ----- styles
+
+* { 
+	@include box-sizing(border-box); 
+	position: relative;
+}
+
+body {
+	font-family: Courier;
+}
+
+a, a:visited { 
+	color: $lt-blue;
+
+	&:active,
+	&:hover {
+		color: $blue;
+	}
+
+	header &,
+	#main &,
+	footer & {
+		// Include transition (exclude links in the admin bar)
+		@include transit; 
+	}
+}
+
+/*! @license
+ * MyFonts Webfont Build ID 2464389, 2013-01-30T11:58:40-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: DIN 30640 Neuzeit Grotesk Light by Linotype
+ * URL: http://www.myfonts.com/fonts/linotype/din-neuzeit/din-30640-neuzeit-grotesk-light/
+ * Copyright: Part of the digitally encoded machine readable outline data for producing the Typefaces provided is copyrighted (c) 1988, 1991, 2003 Linotype Library GmbH, www.linotype.com. All rights reserved. This software is the property of Linotype Library GmbH, and 
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2464389
+ * 
+ * © 2013 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+// @import url("//hello.myfonts.net/count/259a85");
+@font-face {
+	font-family: 'DIN';
+	src: url('../fonts/259A85_0_0.eot');
+	src: url('../fonts/259A85_0_0.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/259A85_0_0.woff') format('woff'),
+		 url('../fonts/259A85_0_0.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot');
+	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon.woff') format('woff'),
+		url('../fonts/icomoon.ttf') format('truetype'),
+		url('../fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.icon-facebook:before, 
+.icon-twitter:before, 
+.icon-linkedin:before, 
+.icon-google-plus:before,
+.icon-support:before,
+.icon-design:before,
+.icon-prototyping:before,
+.icon-validation:before,
+.icon-compliance:before,
+.icon-management:before,
+.icon-pencil:before,
+.icon-close:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	position: relative; // added in for custom positioning
+	-webkit-font-smoothing: antialiased;
+}
+.icon-facebook:before { content: "\e000"; }
+.icon-twitter:before { content: "\e001"; }
+.icon-linkedin:before { content: "\e002"; }
+.icon-google-plus:before { content: "\e003"; }
+.icon-support:before { 
+	content: "\e004"; 
+	top: -0.08em;
+}
+.icon-design:before { content: "\e005"; }
+.icon-prototyping:before { content: "\e006"; }
+.icon-validation:before { 
+	content: "\e007"; 
+	font-size: 115%;
+}
+.icon-compliance:before { 
+	content: "\e008"; 
+	font-size: 90%;
+	top: -0.05em;
+}
+.icon-management:before { 
+	content: "\e009"; 
+	left: -0.05em;
+}
+.icon-pencil:before { content: "\e00a"; }
+.icon-close:before { content: "\e00b"; }
+
+h1, h2, h3, h4, h5, h6 { 
+	font-family: 'DIN', Helvetica, Arial, sans-serif; 
+	text-transform: uppercase;
+	a & {
+		font-family: Courier;
+	}
+}
+.sans {
+	font-family: 'DIN', Helvetica, Arial, sans-serif; 
+	text-transform: uppercase;
+}
+
+.sol-hoverable { z-index: 1; }
+
+.sol-hover {
+	background-color: $yellow;
+	@include opacity(0);
+	left: 6px;
+	position: absolute;
+	top: -6px;
+	@include transit;
+	z-index: 0;
+
+	.sol-hoverable:hover + & {
+		@include opacity(1);
+	}
+
+	.round & {
+		@include border-radius(500px);
+	}
+
+	.active &,
+	.current-menu-item &,
+	.current_page_parent & {
+		background-color: $bg-blue;
+		@include opacity(1);
+	}
+
+	@media screen and (max-width: $v-small) {
+		left: 3px;
+		top: -3px;
+	}
+}
+
+@mixin blacklink {
+	color: #000;
+	&:hover, &:active, &:visited, &:visited:hover { color: #000; }
+	text-decoration: none;
+}
+.blacklink { @include blacklink; }
+.big { font-size: 200%; }
+.huge { font-size: 300%; }
+.uppercase { text-transform: uppercase; }
+
+.header {
+	background-color: $bg-blue;
+	color: $dk-blue;
+	display: inline-block;
+	left: 10px;
+	margin-top: 0;
+	margin-bottom: -48px;
+	padding: 10px 10px 20px;
+	top: -48px;
+	z-index: -1;
+}
+
+section { // always have headers
+	border-top: 3px solid #000;
+	margin-top: 60px;
+}
+
+
+// ----- layout
+
+body {
+	padding: 3% 8%;
+
+	@media screen and (max-width: $large) {
+		padding: 3% 6%;
+	}
+
+	@media screen and (max-width: $med) {
+		padding: 3% 5%;
+	}
+
+	@media screen and (max-width: $small) {
+		padding: 3% 4%;
+	}
+}
+
+.full-width {
+	margin: 0 auto;
+	max-width: $large;
+}
+
+#main {
+	margin-top: 6%;
+	margin-bottom: 8%; // a little more to make room for 'Latest News'
+}
+
+
+// ----- header
+
+header {
+	border-bottom: 3px solid #000;
+	padding-bottom: 30px;
+}
+
+$header-break: 1040px; // custom break point for header
+
+.menu {
+	@include tight;
+	bottom: 0;
+	position: absolute;
+	right: 0;
+
+	li {
+		float: left;
+		margin-left: 15px;
+	}
+
+	a {
+		@include border;
+		@include blacklink;
+		display: block;
+		padding: 5px 25px;
+		text-transform: lowercase;
+		z-index: 50;
+
+		@media screen and (max-width: $large) {
+			padding: 5px 10px;
+		}
+	}
+
+	@media screen and (max-width: $header-break) {
+		bottom: 0;
+		position: relative;
+		text-align: center;
+
+		li {
+			display: inline-block;
+			float: none;
+			margin: 0 7px;
+		}
+	}
+
+	@media screen and (max-width: $v-small) {
+		height: 80px;
+
+		li {
+			float: left;
+			font-size: 14px;
+			margin: 0 2% 2% 0;
+			width: 49%;
+			&:nth-child(even) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $header-break) {
+	.logo {
+		display: block;
+		margin-bottom: 25px;
+
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
+
+// ----- main
+
+.central {
+	background: $bg-blue;
+	color: $dk-blue;
+	font-size: 34px;
+	text-align: center;
+	padding: 60px 20% 20px;
+	margin-bottom: -20px;
+	top: -60px;
+	z-index: -1;
+
+	@media screen and (max-width: $large) {
+		font-size: 28px;
+	}
+
+	@media screen and (max-width: $med) {
+		font-size: 24px;
+		padding: 40px 12% 15px;
+		top: -45px;
+	}
+
+	@media screen and (max-width: $small) {
+		font-size: 20px;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+}
+
+#capabilities {
+	@include border;
+	height: 600px;
+	margin-bottom: 220px;
+	overflow: visible;
+	padding-bottom: 12%;
+	// @include transit;
+
+	& > div {
+		display: none;
+		overflow: visible;
+		padding: 0 30px;
+		&.initial {
+			display: block;
+		}
+
+		@media screen and (max-width: $med) {
+			padding: 0 20px;
+		}
+	}
+
+	img {
+		display: block;
+		margin: 0 auto;
+		padding: 0 30px;
+		max-height: 350px;
+
+		@media screen and (max-width: $small) {
+			max-height: none;
+		}
+	}
+
+	.left,
+	.right {
+		float: left;
+		width: 50%;
+		
+		@media screen and (max-width: $med) {
+			padding-bottom: 40px;
+		}
+		
+		@media screen and (max-width: $small) {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	.left {
+		@media screen and (max-width: $small) {
+			padding-bottom: 0;
+		}
+	}
+
+	p {
+		margin-top: 40px;
+
+		@media screen and (max-width: $small) {
+			margin-top: 0;
+		}
+	}
+
+	.more {
+		margin-top: 25px;
+		
+		a {
+			@include blacklink;
+			@include border;
+			display: inline-block;
+			padding: 5px 20px;
+		}
+	}
+
+	@media screen and (max-width: $med) {
+		border-bottom: 0 none;
+		height: auto !important;
+		padding-bottom: 0;
+	}
+}
+
+.capabilities {
+	padding: 0 10px;
+	position: absolute;
+	text-align: center;
+	bottom: -5%;
+	width: 100%;
+
+	@media screen and (max-width: $med) {
+		border-top: 3px solid #000;
+		position: relative;
+		padding-top: 20px;
+		top: -3px;
+	}
+}
+
+@media screen and (max-width: $med) {	// Nifty little hack that lets us position
+	aside.cover {						// the capabilities icons absolutely at larger
+		background: #fff;				// sizes and relative below our $med width
+		height: 102%;
+		left: -2%;
+		position: absolute;
+		top: 0;
+		width: 104%;
+		z-index: 0;
+	}
+}
+
+.capability {
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0;
+	padding: 0 20px;
+	width: 15%;
+
+	@media screen and (max-width: $med) {
+		margin-bottom: 70px;
+		padding: 0 30px;
+		top: 20px;
+		width: 30%;
+	}
+	@media screen and (max-width: $small) {
+		padding: 0 20px;
+	}
+	@media screen and (max-width: $v-small) {
+		width: 45%;
+	}
+
+	.dummy {
+		padding-top: 100%;
+	}
+
+	.round {
+		background: #fff;
+		@include border;
+		@include border-radius(500px);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 20px;
+		right: 20px;
+
+		@media screen and (max-width: $med) {
+			left: 30px;
+			right: 30px;
+		}
+		@media screen and (max-width: $small) {
+			left: 20px;
+			right: 20px;
+		}
+
+		span {
+			@include border-radius(40px);
+			display: block;
+			height: 100%;
+			padding-top: 25px;
+			width: 100%;
+
+			@media screen and (max-width: $large) {
+				padding-top: 18px;
+			}
+
+			@media screen and (max-width: $med) {
+				padding-top: 28px;
+			}
+			@media screen and (max-width: $small) {
+				padding-top: 20px;
+			}
+		}
+	}
+
+	h3 {
+		font-size: 16px;
+		left: 5%;
+		position: absolute;
+		width: 90%;
+	}
+}
+
+.product {
+	margin-bottom: 1.667%;
+	width: 100%;
+	// @include transit;
+
+	img {
+		@include border;
+		float: left;
+		margin-right: 40px;
+		width: 33.333%;
+	}
+
+	h3 {
+		font-size: 30px;
+		margin-top: 20px;
+	}
+
+	&.gone {
+		@include opacity(0);
+		position: absolute;
+		width: 100%;
+	}
+
+	.close {
+		@include border;
+		cursor: pointer;
+		font-size: 20px;
+		height: 34px;
+		padding-top: 3px;
+		position: absolute;
+		text-align: center;
+		top: 10px;
+		right: 10px;
+		width: 34px;
+
+		.bg-hover {
+			height: 34px;
+			left: 5px;
+			position: absolute;
+			width: 34px;
+			top: -8px;
+			// @include transit;
+		}
+
+		&:hover .bg-hover {
+			background-color: $yellow;
+		}
+	}
+}
+
+.sample {
+	float: left;
+	margin-right: 1.667%;
+	width: 10%;
+
+	img {
+		@include border;
+		cursor: pointer;
+		display: block;
+		max-width: none;
+		width: 100%;
+	}
+
+	.sol-hover {
+		left: -5px;
+		top: -5px;
+	}
+}
+
+// ----- capabilities
+
+$icon: 110px;
+$icon_small: 80px;
+$cap-break: 450px;
+
+#full_capabilities {
+	@include border;
+	margin-left: #{$icon/2};
+	margin-bottom: 40px;
+	
+	@media screen and (max-width: $small) {
+		height: auto !important;
+		margin-left: 0;
+		margin-bottom: #{$icon * 2 + 60};
+	}
+
+	@media screen and (max-width: $cap-break) {
+		margin-bottom: #{$icon_small * 2 + 60};
+	}
+
+	.content {
+		display: none;
+		left: 0;
+		padding: 0 40px 40px;
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		&:target {
+			display: block;
+			z-index: 5;
+		}
+
+		@media screen and (max-width: $large) {
+			padding: 0 20px 20px;
+		}
+
+		@media screen and (max-width: $small) {
+			position: relative;
+		}
+
+		& > div {
+			padding-left: 100px;
+			@media screen and (max-width: $small) {
+				padding-left: 0;
+			}
+		}
+	}
+
+	p {
+		float: left;
+		&.point { 
+			font-weight: bold;
+			padding-right: 5%;
+			width: 33%; 
+		}
+		&.description { width: 67%; }
+
+		@media screen and (max-width: $large) {
+			float: none;
+			&.point,
+			&.description {
+				padding-right: 0;
+				width: 100%;
+			}
+		}
+
+		@media screen and (max-width: $small) {
+			font-size: 14px;
+		}
+	}
+
+	& + div { // "Learn about our process"
+		text-align: center;
+		width: 100%;
+
+		a {
+			display: block;
+			font-size: 20px;
+			padding: 10px;
+
+			@media screen and (max-width: $v-small) {
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.icons {
+	position: absolute;
+	left: -#{$icon/2};
+	top: 120px;
+	width: $icon;
+	z-index: 10;
+
+	@media screen and (max-width: $small) {
+		height: #{$icon * 2};
+		margin-bottom: -#{$icon * 2};
+		position: relative;
+		left: 0;
+		text-align: center;
+		top: 25px;
+		width: auto;
+	}
+
+	@media screen and (max-width: $cap-break) {
+		height: #{$icon_small * 2};
+		margin-bottom: -#{$icon_small * 2};
+	}
+
+	a {
+		background: #fff;
+		@include blacklink;
+		@include border;
+		@include border-radius(500px);
+		cursor: pointer;
+		display: block;
+		height: $icon;
+		margin-bottom: 12px;
+		text-align: center;
+		width: $icon; // redundant here but nice to carry into smaller sizes
+
+		@media screen and (max-width: $small) {
+			display: inline-block;
+			margin-left: 2.5%;
+			margin-right: 2.5%;
+		}
+
+		@media screen and (max-width: $cap-break) {
+			height: $icon_small;
+			width: $icon_small;
+		}
+	}
+
+	span {
+		display: block;
+		font-size: 60px;
+		height: $icon;
+		left: -3px;
+		padding-top: 18px;
+		width: $icon;
+
+		@media screen and (max-width: $cap-break) {
+			font-size: 40px;
+			height: $icon_small;
+			padding-top: 15px;
+			width: $icon_small;
+		}
+	}
+}
+
+// ----- process
+
+#process {
+	border-top: 0;
+	text-align: center;
+
+	// special case for hover
+	.sol-hover {
+		background-color: $yellow;
+		left: 5px;
+		top: -8px;
+	}
+
+	// don't fade in hovers in steps that aren't active
+	.sol-hoverable:hover + .sol-hover { @include opacity(0); }
+	// of course, keep on showing the active one on hover
+	.active .sol-hoverable:hover + .sol-hover { @include opacity(1); }
+
+	h3 {
+		background: #fff;
+		@include border;
+		@include border-radius(30px);
+		height: 60px;
+		font-size: 28px;
+		margin: 0 auto -60px;
+		padding-top: 10px;
+		width: 60px;
+
+		@media screen and (max-width: $med) {
+			margin: 0 0 -60px;
+		}
+	}
+
+	.sol-hover {
+		height: 60px !important;
+		width: 60px !important;
+	}
+
+	h4.header {
+		font-size: 22px;
+		left: 0;
+		margin: 0 0 -45px;
+		padding: 30px 30px 10px;
+		top: -20px;
+		width: 100%;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	section {
+		@include border;
+		margin-top: 0;
+		padding: 0 20px 10px;
+		width: 33%;
+	}
+
+	.step {
+		@include clearfix; 
+		height: 200px;
+		margin-bottom: -200px;
+		overflow: visible;
+		// @include transit;
+
+		&.shown {
+			margin-bottom: 0;
+
+			&.final {
+				height: auto;
+			}
+		}
+
+		&:nth-child(odd) {
+			section {
+				float: right;
+			}
+
+			.bar {
+				left: 50%;
+			}
+		}
+
+		&:nth-child(even) {
+			section {
+				float: left;
+			}
+
+			.bar {
+				left: 33%;
+				margin-left: 17%;
+			}
+		}
+
+		.bar { // horizontal bar that connects step # with description
+			background: #000;
+			content: '';
+			display: block;
+			height: 3px;
+			position: relative;
+			top: 33px;
+			width: 17%;
+		}
+
+		@media screen and (max-width: $med) {
+			height: 250px; 
+			margin-bottom: -250px;
+
+			&:nth-child(odd),
+			&:nth-child(even) {
+				
+				section {
+					float: right;
+					width: 50%;
+
+					@media screen and (max-width: $small) {
+						width: 75%;
+					}				
+				}
+
+				.bar {
+					left: 0;
+					margin-left: 0;
+					width: 50%;
+
+					@media screen and (max-width: $small) {
+						width: 25%;
+					}
+				}
+			}
+		}
+
+		@media screen and (max-width: $small) {
+			p {
+				font-size: 14px;
+			}
+		}
+
+		@media screen and (max-width: $v-small) {
+			height: 280px;
+			margin-bottom: -280px;
+		}
+	}
+	.line {
+		background: #000;
+		height: 200px;
+		left: 49.95%;
+		position: absolute;
+		width: 3px;
+		@media screen and (max-width: $med) {
+			left: 30px;
+		}
+	}
+}
+
+// ----- news
+
+.title {
+	font-size: 30px;
+	margin: 80px 0 10px;
+	padding-right: 180px;
+
+	&.first,
+	.single & {
+		margin-top: 40px;
+	}
+
+	@media screen and (max-width: $med) {
+		font-size: 24px;
+	}
+
+	@media screen and (max-width: $small) {
+		font-size: 22px;
+		margin-top: 50px;
+		padding-right: 0;
+	}
+}
+
+.news {
+	margin-top: 0; // the title lies outside of the section here, so no top margin needed
+	min-height: 220px; // make sure there's enough room for date/social/share
+	padding-right: 240px;
+
+	.content {
+
+		p:first-child { // if there's no featured image, give starting content more space
+			padding-top: 20px;
+		}
+
+		@media screen and (max-width: $small) {
+			border-top: 3px solid #000;
+		}
+
+		div.border { // alternate "article link" for small sizes
+			display: none;
+
+			@media screen and (max-width: $small) {
+				display: inline-block;
+
+				a {
+					display: block;
+					font-size: 14px;
+					padding: 5px;
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $small) {
+		border-top: 0 none;
+		margin-top: 30px;
+		padding-right: 0;
+	}
+}
+
+.meta {
+	position: absolute;
+	right: 20px;
+	text-align: center;
+	top: -80px;
+	width: 160px;
+
+	@media screen and (max-width: $small) {
+		height: 35px;
+		left: 0;
+		position: relative;
+		text-align: left;
+		top: -10px;
+		width: 100%;
+	}
+}
+
+.date {
+	background-color: #fff;
+	@include border;
+	@include border-radius(50px);
+	font-size: 20px;
+	height: 100px;
+	margin: 0 auto 25px;
+	padding-top: 35px;
+	width: 100px;
+
+	@media screen and (max-width: $small) {	// most of this is just undoing what happens
+		background-color: transparent;		// on larger screens
+		border: 0 none;
+		@include border-radius(0);
+		float: left;
+		font-size: 16px;
+		height: auto;
+		@include tight;
+	}
+}
+
+.share {
+	padding: 0 30px;
+
+	& > a {
+		@include blacklink;
+		display: inline-block;
+		font-size: 28px;
+		height: 28px;
+		width: 28px;
+
+		&:hover,
+		&:active {
+			color: $blue;
+		}
+
+		span {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+
+		.sol-hover {
+			left: 3px;
+			top: -3px;
+		}
+
+		@media screen and (max-width: $small) {			
+			font-size: 20px;
+			height: 20px;
+			width: 20px;
+		}
+	}
+
+	div.border { // "article link"
+		bottom: -60px;
+		left: 0;
+		position: absolute;
+		width: 100%;
+
+		a {
+			display: block;
+			font-size: 14px;
+			padding: 5px;
+			width: 100%;
+		}
+
+		@media screen and (max-width: $small) {
+			display: none;
+		}
+	}
+}
+
+.pagination {
+	margin-top: 50px;
+	text-align: center;
+
+	.wrapper { // added via js
+		display: inline-block;
+		margin: 0 10px;
+		width: 150px;
+	}
+
+	a {
+		display: block;
+		@include border;
+		@include blacklink;
+		padding-top: 5px;
+		padding-bottom: 3px;
+	}
+}
+
+// ----- contact
+
+.page-template-pagescontact-php {
+	h2.huge {
+		font-family: 'Courier';
+		margin-bottom: 1em;
+		@media screen and (max-width: $med) {
+			font-size: 2.2em;
+		}
+		@media screen and (max-width: $small) {
+			font-size: 2em;
+		}
+		@media screen and (max-width: $v-small) {
+			font-size: 1.6em;
+		}
+	}
+}
+
+#directions {
+	margin-bottom: 120px;
+
+	p {
+		z-index: 1; // needs lower z-index than map so mousemove will work
+	}
+}
+.map {
+	@include border;
+	float: left;
+	margin-right: 40px;
+	overflow: hidden;
+	width: 65%;
+	z-index: 10;
+
+	.container {
+		left: 62%;
+		position: absolute;
+		top: 28%;
+
+		&:before,
+		&:after {
+			background-color: $yellow;
+			content: '';
+			display: block;
+			height: 600px;
+			left: -1000px;
+			position: absolute;
+			top: -675px;
+			width: 2000px;
+		}
+
+		&:after {
+			top: 75px;
+		}
+	}
+
+	.cover-left,
+	.cover-right {
+		background-color: $yellow;
+		height: 150px;
+		left: -1075px;
+		position: absolute;
+		top: -75px;
+		width: 1000px;
+	}
+
+	.cover-right { left: 75px; }
+
+	.cover-container {
+		height: 150px;
+		left: -75px;
+		overflow: hidden;
+		top: -75px;
+		width: 150px;
+	}
+
+	.cover {
+		border: 50px solid $yellow;
+		@include border-radius(150px);
+		height: 250px;
+		left: -50px;
+		top: -50px;
+		width: 250px;
+	}
+
+	@media screen and (max-width: $med) {
+		margin-bottom: 30px;
+		margin-right: 0;
+		width: 100%;
+	}
+}
+section.team {
+
+	img {
+		@include border;
+		float: left;
+		margin: 0 40px 20px 0;
+		max-width: 32%;
+
+		@media screen and (max-width: $med) {
+			max-width: 49%;
+		}
+
+		@media screen and (max-width: $v-small) {
+			margin-right: 0;
+			max-width: 100%;
+		}
+	}
+
+	h3 {
+		margin: 0;
+	}
+}
+
+// ----- footer
+
+#footer-news {
+	float: left;
+	margin-right: 2%;
+	width: 66%;
+
+	@media screen and (max-width: $large) {
+		width: 49%;
+	}
+
+	@media screen and (max-width: $small) {
+		margin-right: 0;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+}
+
+.footer-news {
+	@include border;
+	float: left;
+	margin: 0 3.03% 3.03% 0;
+	// @include transit;
+	width: 48.485%;
+	&.last {
+		margin-right: 0;
+	}
+
+	a {
+		@include blacklink;
+		display: block;
+		height: 100%;
+		padding: 20px 20px 50px;
+		width: 100%;
+	}
+
+	abbr {
+		border: 2px solid #000;
+		@include border-radius(25px);
+		height: 50px;
+		display: block;
+		float: left;
+		margin-right: -50px;
+		padding-top: 13px;
+		text-align: center;
+		width: 50px;
+	}
+
+	.content {
+		float: left;
+		margin-left: 70px;
+	}
+	h3, p {
+		margin: 0;
+	}
+	h3 {
+		margin-bottom: 10px;
+	}
+
+	@media screen and (max-width: $large) {
+		margin: 0 0 20px;
+		width: 100%;
+
+		a { padding: 20px; }
+
+		h3 {
+			font-size: 16px;
+		}
+		p {
+			font-size: 14px;
+		}
+	}
+}
+
+.archive {
+	@include border;
+	@include blacklink;
+	display: block;
+	margin-bottom: 5%;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+}
+
+#contact {
+	float: left;
+	margin-bottom: 60px;
+	width: 32%;
+
+	.contact { 
+		padding-left: 20px; 
+		@media screen and (max-width: $small) {
+			top: -20px;
+		}
+	}
+
+	h3 { margin-bottom: 0; }
+	p { margin-top: 0; }
+
+	@media screen and (max-width: $large) {
+		width: 49%;
+	}
+
+	@media screen and (max-width: $small) {
+		margin-bottom: 0;
+		width: 100%;
+	}
+}
+
+.secondary {
+	border-top: 3px solid #000;
+	clear: both;
+	padding: 20px;
+
+	@media screen and (max-width: $med) {
+		.alignleft,
+		.alignright {
+			float: none;
+			text-align: center;
+		}
+		.alignright {
+			margin-bottom: 0;
+		}
+	}
+
+	@media screen and (max-width: $v-small) {
+		font-size: 14px;
+	}
+}
