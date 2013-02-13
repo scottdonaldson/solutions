@@ -428,6 +428,7 @@ $header-break: 1040px; // custom break point for header
 	@media screen and (max-width: $med) {
 		border-bottom: 0 none;
 		height: auto !important;
+		margin-bottom: 120px;
 		padding-bottom: 0;
 	}
 }
@@ -464,19 +465,22 @@ $header-break: 1040px; // custom break point for header
 	display: inline-block;
 	font-size: 0;
 	padding: 0 20px;
-	width: 15%;
+	width: 14%;
+	@media screen and (max-width: 1100px) {
+		width: 15.2%; // don't let the icons get too small before bumping down
+	}
 
 	@media screen and (max-width: $med) {
 		margin-bottom: 70px;
 		padding: 0 30px;
 		top: 20px;
-		width: 30%;
+		width: 25%;
 	}
 	@media screen and (max-width: $small) {
 		padding: 0 20px;
 	}
 	@media screen and (max-width: $v-small) {
-		width: 45%;
+		width: 40%;
 	}
 
 	.dummy {
@@ -506,19 +510,8 @@ $header-break: 1040px; // custom break point for header
 			@include border-radius(40px);
 			display: block;
 			height: 100%;
-			padding-top: 25px;
+			padding-top: 18%;
 			width: 100%;
-
-			@media screen and (max-width: $large) {
-				padding-top: 18px;
-			}
-
-			@media screen and (max-width: $med) {
-				padding-top: 28px;
-			}
-			@media screen and (max-width: $small) {
-				padding-top: 20px;
-			}
 		}
 	}
 

@@ -144,7 +144,7 @@ jQuery(document).ready(function($){
 
 	// Put some FitText on the icons
 	var icons = $('.capabilities span');
-	icons.fitText(0.19);
+	icons.fitText(0.17);
 
 	// Featured products
 	var fulls = $('#fulls'),
