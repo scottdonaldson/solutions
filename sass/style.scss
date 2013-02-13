@@ -640,7 +640,7 @@ header {
 
 // ----- capabilities
 
-$icon: 110px;
+$icon: 100px;
 $icon_small: 80px;
 $cap-break: 450px;
 
@@ -756,7 +756,7 @@ $cap-break: 450px;
 		cursor: pointer;
 		display: block;
 		height: $icon;
-		margin-bottom: 12px;
+		margin-bottom: 20px;
 		text-align: center;
 		width: $icon; // redundant here but nice to carry into smaller sizes
 
@@ -774,10 +774,10 @@ $cap-break: 450px;
 
 	span {
 		display: block;
-		font-size: 60px;
+		font-size: 54px;
 		height: $icon;
 		left: -3px;
-		padding-top: 18px;
+		padding-top: 16px;
 		width: $icon;
 
 		@media screen and (max-width: $cap-break) {
@@ -791,21 +791,20 @@ $cap-break: 450px;
 
 // ----- process
 
+.indicator {
+	background-color: $yellow;
+	@include border-radius(30px);
+	height: 60px;
+	left: 4px;
+	position: absolute;
+	top: -10px;
+	width: 60px;
+	z-index: 2;
+}
+
 #process {
 	border-top: 0;
 	text-align: center;
-
-	// special case for hover
-	.sol-hover {
-		background-color: $yellow;
-		left: 5px;
-		top: -8px;
-	}
-
-	// don't fade in hovers in steps that aren't active
-	.sol-hoverable:hover + .sol-hover { @include opacity(0); }
-	// of course, keep on showing the active one on hover
-	.active .sol-hoverable:hover + .sol-hover { @include opacity(1); }
 
 	h3 {
 		background: #fff;
@@ -816,9 +815,14 @@ $cap-break: 450px;
 		margin: 0 auto -60px;
 		padding-top: 10px;
 		width: 60px;
+		z-index: 1;
 
 		@media screen and (max-width: $med) {
 			margin: 0 0 -60px;
+		}
+
+		span {
+			z-index: 100;
 		}
 	}
 
@@ -830,9 +834,9 @@ $cap-break: 450px;
 	h4.header {
 		font-size: 22px;
 		left: 0;
-		margin: 0 0 -45px;
-		padding: 30px 30px 10px;
-		top: -20px;
+		margin: 0;
+		padding: 24px 30px 10px;
+		top: -16px;
 		width: 100%;
 	}
 
@@ -843,7 +847,7 @@ $cap-break: 450px;
 	section {
 		@include border;
 		margin-top: 0;
-		padding: 0 20px 10px;
+		padding: 0 20px 20px;
 		width: 33%;
 	}
 
@@ -852,7 +856,6 @@ $cap-break: 450px;
 		height: 200px;
 		margin-bottom: -200px;
 		overflow: visible;
-		// @include transit;
 
 		&.shown {
 			margin-bottom: 0;
@@ -888,7 +891,7 @@ $cap-break: 450px;
 			content: '';
 			display: block;
 			height: 3px;
-			position: relative;
+			position: absolute;
 			top: 33px;
 			width: 17%;
 		}
