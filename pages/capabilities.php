@@ -32,7 +32,8 @@ include( MAIN . 'caps.php'); ?>
 		$c = 0;
 		foreach ($capabilities as $cap=>$name) { ?>
 			<a class="round" href="#<?php echo $cap; ?>">
-				<span class="sol-hoverable icon-<?php echo $cap; ?>"></span>
+				<div class="sol-hoverable "></div>
+				<div class="border-clone icon-<?php echo $cap; ?>"></div>
 			</a>
 			<?php if ($c == 2) { echo '<div class="clearfix"></div>'; } ?>
 		<?php 
@@ -50,7 +51,7 @@ jQuery(document).ready(function($){
 	if (window.location.hash.length == 0) {
 		// If we're not coming to a specific capability,
 		// assume that we're here to check out pre-project support
-		window.history.pushState('', document.title, '#support');
+		window.location.hash = '#support';
 	} 
 	$(window.location.hash).addClass('shown');
 	
@@ -87,8 +88,9 @@ jQuery(document).ready(function($){
 		// Set height of container equal to the height of the tallest content
 		container.height(height);
 	}
-	findHeight();
-	$(window).resize(function(){
+	$(window).load(function(){
+		findHeight();
+	}).resize(function(){
 		findHeight();
 	});
 	

@@ -114,6 +114,8 @@ jQuery(document).ready(function($){
 	steps.not(':eq(0)').find('h3, section').hide();
 	steps.first().addClass('active shown').find('h3').prepend('<div class="indicator"></div>');
 
+	steps.find('h3').prepend('<div class="border-clone"></div>');
+
 	var nextStep = function(current){
 		if (!isShowing) {
 			isShowing = true;
@@ -125,7 +127,7 @@ jQuery(document).ready(function($){
 				// move the indicator
 				current.find('.indicator').animate({
 					'top': current.height()
-				}, 225, 'linear', function(){
+				}, 350, 'linear', function(){
 					current.find('.indicator').prependTo(next.find('h3')).removeAttr('style');
 				});
 

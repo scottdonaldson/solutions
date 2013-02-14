@@ -76,8 +76,9 @@ $(document).ready(function(){
 			footerNews.height(biggestNews);
 		});
 	};
-	getBiggestNews();
-	$(window).resize(function(){
+	$(window).load(function(){
+		getBiggestNews();
+	}).resize(function(){
 		getBiggestNews();
 	});
 });

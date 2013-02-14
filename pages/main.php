@@ -40,6 +40,7 @@ include( MAIN . 'caps.php'); ?>
 						<span class="sol-hoverable icon-<?php echo $cap; ?>"></span>
 					</div>
 					<h3><?php echo $name; ?></h3>
+					<div class="border-clone"></div>
 				</div>
 			<?php } ?>
 		</div>
@@ -58,10 +59,8 @@ if (get_field('products')) {
 			while (has_sub_field('products')) { ?>
 				<div data-n="<?php echo $p; ?>" class="product clearfix <?php if ($p > 0) { echo 'gone'; } ?>">
 					<img src="<?php the_sub_field('image'); ?>">
-					<div class="right">
-						<h3><?php the_sub_field('name'); ?></h3>
-						<?php the_sub_field('description'); ?>
-					</div>
+					<h3><?php the_sub_field('name'); ?></h3>
+					<?php the_sub_field('description'); ?>
 				</div>
 				<?php $p++;
 			} 
@@ -175,7 +174,11 @@ jQuery(document).ready(function($){
 
 	products.find('img, .right').hide();
 
-	products.append('<div class="close"><div class="bg-hover"></div><div class="icon-close"></div></div>');
+	products.append('<div class="close">'+
+					    '<div class="bg-hover"></div>'+
+					    '<div class="icon-close"></div>'+
+					    '<div class="border-clone"></div>'+
+					'</div>');
 	$('.close').click(function(){
 		$this = $(this);
 		target = $this.closest('.product');
@@ -192,6 +195,9 @@ jQuery(document).ready(function($){
 		}, function(){
 			$(this).removeAttr('style');
 		});
+
+		// in case there were 0 visible samples left, this resets the height of container
+		$this.closest('#featured').removeAttr('style');
 	});
 
 	samples.click(function(){
@@ -213,6 +219,19 @@ jQuery(document).ready(function($){
 				target.removeClass('gone').fadeIn();
 			});
 		}, 300);
+
+		// If this is the last visible sample, set the height of the container to 0
+		// (set back to normal whenever closing a featured product)
+		if ($this.siblings().filter(function(){
+			return $(this).css('opacity') != 0
+		}).length == 0) {
+			console.log(samples.height());
+			setTimeout(function(){
+				$('#featured').animate({
+					'margin-bottom': -samples.height()
+				});
+			}, 300);
+		}
 	});
 });
 </script>

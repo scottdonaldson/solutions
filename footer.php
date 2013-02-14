@@ -15,6 +15,7 @@
 							<h3 class="sans"><?php the_title(); ?></h3>
 							<?php the_excerpt(); ?>
 						</div>
+						<div class="border-clone"></div>
 					</a>
 				</div>
 			<?php $i++; endwhile; wp_reset_postdata(); ?>
