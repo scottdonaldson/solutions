@@ -59,7 +59,7 @@ if (get_field('products')) {
 				<div data-n="<?php echo $p; ?>" class="product clearfix <?php if ($p > 0) { echo 'gone'; } ?>">
 					<img src="<?php the_sub_field('image'); ?>">
 					<h3><?php the_sub_field('name'); ?></h3>
-					<p><?php the_sub_field('description'); ?></p>
+					<?php the_sub_field('description'); ?>
 				</div>
 				<?php $p++;
 			} 
@@ -89,7 +89,8 @@ jQuery(document).ready(function($){
 		container = $('#capabilities'),
 		capabilities = $('#capabilities > div'),
 		shown = $('.shown'),
-		fading = false;
+		fading = false,
+		target, oldActive;
 
 	capabilities.first().fadeIn();			// show the first capability...
 	capability.first().addClass('active');	// highlight the first icon...
@@ -109,17 +110,35 @@ jQuery(document).ready(function($){
 		'width': hovW
 	});
 
+	// indicator
+	capability.first().find('.round').prepend('<div class="indicator"></div>');
+	var indicator = $('.indicator');
+
 	capability.click(function(){
 		if (!fading) {
 			fading = true;
-
+			
 			$this = $(this);
-			$this.addClass('active').siblings().removeClass('active');
-			if (!capabilities.eq($this.index()).hasClass('shown')) {
+			target = capabilities.eq($this.index());
+			oldActive = $('.active');
+
+			// move the indicator
+			indicator.animate({
+				'left': $this.offset().left - oldActive.offset().left + 4,
+				'top': $this.offset().top - oldActive.offset().top - 10
+			}, 500, 'linear', function(){
+				indicator.prependTo($this.find('.round')).css({
+					'left': 4,
+					'top': -10
+				});
+			});
+
+			$this.addClass('active').siblings('.capability').removeClass('active');
+			if (!target.hasClass('shown')) {
 				// fade out and remove shown class from the one that's being shown
 				$('.shown').fadeOut(400).removeClass('shown');
 				// find the new one, fade it in, and add the shown class
-				capabilities.eq($this.index()).delay(510).fadeIn().addClass('shown')
+				target.delay(510).fadeIn().addClass('shown')
 					// size hover
 					.find('.sol-hover').css({
 						'height': hovH,
