@@ -395,6 +395,7 @@ header {
 		max-height: 280px;
 
 		@media screen and (max-width: $small) {
+			margin-bottom: 20px;
 			max-height: none;
 		}
 	}
@@ -423,6 +424,9 @@ header {
 
 	.right {
 		padding-right: 40px;
+		@media screen and (max-width: $small) {
+			padding-right: 0;
+		}
 	}
 
 	p {
@@ -579,6 +583,7 @@ header {
 		}
 
 		@media screen and (max-width: $v-small) {
+			float: none;
 			margin-right: 0;
 			width: 100%;
 		}
@@ -588,6 +593,10 @@ header {
 		font-size: 30px;
 		margin-top: 20px;
 		padding-right: 55px;
+
+		@media screen and (max-width: $v-small) {
+			padding-right: 0;
+		}
 	}
 
 	&.gone {
@@ -597,6 +606,7 @@ header {
 	}
 
 	.close {
+		background: #fff;
 		@include border;
 		cursor: pointer;
 		font-size: 20px;
@@ -621,11 +631,6 @@ header {
 			background-color: $yellow;
 		}
 	}
-}
-
-#samples { 
-	clear: both;
-	@include transition(2s); 
 }
 
 .sample {
@@ -1282,6 +1287,18 @@ $cap-break: 450px;
 		left: -50px;
 		top: -50px;
 		width: 250px;
+
+		@media screen and (max-width: $large) {
+			border: 60px solid $yellow;
+		}
+
+		@media screen and (max-width: $small) {
+			border: 75px solid $yellow;
+		}
+
+		@media screen and (max-width: $v-small) {
+			border: 80px solid $yellow;
+		}
 	}
 
 	@media screen and (max-width: $med) {
@@ -1335,7 +1352,6 @@ section.team {
 	@include border;
 	float: left;
 	margin: 0 3.03% 3.03% 0;
-	// @include transit;
 	width: 48.485%;
 	&.last {
 		margin-right: 0;
@@ -1373,6 +1389,7 @@ section.team {
 	}
 
 	@media screen and (max-width: $large) {
+		height: auto !important; // override js that sets equal heights at large sizes
 		margin: 0 0 20px;
 		width: 100%;
 

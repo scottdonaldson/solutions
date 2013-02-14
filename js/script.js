@@ -63,11 +63,11 @@ $(document).ready(function(){
 
 
 	// News in the footer - normalize height (only at large size)
-	/* var footerNews = $('.footer-news'),
+	var footerNews = $('.footer-news'),
 		biggestNews = 0;
 	var getBiggestNews = function(){
+		biggestNews = 0;
 		footerNews.each(function(){
-			biggestNews = 0;
 			$this = $(this);
 			$this.removeAttr('style');
 			if ($this.height() > biggestNews) {
@@ -80,5 +80,4 @@ $(document).ready(function(){
 	$(window).resize(function(){
 		getBiggestNews();
 	});
-	*/
 });

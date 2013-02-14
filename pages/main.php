@@ -135,7 +135,7 @@ jQuery(document).ready(function($){
 				// fade out and remove shown class from the one that's being shown
 				$('.shown').fadeOut(400).removeClass('shown');
 				// find the new one, fade it in, and add the shown class
-				target.delay(510).fadeIn().addClass('shown')
+				target.delay(400).fadeIn().addClass('shown')
 					// size hover
 					.find('.sol-hover').css({
 						'height': hovH,
@@ -176,29 +176,29 @@ jQuery(document).ready(function($){
 	products.append('<div class="close"><div class="bg-hover"></div><div class="icon-close"></div></div>');
 	$('.close').click(function(){
 		$this = $(this);
-		$this.closest('.product').fadeOut(500, function(){
-			$this.closest('.product').fadeOut({queue: false}).slideUp({queue: false}).animate({
-				'margin-bottom': 0
-			}, function(){
-				$this.closest('.product').addClass('gone').fadeOut();
-			});
+		target = $this.closest('.product');
+		target.fadeOut({queue: false}).slideUp(800, function(){
+			target.find('img').hide();
 		});
-		n = $this.closest('.product').attr('data-n');
+
+		n = target.attr('data-n');
 		samples.filter(function(index){ // find the corresponding sample and show it again
 			return $(this).attr('data-n') === n;
-		}).css({
-			'margin-right': '1.667%',
+		}).animate({
+			'margin-right': '2%',
 			'opacity': 1
+		}, function(){
+			$(this).removeAttr('style');
 		});
 	});
 
 	samples.click(function(){
 		$this = $(this);
 		// Fade out the image
-		$this.css({
+		$this.animate({
 			'opacity': 0,
 			'margin-right': '-100%'
-		});
+		}, 300);
 
 		// Time to show the featured product
 		target = products.eq($this.index());
@@ -210,7 +210,7 @@ jQuery(document).ready(function($){
 			}, function(){
 				target.removeClass('gone').fadeIn();
 			});
-		}, 500);
+		}, 300);
 	});
 });
 </script>
