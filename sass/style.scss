@@ -769,6 +769,21 @@ $cap-break: 450px;
 			}
 		}
 	}
+
+	.indicator { // indicator "default" is found in process section... some stylistic overrides here
+		background-color: $bg-blue;
+		@include border-radius(150px);
+		height: $icon;
+		left: 5px;
+		padding: 0 20px;
+		top: -5px;
+		width: $icon;
+
+		@media screen and (max-width: $cap-break) {
+			height: $icon_small;
+			width: $icon_small;
+		}
+	}
 }
 
 .icons {
@@ -777,6 +792,8 @@ $cap-break: 450px;
 	top: 120px;
 	width: $icon;
 	z-index: 10;
+
+	.active .sol-hover { display: none; }
 
 	@media screen and (max-width: $small) {
 		height: #{$icon * 2};
@@ -835,6 +852,10 @@ $cap-break: 450px;
 }
 
 // ----- process
+
+.page-template-pagesprocess-php #main {
+	margin-bottom: 2%; // less to compensate for last step in process' margin-bottom
+}
 
 .indicator {
 	background-color: $yellow;
@@ -904,10 +925,6 @@ $cap-break: 450px;
 
 		&.shown {
 			margin-bottom: 0;
-
-			&.final {
-				height: auto;
-			}
 		}
 
 		&:nth-child(odd) {

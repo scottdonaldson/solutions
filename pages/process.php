@@ -121,19 +121,19 @@ jQuery(document).ready(function($){
 			
 			if (next.length > 0) {
 				next.addClass('shown');
+
+				// move the indicator
+				current.find('.indicator').animate({
+					'top': current.height()
+				}, 300, 'linear', function(){
+					current.find('.indicator').prependTo(next.find('h3')).removeAttr('style');
+				});
+
+				// animate the line and show content
 				current.removeClass('active').find('.line').animate({
 					'height': '100%'
 				}, 200, function(){
 					next.find('h3').fadeIn(200, function(){
-						current.find('.indicator').animate({
-							'top': current.height() - 60
-						}, 200, 'linear', function(){
-							current.find('.indicator').prependTo(next.find('h3')).css({
-								'top': -60
-							}).animate({
-								'top': -10
-							}, 100, 'linear');
-						});
 						next.addClass('active').find('.bar').stop().animate({
 							'margin-left': 0,
 							'width': barWidth
@@ -145,7 +145,8 @@ jQuery(document).ready(function($){
 						});
 					});
 				});
-			} else {
+			}
+			if (next.hasClass('final')) {
 				$('.indicator').animate({
 					'backgroundColor': 'rgba(64,136,199,0.5)'
 				}, 800);

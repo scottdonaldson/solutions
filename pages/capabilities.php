@@ -61,15 +61,18 @@ jQuery(document).ready(function($){
 	var container = $('#full_capabilities'),
 		content = container.find('.content'),
 		height = 0,
-		icons = $('.icons a');
+		icons = $('.icons a'),
+		oldActive;
 	
-	// Set the right one to active
+	// Set the right one to active and set indicator
 	icons.each(function(){
 		$this = $(this);
 		if ($this.attr('href') == window.location.hash) {
-			$this.addClass('active');
+			$this.addClass('active').prepend('<div class="indicator"></div>');
 		}
 	});
+	var indicator = $('.indicator');
+
 	// Function to find biggest height, given all content,
 	// and set the container equal to this biggest height
 	var findHeight = function(){
@@ -95,6 +98,16 @@ jQuery(document).ready(function($){
 	icons.click(function(e){
 		e.preventDefault();
 		$this = $(this);
+		oldActive = $('.active');
+
+		// Move the indicator
+		indicator.animate({
+			'left': $this.offset().left - oldActive.offset().left + 5,
+			'top': $this.offset().top - oldActive.offset().top - 5
+		}, 400, 'linear', function(){
+			indicator.prependTo($this).removeAttr('style');
+		});
+
 		$this.addClass('active').siblings().removeClass('active');
 
 		if (!content.filter($this.attr('href')).hasClass('shown')) {

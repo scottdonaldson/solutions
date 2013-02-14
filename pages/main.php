@@ -127,10 +127,7 @@ jQuery(document).ready(function($){
 				'left': $this.offset().left - oldActive.offset().left + 4,
 				'top': $this.offset().top - oldActive.offset().top - 10
 			}, 500, 'linear', function(){
-				indicator.prependTo($this.find('.round')).css({
-					'left': 4,
-					'top': -10
-				});
+				indicator.prependTo($this.find('.round')).removeAttr('style');
 			});
 
 			$this.addClass('active').siblings('.capability').removeClass('active');
