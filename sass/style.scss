@@ -151,7 +151,8 @@ a, a:visited {
 }
 .icon-pencil:before { content: "\e00a"; }
 .icon-close:before { content: "\e00b"; }
-.icon-plus:before { content: "\e00c"; }
+// there should be a \e00c in here somewhere... think it got lost in the icomoon shuffle
+.icon-plus:before { content: "\e00d"; }
 
 h1, h2, h3, h4, h5, h6 { 
 	font-family: 'DIN', Helvetica, Arial, sans-serif; 
@@ -228,18 +229,18 @@ section { // always have headers
 // ----- layout
 
 body {
-	padding: 3% 8% 0;
+	padding: 30px 8% 0;
 
 	@media screen and (max-width: $large) {
-		padding: 3% 6%;
+		padding: 25px 6%;
 	}
 
 	@media screen and (max-width: $med) {
-		padding: 3% 5%;
+		padding: 20px 5%;
 	}
 
 	@media screen and (max-width: $small) {
-		padding: 3% 4%;
+		padding: 15px 4%;
 	}
 }
 
@@ -346,7 +347,7 @@ header {
 	font-size: 34px;
 	text-align: center;
 	padding: 60px 20% 20px;
-	margin-bottom: -40px;
+	margin-bottom: -25px;
 	top: -60px;
 	z-index: -1;
 
@@ -364,6 +365,10 @@ header {
 		font-size: 20px;
 		padding-left: 5%;
 		padding-right: 5%;
+	}
+
+	@media screen and (max-width: 400px) {
+		font-size: 16px;
 	}
 }
 
@@ -403,6 +408,7 @@ header {
 	.left,
 	.right {
 		float: left;
+		padding-bottom: 15px;
 		width: 50%;
 		
 		@media screen and (max-width: $med) {
@@ -575,7 +581,7 @@ header {
 	img {
 		@include border;
 		float: left;
-		margin: 0 40px 1% 0;
+		margin: 0 2% 1% 0;
 		width: 32%;
 
 		@media screen and (max-width: $med) {
@@ -589,10 +595,25 @@ header {
 		}
 	}
 
+	.right {
+		float: right;
+		margin-bottom: 1%;
+		width: 66%;
+
+		@media screen and (max-width: $med) {
+			width: 49%;
+		}
+
+		@media screen and (max-width: $v-small) {
+			float: none;
+			width: 100%;
+		}
+	}
+
 	h3 {
 		font-size: 30px;
-		margin-top: 20px;
-		padding-right: 55px;
+		margin-top: 0.5em;
+		padding-right: 60px;
 
 		@media screen and (max-width: $v-small) {
 			padding-right: 0;
@@ -614,28 +635,39 @@ header {
 		padding-top: 3px;
 		position: absolute;
 		text-align: center;
-		top: 10px;
-		right: 10px;
+		top: 2px;
+		right: 2px;
 		width: 34px;
 
 		.bg-hover {
-			height: 34px;
-			left: 4px;
+			height: 32px;
+			left: 2px;
 			position: absolute;
-			width: 34px;
-			top: -8px;
+			width: 32px;
+			top: -6px;
 			@include transit;
 		}
 
 		&:hover .bg-hover {
 			background-color: $yellow;
 		}
+
+		@media screen and (max-width: $v-small) {
+			top: 10px;
+			right: 10px;
+		}
+	}
+
+	em {
+		font-size: 12px;
+		font-style: normal;
 	}
 }
 
 .sample {
 	float: left;
 	margin-right: 2%;
+	margin-bottom: 2%;
 	width: 9.333%;
 
 	@media screen and (max-width: $large) {
@@ -651,6 +683,7 @@ header {
 
 	@media screen and (max-width: 480px) {
 		margin-right: 4%;
+		margin-bottom: 4%;
 		width: 30.666%;
 		&.sample-4 { margin-right: 4%;}
 		&.sample-3,
@@ -670,10 +703,10 @@ header {
 		cursor: pointer;
 		display: block;
 		@include opacity(0);
-		font-size: 24px;
+		font-size: 34px;
 		position: absolute;
 		text-align: center;
-		top: 30%;
+		top: 26%;
 		@include transition(0.5s);
 		width: 100%;
 	}
@@ -691,7 +724,7 @@ header {
 // ----- capabilities
 
 $icon: 100px;
-$icon_small: 80px;
+$icon_small: 70px;
 $cap-break: 450px;
 
 #full_capabilities {
@@ -702,11 +735,11 @@ $cap-break: 450px;
 	@media screen and (max-width: $small) {
 		height: auto !important;
 		margin-left: 0;
-		margin-bottom: #{$icon * 2 + 60};
+		margin-bottom: #{$icon * 2 + 70};
 	}
 
 	@media screen and (max-width: $cap-break) {
-		margin-bottom: #{$icon_small * 2 + 60};
+		margin-bottom: #{$icon_small * 2 + 70};
 	}
 
 	.content {
@@ -848,9 +881,9 @@ $cap-break: 450px;
 		width: $icon;
 
 		@media screen and (max-width: $cap-break) {
-			font-size: 40px;
+			font-size: 38px;
 			height: $icon_small;
-			padding-top: 15px;
+			padding-top: 11px;
 			width: $icon_small;
 		}
 	}
@@ -897,9 +930,11 @@ $cap-break: 450px;
 		}
 	}
 
-	.sol-hover {
-		height: 60px !important;
-		width: 60px !important;
+	section {
+		@include border;
+		margin-top: 0;
+		padding: 0 20px;
+		width: 33%;
 	}
 
 	h4.header {
@@ -909,17 +944,14 @@ $cap-break: 450px;
 		padding: 24px 30px 10px;
 		top: -16px;
 		width: 100%;
+
+		@media screen and (max-width: 400px) {
+			font-size: 16px;
+		}
 	}
 
 	p {
-		margin: 0;
-	}
-
-	section {
-		@include border;
 		margin-top: 0;
-		padding: 0 20px 20px;
-		width: 33%;
 	}
 
 	.step {
@@ -1042,7 +1074,6 @@ $cap-break: 450px;
 }
 
 .news {
-	border-top: 0; // border goes on .content instead
 	margin-top: 0; // the title lies outside of the section here, so no top margin needed
 	min-height: 220px; // make sure there's enough room for date/social/share
 	padding-right: 34%;
@@ -1052,7 +1083,6 @@ $cap-break: 450px;
 	}
 
 	.content {
-		border-top: 3px solid #000;
 
 		p:first-child { // if there's no featured image, give starting content more space
 			padding-top: 20px;
@@ -1062,6 +1092,7 @@ $cap-break: 450px;
 			display: none;
 
 			@media screen and (max-width: $small) {
+				margin-top: 10px;
 				display: inline-block;
 
 				a {
@@ -1072,9 +1103,14 @@ $cap-break: 450px;
 				}
 			}
 		}
+
+		@media screen and (max-width: $small) {
+			border-top: 3px solid #000;
+		}
 	}
 
 	@media screen and (max-width: $small) {
+		border-top: 0;
 		margin-top: 10px;
 		padding-right: 0;
 	}
@@ -1099,6 +1135,21 @@ $cap-break: 450px;
 		text-align: left;
 		top: 0;
 		width: 100%;
+	}
+
+	.link { // "article link"
+		margin: 0 auto;
+		max-width: 180px;
+
+		a {
+			display: block;
+			font-size: 14px;
+			padding: 5px;
+		}
+
+		@media screen and (max-width: $small) {
+			display: none;
+		}
 	}
 }
 
@@ -1126,7 +1177,7 @@ $cap-break: 450px;
 }
 
 .share {
-	height: 65px;
+	margin-bottom: 12px;
 
 	& > a {
 		@include blacklink;
@@ -1166,24 +1217,6 @@ $cap-break: 450px;
 			width: 20px;
 		}
 	}
-
-	div.border { // "article link"
-		bottom: -60px;
-		left: 0;
-		position: absolute;
-		width: 100%;
-
-		a {
-			display: block;
-			font-size: 14px;
-			padding: 5px;
-			width: 100%;
-		}
-
-		@media screen and (max-width: $small) {
-			display: none;
-		}
-	}
 }
 
 .pagination {
@@ -1219,6 +1252,9 @@ $cap-break: 450px;
 		}
 		@media screen and (max-width: $v-small) {
 			font-size: 1.6em;
+		}
+		@media screen and (max-width: 400px) {
+			font-size: 1.3em;
 		}
 	}
 }

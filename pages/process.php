@@ -125,7 +125,7 @@ jQuery(document).ready(function($){
 				// move the indicator
 				current.find('.indicator').animate({
 					'top': current.height()
-				}, 300, 'linear', function(){
+				}, 225, 'linear', function(){
 					current.find('.indicator').prependTo(next.find('h3')).removeAttr('style');
 				});
 

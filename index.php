@@ -10,14 +10,14 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 	<section <?php post_class('news'); ?>>
 		<div class="meta">
 			<div class="date sans"><?php $date = get_the_date('n.j.y'); echo $date; ?></div>
-			<div class="share">
+			<div class="share clearfix">
 				<a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" class="icon-facebook"></a>
 				<a href="https://twitter.com/intent/tweet?url=<?php the_permalink(); ?>" class="icon-twitter"></a>
 				<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php the_permalink(); ?>" class="icon-linkedin"></a>
 				<a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" class="icon-google-plus"></a>
-				<div class="border">
-					<a class="blacklink sol-hoverable" href="<?php the_permalink(); ?>">article link</a>
-				</div>
+			</div>
+			<div class="link">
+				<a class="border blacklink sol-hoverable" href="<?php the_permalink(); ?>">article link</a>
 			</div>
 		</div>
 		<div class="content clearfix">

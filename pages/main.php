@@ -58,8 +58,10 @@ if (get_field('products')) {
 			while (has_sub_field('products')) { ?>
 				<div data-n="<?php echo $p; ?>" class="product clearfix <?php if ($p > 0) { echo 'gone'; } ?>">
 					<img src="<?php the_sub_field('image'); ?>">
-					<h3><?php the_sub_field('name'); ?></h3>
-					<?php the_sub_field('description'); ?>
+					<div class="right">
+						<h3><?php the_sub_field('name'); ?></h3>
+						<?php the_sub_field('description'); ?>
+					</div>
 				</div>
 				<?php $p++;
 			} 
@@ -171,14 +173,14 @@ jQuery(document).ready(function($){
 		target, targetHeight,
 		n;
 
-	products.find('img').hide();
+	products.find('img, .right').hide();
 
 	products.append('<div class="close"><div class="bg-hover"></div><div class="icon-close"></div></div>');
 	$('.close').click(function(){
 		$this = $(this);
 		target = $this.closest('.product');
 		target.fadeOut({queue: false}).slideUp(800, function(){
-			target.find('img').hide();
+			target.find('img, .right').hide();
 		});
 
 		n = target.attr('data-n');
@@ -203,7 +205,7 @@ jQuery(document).ready(function($){
 		// Time to show the featured product
 		target = products.eq($this.index());
 		setTimeout(function(){
-			target.appendTo(fulls).find('img').slideDown();
+			target.appendTo(fulls).find('img, .right').slideDown();
 			target.slideDown().animate({
 				'height': '100%',
 				'margin-bottom': '1.667%'
