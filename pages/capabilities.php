@@ -51,10 +51,13 @@ jQuery(document).ready(function($){
 	if (window.location.hash.length == 0) {
 		// If we're not coming to a specific capability,
 		// assume that we're here to check out pre-project support
-		window.location.hash = '#support';
-	} 
-	$(window.location.hash).addClass('shown');
-	
+		if (window.history && window.history.pushState) {
+			window.history.pushState('', document.title, '#support');
+		} else {
+			window.location.hash = '#support';
+		}
+	}
+
 	$('html, body').animate({
 		'scrollTop': 0
 	}, 1);
@@ -88,9 +91,8 @@ jQuery(document).ready(function($){
 		// Set height of container equal to the height of the tallest content
 		container.height(height);
 	}
-	$(window).load(function(){
-		findHeight();
-	}).resize(function(){
+	findHeight();
+	$(window).resize(function(){
 		findHeight();
 	});
 	
@@ -124,7 +126,11 @@ jQuery(document).ready(function($){
 			}
 		}
 
-		window.history.pushState('', document.title, $this.attr('href'));
+		if (window.history && window.history.pushState) {
+		 	window.history.pushState('', document.title, $this.attr('href'));
+		} else {
+			window.location.hash = $this.attr('href');
+		}
 	});
 });
 </script>

@@ -18,48 +18,51 @@ $(document).ready(function(){
 		hover,
 		z;
 
-	$(window).load(function(){ // wait for window load so we can get images in there too
-		hoverable.each(function(){
-			$this = $(this);
-			
-			z = $this.css('z-index') ? $this.css('z-index') + 1 : 1;
-			// Create the hover div
-			hover = $('<div>', { class: 'sol-hover' });
+	if (!html.hasClass('lt-ie9')) { // Not happening in IE8 or below...
+		
+		$(window).load(function(){ // wait for window load so we can get images in there too
+			hoverable.each(function(){
+				$this = $(this);
+				
+				z = $this.css('z-index') ? $this.css('z-index') + 1 : 1;
+				// Create the hover div
+				hover = $('<div class="sol-hover"></div>');
 
-			if ($this.closest('.sample').length > 0) { // special case for home page samples
-				$this.css({
-					'z-index': z
-				}).after( hover
-						    .width($this.outerWidth() + 10)
-						    .height($this.outerHeight() + 10)
-						);
-			} else {
-				$this.css({
-					'z-index': z
-				}).after( hover
-						    .width($this.outerWidth())
-						    .height($this.outerHeight())
-						);
-			}
+				if ($this.closest('.sample').length > 0) { // special case for home page samples
+					$this.css({
+						'z-index': z
+					}).after( hover
+							    .width($this.outerWidth() + 10)
+							    .height($this.outerHeight() + 10)
+							);
+				} else {
+					$this.css({
+						'z-index': z
+					}).after( hover
+							    .width($this.outerWidth())
+							    .height($this.outerHeight())
+							);
+				}
+			});
 		});
-	});
-	$(window).resize(function(){
-		$('.sol-hover').each(function(){
-			$this = $(this);
+		$(window).resize(function(){
+			$('.sol-hover').each(function(){
+				$this = $(this);
 
-			if ($this.closest('.sample').length > 0) {
-				$this.css({
-					'height': $this.prev().outerHeight() + 10,
-					'width': $this.prev().outerWidth() + 10
-				})
-			} else {
-				$this.css({
-					'height': $this.prev().outerHeight(),
-					'width': $this.prev().outerWidth()
-				});
-			}
+				if ($this.closest('.sample').length > 0) {
+					$this.css({
+						'height': $this.prev().outerHeight() + 10,
+						'width': $this.prev().outerWidth() + 10
+					})
+				} else {
+					$this.css({
+						'height': $this.prev().outerHeight(),
+						'width': $this.prev().outerWidth()
+					});
+				}
+			});
 		});
-	});
+	}
 
 
 	// News in the footer - normalize height (only at large size)

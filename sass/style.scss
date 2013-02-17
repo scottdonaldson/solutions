@@ -17,10 +17,13 @@ $v-small: 600px;
 // ----- colors
 
 $bg-blue: transparentize(#4088C7, 0.5);  // backgrounds (headers and active items)
+$safe-bg-blue: #9fc3e2;
 $lt-blue: transparentize(#4088C7, 0.25); // text links
+$safe-lt-blue: #6fa5d5;
 $blue: #4088C7;							 // hover on text links
 $dk-blue: #2E2C74;						 // headers
 $yellow: transparentize(#ffde17, 0.6);
+$safe-yellow: #ffee8a;
 
 // ----- mixins
 
@@ -47,11 +50,12 @@ $yellow: transparentize(#ffde17, 0.6);
 }
 
 body {
-	font-family: Courier;
+	font-family: 'Courier New', Courier;
 }
 
 a, a:visited { 
 	color: $lt-blue;
+	.lt-ie9 & { color: $safe-lt-blue; }
 
 	&:active,
 	&:hover {
@@ -157,8 +161,14 @@ a, a:visited {
 h1, h2, h3, h4, h5, h6 { 
 	font-family: 'DIN', Helvetica, Arial, sans-serif; 
 	text-transform: uppercase;
+
+	/* Note:
+	   Windows seems to have a serious problem rendering the capital 'R' at various font sizes.
+	   Safe to use are (in px)
+	   - 16, 18, 19, 21, 22, 24, 27, 30, 33, 35, 36, 37, 40, 42, 43, 46, 48, 49, 52, 54, 57, 60
+	*/
 	a & {
-		font-family: Courier;
+		font-family: 'Courier New', Courier;
 	}
 }
 .sans {
@@ -190,11 +200,19 @@ h1, h2, h3, h4, h5, h6 {
 	.current_page_parent & {
 		background-color: $bg-blue;
 		@include opacity(1);
+
+		.lt-ie9 & {
+			background-color: $safe-bg-blue;
+		}
 	}
 
 	@media screen and (max-width: $v-small) {
 		left: 5px;
 		top: -5px;
+	}
+
+	.lt-ie9 & {
+		display: none;
 	}
 }
 
@@ -228,6 +246,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 10px 10px 17px;
 	top: -48px;
 	z-index: -1;
+
+	.lt-ie9 & {
+		background-color: $safe-bg-blue;
+	}
 }
 
 section { // always have headers
@@ -252,6 +274,16 @@ body {
 	@media screen and (max-width: $small) {
 		padding: 15px 4%;
 	}
+
+	.lt-ie9 & {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+.lt-ie9 #page {
+	margin: 0 auto;
+	width: 960px;
 }
 
 .full-width {
@@ -299,6 +331,20 @@ header {
 
 		@media screen and (max-width: $large) {
 			padding: 5px 10px;
+		}
+
+		.lt-ie9 & {
+			&:active,
+			&:hover {
+				background: $safe-yellow;
+			}
+		}
+	}
+
+	.lt-ie9 & {
+		li.current-menu-item a,
+		li.current_page_parent a {
+			background: $safe-bg-blue;
 		}
 	}
 
@@ -353,8 +399,9 @@ header {
 
 .central {
 	background: $bg-blue;
+	.lt-ie9 & { background: $safe-bg-blue; }
 	color: $dk-blue;
-	font-size: 34px;
+	font-size: 33px;
 	text-align: center;
 	padding: 60px 20% 20px;
 	margin-bottom: -25px;
@@ -500,6 +547,8 @@ header {
 			left: 4px !important;		// prevent animating at smaller sizes
 			top: -10px !important;
 		}
+
+		.lt-ie9 & { background-color: $safe-bg-blue; }
 	}
 }
 
@@ -684,6 +733,7 @@ header {
 
 		&:hover .bg-hover {
 			background-color: $yellow;
+			.lt-ie9 & { background-color: $safe-yellow; }
 		}
 
 		@media screen and (max-width: $v-small) {
@@ -863,6 +913,10 @@ $cap-break: 450px;
 			height: $icon_small;
 			width: $icon_small;
 		}
+
+		.lt-ie9 & {
+			background-color: $safe-bg-blue;
+		}
 	}
 }
 
@@ -946,6 +1000,7 @@ $cap-break: 450px;
 
 .indicator {
 	background-color: $yellow;
+	.lt-ie9 & { background-color: $safe-yellow; }
 	@include border-radius(30px);
 	height: 60px;
 	left: 4px;
@@ -960,6 +1015,7 @@ $cap-break: 450px;
 	text-align: center;
 
 	h3 {
+		background: #fff;
 		height: 60px;
 		font-size: 28px;
 		margin: 0 auto -60px;
@@ -978,7 +1034,20 @@ $cap-break: 450px;
 		.border-clone {
 			@include border-radius(30px);
 		}
+
+		&:after {
+			background: #000;
+			content: '';
+			display: none;   /* TODO */
+			height: 10px;
+			left: 29px;
+			position: absolute;
+			top: -10px;
+			width: 3px;
+			z-index: 100;
+		}
 	}
+	.step-1 h3:after { display: none; }
 
 	section {
 		@include border;
@@ -1020,7 +1089,6 @@ $cap-break: 450px;
 			}
 
 			.bar {
-				border-left: 29px solid #fff;
 				left: 50%;
 			}
 		}
@@ -1042,7 +1110,7 @@ $cap-break: 450px;
 			display: block;
 			height: 3px;
 			position: absolute;
-			top: 33px;
+			top: 30px;
 			width: 17%;
 		}
 
@@ -1087,11 +1155,11 @@ $cap-break: 450px;
 	}
 	.line {
 		background: #000;
-		border-top: 60px solid #fff; // don't touch that h3
 		height: 200px;
 		left: 49.95%;
 		position: absolute;
 		width: 3px;
+
 		@media screen and (max-width: $med) {
 			left: 30px;
 		}
@@ -1294,7 +1362,7 @@ $cap-break: 450px;
 
 .page-template-pagescontact-php {
 	h2.huge {
-		font-family: 'Courier';
+		font-family: 'Courier New', 'Courier';
 		margin-bottom: 1em;
 		@media screen and (max-width: $med) {
 			font-size: 2.2em;
@@ -1347,7 +1415,13 @@ $cap-break: 450px;
 			top: 75px;
 		}
 
-		.touch & { // no spotlight on touch screens
+		// no spotlight on touch screens, IE8 or below
+		.touch &,
+		.lt-ie9 & { 
+			display: none;
+		}
+		// or very small screens
+		@media screen and (max-width: $v-small) {
 			display: none;
 		}
 	}

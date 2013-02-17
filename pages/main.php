@@ -102,14 +102,16 @@ jQuery(document).ready(function($){
 			container.height($('.shown').height());
 		});
 
-	// Set height and width for 'Learn More' hovers
-	// used in sizing the hover on switching capabilities
-	var hovH = $('.sol-hoverable:first').outerHeight(),
-		hovW = $('.sol-hoverable:first').outerWidth();
-	$('.sol-hover').css({
-		'height': hovH,
-		'width': hovW
-	});
+	if (!$('html').hasClass('lt-ie9')) {
+		// Set height and width for 'Learn More' hovers
+		// used in sizing the hover on switching capabilities
+		var hovH = $('.sol-hoverable:first').outerHeight(),
+			hovW = $('.sol-hoverable:first').outerWidth();
+		$('.sol-hover').css({
+			'height': hovH,
+			'width': hovW
+		});
+	}
 
 	// indicator
 	capability.first().find('.round').prepend('<div class="indicator"></div>');

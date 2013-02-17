@@ -144,10 +144,15 @@ jQuery(document).ready(function($){
 								'top': -next.find('section').height/2 + 30
 							});
 							isShowing = false;
+
+							// If scrolled all the way to bottom of page, keep movin' on
+							if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+								nextStep(next);
+							}
 						});
 					});
 				});
-			}
+			} 
 			if (next.hasClass('final')) {
 				$('.indicator').animate({
 					'backgroundColor': 'rgba(64,136,199,0.5)'
