@@ -1,0 +1,44 @@
+// ----- imports
+
+@import 'compass';
+
+// ----- layout variables
+
+$large: 1200px;
+$med: 900px;
+$small: 700px;
+$v-small: 600px;
+
+// ----- colors
+
+$bg-blue: transparentize(#4088C7, 0.5);  // backgrounds (headers and active items)
+$safe-bg-blue: #9fc3e2;					 // safe- overrides for IE8
+$lt-blue: transparentize(#4088C7, 0.25); // text links
+$safe-lt-blue: #6fa5d5;
+$blue: #4088C7;							 // hover on text links
+$dk-blue: #2E2C74;						 // headers
+$yellow: transparentize(#ffde17, 0.6);
+$safe-yellow: #ffee8a;
+
+// ----- mixins
+
+@mixin tight {
+	margin: 0;
+	padding: 0;
+}
+
+@mixin transit {
+	@include transition(0.2s ease-in-out);
+}
+
+@mixin border {
+	border: 2px solid #000;
+}
+.border { @include border; }
+
+@mixin blacklink {
+	color: #000;
+	&:hover, &:active, &:visited, &:visited:hover { color: #000; }
+	text-decoration: none;
+}
+.blacklink { @include blacklink; }

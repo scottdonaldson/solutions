@@ -27,6 +27,7 @@ include( MAIN . 'caps.php'); ?>
 	// Icons go after capabilities so that they bump to the bottom
 	// at our breakpoint
 	?>
+	<div class="border-clone"></div>
 	<div class="icons">
 		<?php 
 		$c = 0;
@@ -56,6 +57,12 @@ jQuery(document).ready(function($){
 		} else {
 			window.location.hash = '#support';
 		}
+	}
+
+	// IE8 doesn't support CSS :target selector for displaying the right content.
+	// jQuery fallback here
+	if ($('html').hasClass('lt-ie9')) {
+		$(window.location.hash).fadeIn();
 	}
 
 	$('html, body').animate({

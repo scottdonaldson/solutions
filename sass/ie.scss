@@ -1,0 +1,264 @@
+// import variables
+@import 'var';
+
+.lt-ie9 {
+	
+	// ----- General styles
+
+	a, a:visited {
+		color: $safe-lt-blue;
+	}
+
+	.sol-hover {
+		display: none !important; // This shouldn't show up at all... use classes instead
+	}
+
+	.header {
+		background-color: $safe-bg-blue;
+	}
+
+	.indicator { display: none !important; } // never an indicator (as with hovers, use classes)
+
+	// ----- Layout
+
+	body {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
+	#page {
+		margin: 0 auto;
+		width: 960px;
+	}
+
+	// ----- Header
+
+	.menu {
+		a {
+			&:active,
+			&:hover {
+				background: $safe-yellow;
+			}
+		}
+		li.current-menu-item a,
+		li.current_page_parent a {
+			background: $safe-bg-blue;
+		}
+	}
+
+	// ----- Main page
+
+	.central {
+		background: $safe-bg-blue;
+		font-size: 27px;
+	}
+
+	#full_capabilities {
+		.more a {
+			&:hover,
+			&:active {
+				background-color: $safe-yellow;
+			}
+		}
+	}
+
+	.capability { // Image fallbacks for just about everything since border-radius isn't supported
+		background-image: url(../images/circle-120-white.png);
+		&.active { background-image: url(../images/circle-120-blue.png) !important; }
+		&:hover,
+		&:active { background-image: url(../images/circle-120-yellow.png); }
+		background-position: center center;
+		background-repeat: no-repeat;
+		border: 0 none;
+		padding: 0;
+		width: 144px; // set width
+		span { 
+			background-repeat: no-repeat; 
+			background-position: center center;
+			font-size: 0 !important; // don't show icomoon icons - use images instead
+		}
+
+		&[data-capability="support"] { 
+			span { background-image: url(../images/circle-support.png); }
+		}
+		&[data-capability="design"] { 
+			span { background-image: url(../images/circle-design.png); }
+		}
+		&[data-capability="prototyping"] { 
+			span { background-image: url(../images/circle-prototyping.png); }
+		}
+		&[data-capability="validation"] { 
+			span { background-image: url(../images/circle-validation.png); }
+		}
+		&[data-capability="compliance"] { 
+			span { background-image: url(../images/circle-compliance.png); }
+		}
+		&[data-capability="management"] { 
+			span { background-image: url(../images/circle-management.png); }
+		}
+
+		.round {
+			background: transparent;
+			left: 0;
+			right: 0;
+		}
+		.border-clone { display: none; } // no need for it because of images
+	}
+
+	.product {
+
+		h3 {
+			font-size: 27px;
+		}
+	
+		&.gone {
+			display: none;
+		}
+
+		.close {
+			@include border;
+			&:hover,
+			&:active {
+				background-color: $safe-yellow;
+			}
+
+			.bg-hover {
+				display: none;
+			}
+		}
+		.border-clone { display: none; }
+
+	}
+
+	// ----- Capabilities
+
+	#full_capabilities {
+
+		& + div { // "Learn more about our process"
+			color: #000;
+			&:hover,
+			&:active {
+				background-color: $safe-yellow;
+			}
+		}
+
+		.icons {
+			a {
+				@include border; // an override of an override... but we don't want border-clone in IE8
+				&[href="#support"] { background-image: url(../images/support-icon_ie.png); }
+				&[href="#design"] { background-image: url(../images/design-icon_ie.png); }
+				&[href="#prototyping"] { background-image: url(../images/prototyping-icon_ie.png); }
+				&[href="#validation"] { background-image: url(../images/validation-icon_ie.png); }
+				&[href="#compliance"] { background-image: url(../images/compliance-icon_ie.png); }
+				&[href="#management"] { background-image: url(../images/management-icon_ie.png); }
+
+				&:hover,
+				&:active {
+					background-color: $safe-yellow;
+				}
+
+				&.active {
+					background-color: $safe-bg-blue !important;
+				}
+			}
+			.border-clone { display: none; }
+		}
+	}
+
+	// ----- process
+
+	#process {
+		h3 {
+			background-image: url(../images/circle-55.png);
+			height: 55px;
+			padding-top: 8px;
+			width: 55px;
+
+			.border-clone { display: none; }
+		}
+
+		p { font-size: 14px; }
+	}
+
+	// ----- news
+
+	.meta {
+		.link {
+			a {
+				color: #000;
+				&:hover,
+				&:active {
+					background-color: $safe-yellow;
+				}
+			}
+		}
+	}
+
+	.date {
+		border: 0;
+		background: transparent url(../images/circle-100-outline.png) no-repeat;
+	}
+
+	.share {
+		&:hover,
+		&:active {
+			color: $safe-bg-blue;
+		}
+	}
+
+	.pagination {
+		a {
+			color: #000;
+			&:hover,
+			&:active {
+				background-color: $safe-yellow;
+			}
+		}
+	}
+
+	// ----- contact
+
+	.map {
+		.container { // no spotlight on the map
+			display: none;
+		}
+	}
+
+	// ----- footer
+
+	.footer-news {
+		&:hover,
+		&:active {
+			background-color: $safe-yellow;
+		}
+
+		a {
+			padding-bottom: 20px;
+		}
+
+		abbr { // the date
+			border: 0;
+			background: url(../images/circle-55-outline.png) no-repeat;
+			height: 55px;
+			margin-right: -55px;
+			padding-top: 18px;
+			width: 55px;
+		}
+
+		h3 {
+			font-size: 16px;
+		}
+	}
+
+	.archive {
+		&:hover,
+		&:active {
+			background-color: $safe-yellow;
+		}
+	}
+
+	.secondary {
+		height: 70px;
+	}
+
+}
