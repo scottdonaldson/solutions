@@ -95,6 +95,10 @@ jQuery(document).ready(function($){
 				height = $this.outerHeight();
 			}
 		});	
+		// factor in the height of the icons
+		if (parseInt(icons.closest('.icons').css('top')) + 6 * icons.height() + 5 * parseInt(icons.css('margin-bottom')) > height) {
+			height = parseInt(icons.closest('.icons').css('top')) + 6 * icons.height() + 5 * parseInt(icons.css('margin-bottom'));
+		}
 		// Set height of container equal to the height of the tallest content
 		container.height(height);
 	}

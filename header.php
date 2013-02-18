@@ -17,10 +17,15 @@ define('MAIN', dirname(__FILE__) . '/'); ?>
     
     <link rel="author" href="<?php echo bloginfo('template_url'); ?>/humans.txt">
 
-    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/style.css">
     <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/css/style.css">
-    <!--[if lt IE9]><link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/css/ie.css"><![endif]-->
+    <!--[if lt IE 9]><link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/css/ie.css"><![endif]-->
+
+    <?php if (is_front_page()) { ?>
+    <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/css/colorbox.css">
+    <?php } ?>
+
     <script src="<?php echo bloginfo('template_url'); ?>/js/vendor/modernizr.js"></script>
 <?php wp_head(); ?>
 </head>

@@ -9,6 +9,12 @@ $med: 900px;
 $small: 700px;
 $v-small: 600px;
 
+	// ----- capabilities
+	$icon_ie: 120px;
+	$icon: 100px;
+	$icon_small: 70px;
+	$cap-break: 450px;
+
 // ----- colors
 
 $bg-blue: transparentize(#4088C7, 0.5);  // backgrounds (headers and active items)
@@ -34,11 +40,9 @@ $safe-yellow: #ffee8a;
 @mixin border {
 	border: 2px solid #000;
 }
-.border { @include border; }
 
 @mixin blacklink {
 	color: #000;
 	&:hover, &:active, &:visited, &:visited:hover { color: #000; }
 	text-decoration: none;
 }
-.blacklink { @include blacklink; }

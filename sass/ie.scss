@@ -1,13 +1,12 @@
 // import variables
 @import 'var';
 
+
+// IE8
+
 .lt-ie9 {
 	
 	// ----- General styles
-
-	a, a:visited {
-		color: $safe-lt-blue;
-	}
 
 	.sol-hover {
 		display: none !important; // This shouldn't show up at all... use classes instead
@@ -133,6 +132,7 @@
 	// ----- Capabilities
 
 	#full_capabilities {
+		margin-left: #{$icon_ie/2};
 
 		& + div { // "Learn more about our process"
 			color: #000;
@@ -141,40 +141,79 @@
 				background-color: $safe-yellow;
 			}
 		}
-
-		.icons {
-			a {
-				@include border; // an override of an override... but we don't want border-clone in IE8
-				&[href="#support"] { background-image: url(../images/support-icon_ie.png); }
-				&[href="#design"] { background-image: url(../images/design-icon_ie.png); }
-				&[href="#prototyping"] { background-image: url(../images/prototyping-icon_ie.png); }
-				&[href="#validation"] { background-image: url(../images/validation-icon_ie.png); }
-				&[href="#compliance"] { background-image: url(../images/compliance-icon_ie.png); }
-				&[href="#management"] { background-image: url(../images/management-icon_ie.png); }
-
-				&:hover,
-				&:active {
-					background-color: $safe-yellow;
-				}
-
-				&.active {
-					background-color: $safe-bg-blue !important;
-				}
-			}
-			.border-clone { display: none; }
-		}
 	}
+
+	
+	.icons {
+		left: -#{$icon_ie/2};
+		width: $icon_ie;
+
+		a {
+			background-image: url(../images/circle-120-outline.png);
+			background-repeat: no-repeat;
+			height: $icon_ie;
+			width: $icon_ie;
+			
+			.border-clone { 
+				background-repeat: no-repeat;
+				border: 0; 
+				height: $icon_ie;
+				font-size: 0; // this is where the icon would normally come in, but we're using images
+				width: $icon_ie;
+			}
+			&[href="#support"] { .border-clone { background-image: url(../images/circle-support.png); } }
+			&[href="#design"] { .border-clone { background-image: url(../images/circle-design.png); } }
+			&[href="#prototyping"] { .border-clone { background-image: url(../images/circle-prototyping.png); } }
+			&[href="#validation"] { .border-clone { background-image: url(../images/circle-validation.png); } }
+			&[href="#compliance"] { .border-clone { background-image: url(../images/circle-compliance.png); } }
+			&[href="#management"] { .border-clone { background-image: url(../images/circle-management.png); } }
+
+			&:hover,
+			&:active {
+				background-image: url(../images/circle-120-yellow.png);
+			}
+			
+			&.active {
+				background-image: url(../images/circle-120-blue.png);
+			}
+
+		}
+		
+	}
+
 
 	// ----- process
 
 	#process {
 		h3 {
-			background-image: url(../images/circle-55.png);
+			background-image: url(../images/circle-55-white.png);
 			height: 55px;
 			padding-top: 8px;
 			width: 55px;
 
 			.border-clone { display: none; }
+
+			span {
+				background-image: url(../images/circle-55-outline.png);
+				position: absolute;
+				height: 55px;
+				left: 0;
+				padding-top: 8px;
+				top: 0;
+				width: 55px;
+			}
+		}
+
+		.active {
+			h3 {
+				background-image: url(../images/circle-55-yellow.png);
+			}
+		}
+
+		.final {
+			h3 {
+				background-image: url(../images/circle-55-blue.png) !important;
+			}
 		}
 
 		p { font-size: 14px; }
@@ -200,9 +239,11 @@
 	}
 
 	.share {
-		&:hover,
-		&:active {
-			color: $safe-bg-blue;
+		a {
+			&:hover,
+			&:active {
+				color: $safe-bg-blue;
+			}
 		}
 	}
 
@@ -233,6 +274,7 @@
 		}
 
 		a {
+			color: #000;
 			padding-bottom: 20px;
 		}
 
@@ -258,7 +300,25 @@
 	}
 
 	.secondary {
-		height: 70px;
+		height: 64px;
+	}
+
+}
+
+
+// IE7
+
+.lt-ie8 {
+
+	// ----- Main page
+
+	.capability {
+		float: left;
+		margin: 0 6px;
+
+		span {
+			height: 120px;
+		}
 	}
 
 }

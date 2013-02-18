@@ -58,7 +58,36 @@ if (get_field('products')) {
 			// Full images with titles and descriptions
 			while (has_sub_field('products')) { ?>
 				<div data-n="<?php echo $p; ?>" class="product clearfix <?php if ($p > 0) { echo 'gone'; } ?>">
-					<img src="<?php the_sub_field('image'); ?>">
+					<?php 
+					$images = get_sub_field('images'); ?>
+					<?php if (count($images) == 1) { ?>
+						<img src="<?php echo $images[0]['image']; ?>">
+					<?php } else { ?>
+						<a class="colorbox" href="<?php echo $images[0]['image']; ?>" rel="<?php echo $p; ?>" title="<?php the_sub_field('name'); ?>">
+							<img src="<?php echo $images[0]['image']; ?>">
+						</a>
+						<?php 
+						$i = 0;
+						foreach ($images as $image) { 
+							if ($i > 0) { ?>
+								<a href="<?php echo $images[$i]['image']; ?>" class="colorbox" rel="<?php echo $p; ?>" title="<?php the_sub_field('name'); ?>"></a>
+							<?php 
+							}
+							$i++;
+						}
+					} ?>
+					<div class="pointers">
+						<?php 
+						if (count($images) > 1) { 
+							$i = 0;
+							foreach ($images as $image) { 
+								if ($i > 0) {
+									echo '<div class="pointer"></div>';
+								}
+								$i++;
+							}
+						} ?>
+					</div>
 					<h3><?php the_sub_field('name'); ?></h3>
 					<?php the_sub_field('description'); ?>
 				</div>
@@ -70,10 +99,11 @@ if (get_field('products')) {
 
 		<div id="samples" class="clearfix">
 		<?php while (has_sub_field('products')) {
-			if ($p > 0) { ?>
+			if ($p > 0) { 
+				$images = get_sub_field('images'); ?>
 				<div data-n="<?php echo $p; ?>" class="sample sample-<?php echo $p; ?>">
 					<div>
-						<img src="<?php the_sub_field('image'); ?>">
+						<img src="<?php echo $images[0]['image']; ?>">
 						<span class="icon-plus"></span>
 					</div>
 				</div>
@@ -86,6 +116,7 @@ if (get_field('products')) {
 
 <script>
 jQuery(document).ready(function($){
+
 	var capability = $('.capability'),
 		container = $('#capabilities'),
 		capabilities = $('#capabilities > div'),
@@ -175,6 +206,15 @@ jQuery(document).ready(function($){
 		n;
 
 	products.find('img, .right').hide();
+
+	// Colorbox
+	var colorbox = $('.colorbox');
+	if (colorbox.length > 0) {
+		colorbox.colorbox({
+			scrolling: false,
+			maxHeight: '90%'
+		});
+	}
 
 	products.append('<div class="close">'+
 					    '<div class="bg-hover"></div>'+
