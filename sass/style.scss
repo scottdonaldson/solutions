@@ -94,7 +94,9 @@ a, a:visited {
 .icon-management:before,
 .icon-pencil:before,
 .icon-close:before,
-.icon-plus:before {
+.icon-plus:before,
+.icon-prev:before,
+.icon-next:before {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -107,15 +109,17 @@ a, a:visited {
 .icon-twitter:before { content: "\e001"; }
 .icon-linkedin:before { content: "\e002"; }
 .icon-google-plus:before { content: "\e003"; }
-.icon-support:before { 
-	content: "\e004"; 
-	top: -0.08em;
+.icon-support:before { content: "\e004"; }
+.icon-design:before { 
+	content: "\e005"; 
+	font-size: 95%;
+	top: 0.05em;
 }
-.icon-design:before { content: "\e005"; }
 .icon-prototyping:before { content: "\e006"; }
 .icon-validation:before { 
 	content: "\e007"; 
 	font-size: 115%;
+	top: 0.05em;
 }
 .icon-compliance:before { 
 	content: "\e008"; 
@@ -129,6 +133,8 @@ a, a:visited {
 .icon-pencil:before { content: "\e00a"; }
 .icon-close:before { content: "\e00c"; }
 .icon-plus:before { content: "\e00b"; }
+.icon-prev:before { content: "\e00d"; }
+.icon-next:before { content: "\e00e"; }
 
 h1, h2, h3, h4, h5, h6 { 
 	font-family: 'DIN', Helvetica, Arial, sans-serif; 
@@ -205,6 +211,11 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 10px;
 	top: -45px;
 	z-index: -1;
+
+	@media screen and (max-width: $med) {
+		font-size: 20px;
+		top: -40px;
+	}
 }
 
 section { // always have headers
@@ -346,7 +357,6 @@ header {
 	@media screen and (max-width: $med) {
 		font-size: 24px;
 		padding: 40px 12% 15px;
-		top: -45px;
 	}
 
 	@media screen and (max-width: $small) {
@@ -545,7 +555,7 @@ header {
 			@include border-radius(40px);
 			display: block;
 			height: 100%;
-			padding-top: 18%;
+			padding-top: 15%;
 			width: 100%;
 		}
 	}
@@ -608,11 +618,16 @@ header {
 	}
 
 	.pointers {
-		bottom: 30px;
 		padding-right: 16px;
 		position: absolute;
 		width: 32%;
 		z-index: 11;
+		@media screen and (max-width: $med) {
+			width: 49%;
+		}
+		@media screen and (max-width: $v-small) {
+			width: 100%;
+		}
 	}
 
 	.pointer {
@@ -644,7 +659,7 @@ header {
 
 		@media screen and (max-width: $v-small) {
 			font-size: 20px;
-			margin-top: 0.5em;
+			margin-top: 1em;
 			padding-right: 0;
 		}
 	}
@@ -786,7 +801,7 @@ header {
 	}
 
 	.central {
-		margin-bottom: 60px;
+		margin-bottom: 30px;
 	}
 
 	.content {
@@ -941,7 +956,7 @@ header {
 	.border-clone { 
 		background: transparent; 
 		font-size: 54px;
-		padding-top: 18px;
+		padding-top: 16px;
 	}
 
 	.sol-hoverable {
@@ -958,7 +973,7 @@ header {
 // ----- process
 
 .page-template-pagesprocess-php #main {
-	margin-bottom: 2%; // less to compensate for last step in process' margin-bottom
+	margin-top: 2%;
 }
 
 .indicator {
@@ -1113,6 +1128,10 @@ header {
 		@media screen and (max-width: $v-small) {
 			height: 280px;
 			margin-bottom: -280px;
+		}
+
+		&.final.shown {
+			height: 100px;
 		}
 	}
 

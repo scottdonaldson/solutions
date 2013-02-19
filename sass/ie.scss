@@ -52,13 +52,18 @@
 		font-size: 27px;
 	}
 
-	#full_capabilities {
+	#capabilities {
 		.more a {
 			&:hover,
 			&:active {
 				background-color: $safe-yellow;
 			}
 		}
+		padding-bottom: 80px;
+	}
+
+	.capabilities {
+		bottom: -35px;
 	}
 
 	.capability { // Image fallbacks for just about everything since border-radius isn't supported
@@ -105,6 +110,8 @@
 	}
 
 	.product {
+
+		.pointer { background: $safe-yellow; }
 
 		h3 {
 			font-size: 27px;

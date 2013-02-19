@@ -5,6 +5,26 @@ $(document).ready(function(){
 		body = $('body'),
 		menuItem = $('header nav a');
 
+	// News in the footer - normalize height (only at large size)
+	var footerNews = $('.footer-news'),
+		biggestNews = 0;
+	var getBiggestNews = function(){
+		biggestNews = 0;
+		footerNews.each(function(){
+			$this = $(this);
+			$this.removeAttr('style');
+			if ($this.height() > biggestNews) {
+				biggestNews = $this.height();
+			}
+			footerNews.height(biggestNews);
+		});
+	};
+	$(window).load(function(){
+		getBiggestNews();
+	}).resize(function(){
+		getBiggestNews();
+	});
+
 	// Make menu items hoverable and their parents boxes
 	menuItem.addClass('sol-hoverable');
 
@@ -63,25 +83,4 @@ $(document).ready(function(){
 			});
 		});
 	}
-
-
-	// News in the footer - normalize height (only at large size)
-	var footerNews = $('.footer-news'),
-		biggestNews = 0;
-	var getBiggestNews = function(){
-		biggestNews = 0;
-		footerNews.each(function(){
-			$this = $(this);
-			$this.removeAttr('style');
-			if ($this.height() > biggestNews) {
-				biggestNews = $this.height();
-			}
-			footerNews.height(biggestNews);
-		});
-	};
-	$(window).load(function(){
-		getBiggestNews();
-	}).resize(function(){
-		getBiggestNews();
-	});
 });

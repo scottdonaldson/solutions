@@ -67,7 +67,15 @@ the_post(); ?>
 		container = map.find('.container'),
 		x, y;
 
-	$('.map').mousemove(function(e){
+	$('.map')/*.mouseenter(function(e){
+		$this = $(this);
+		x = e.pageX - $this.offset().left;
+		y = e.pageY - $this.offset().top;
+		container.animate({
+			'left': x,
+			'top': y
+		}, 500);
+	})*/.mousemove(function(e){
 		$this = $(this);
 		x = e.pageX - $this.offset().left;
 		y = e.pageY - $this.offset().top;
@@ -75,6 +83,11 @@ the_post(); ?>
 			'left': x,
 			'top': y
 		});
+	}).mouseleave(function(){
+		container.animate({
+			'left': '62%',
+			'top': '28%'
+		}, 500);
 	}); 
 
 </script>
