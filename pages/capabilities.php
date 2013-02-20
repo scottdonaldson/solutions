@@ -57,6 +57,7 @@ jQuery(document).ready(function($){
 		} else {
 			window.location.hash = '#support';
 		}
+		$('#support').fadeIn();
 	}
 
 	// IE8 doesn't support CSS :target selector for displaying the right content.

@@ -68,10 +68,10 @@
 	}
 
 	.capability { // Image fallbacks for just about everything since border-radius isn't supported
-		background-image: url(../images/circle-120-white.png);
-		&.active { background-image: url(../images/circle-120-blue.png) !important; }
+		background-image: url(../images/circle-110-white.png);
+		&.active { background-image: url(../images/circle-110-blue.png) !important; }
 		&:hover,
-		&:active { background-image: url(../images/circle-120-yellow.png); }
+		&:active { background-image: url(../images/circle-110-yellow.png); }
 		background-position: center center;
 		background-repeat: no-repeat;
 		border: 0 none;
@@ -117,13 +117,17 @@
 		h3 {
 			font-size: 27px;
 		}
-	
+
+		p { font-size: 15px; }
+
 		&.gone {
 			display: none;
 		}
 
 		.close {
 			@include border;
+			padding-top: 3px;
+
 			&:hover,
 			&:active {
 				background-color: $safe-yellow;
@@ -181,11 +185,11 @@
 
 			&:hover,
 			&:active {
-				background-image: url(../images/circle-120-yellow.png);
+				background-image: url(../images/circle-110-yellow.png);
 			}
 			
 			&.active {
-				background-image: url(../images/circle-120-blue.png);
+				background-image: url(../images/circle-110-blue.png);
 			}
 
 		}
@@ -219,6 +223,10 @@
 				padding-top: 8px;
 				top: 0;
 				width: 55px;
+			}
+
+			.icon-pencil:before {
+				top: 3px;
 			}
 		}
 
@@ -285,6 +293,12 @@
 	.map {
 		.container { // no spotlight on the map
 			display: none;
+		}
+	}
+
+	.team {
+		p {
+			font-size: 14px;
 		}
 	}
 

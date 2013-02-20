@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
 			// move the indicator
 			indicator.animate({
 				'left': $this.offset().left - oldActive.offset().left + 4,
-				'top': $this.offset().top - oldActive.offset().top - 10
+				'top': $this.offset().top - oldActive.offset().top - 6
 			}, 500, 'linear', function(){
 				indicator.prependTo($this.find('.round')).removeAttr('style');
 			});
@@ -107,13 +107,14 @@ jQuery(document).ready(function($){
 					    '<div class="icon-close"></div>'+
 					    '<div class="border-clone"></div>'+
 					'</div>');
-	products.find('p:last').addClass('last');
+	products.find('p:last, small:last').addClass('last');
 
 	$('.close').click(function(){
 		$this = $(this);
 		target = $this.closest('.product');
 		target.fadeOut({queue: false}).slideUp(800, function(){
 			target.find('img, h3, p').hide();
+			target.addClass('gone');
 		});
 
 		n = target.attr('data-n');
