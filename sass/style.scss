@@ -32,46 +32,17 @@ a, a:visited {
 .border { @include border; }
 .blacklink { @include blacklink; }
 
-/*! @license
- * MyFonts Webfont Build ID 2464389, 2013-01-30T11:58:40-0500
- * 
- * The fonts listed in this notice are subject to the End User License
- * Agreement(s) entered into by the website owner. All other parties are 
- * explicitly restricted from using the Licensed Webfonts(s).
- * 
- * You may obtain a valid license at the URLs below.
- * 
- * Webfont: DIN 30640 Neuzeit Grotesk Light by Linotype
- * URL: http://www.myfonts.com/fonts/linotype/din-neuzeit/din-30640-neuzeit-grotesk-light/
- * Copyright: Part of the digitally encoded machine readable outline data for producing the Typefaces provided is copyrighted (c) 1988, 1991, 2003 Linotype Library GmbH, www.linotype.com. All rights reserved. This software is the property of Linotype Library GmbH, and 
- * 
- * 
- * License: http://www.myfonts.com/viewlicense?type=web&buildid=2464389
- * 
- * © 2013 MyFonts Inc
-*/
-
-
-/* @import must be at top of file, otherwise CSS will not work */
-// @import url("//hello.myfonts.net/count/259a85");
 @font-face {
-	font-family: 'DIN';
-	src: url('../fonts/259A85_0_0.eot');
-	src: url('../fonts/259A85_0_0.eot?#iefix') format('embedded-opentype'),
-		 url('../fonts/259A85_0_0.woff') format('woff'),
-		 url('../fonts/259A85_0_0.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Tex';
-    src: url('../fonts/texgyrecursor-regular-webfont.eot');
-    src: url('../fonts/texgyrecursor-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyrecursor-regular-webfont.woff') format('woff'),
-         url('../fonts/texgyrecursor-regular-webfont.ttf') format('truetype'),
-         url('../fonts/texgyrecursor-regular-webfont.svg#TeXGyreCursorRegular') format('svg');
+    font-family: 'Karla';
+    src: url('../fonts/Karla-Regular-webfont.eot');
+    src: url('../fonts/Karla-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Karla-Regular-webfont.woff') format('woff'),
+         url('../fonts/Karla-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Karla-Regular-webfont.svg#KarlaRegular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
+
 @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot');
@@ -137,21 +108,16 @@ a, a:visited {
 .icon-next:before { content: "\e00e"; }
 
 h1, h2, h3, h4, h5, h6 { 
-	font-family: 'DIN', Helvetica, Arial, sans-serif; 
+	font-family: 'Karla', Helvetica, Arial, sans-serif; 
 	letter-spacing: 0;
 	text-transform: uppercase;
 
-	/* Note:
-	   Windows seems to have a serious problem rendering the capital 'R' at various font sizes.
-	   Safe to use are (in px)
-	   - 16, 18, 19, 21, 22, 24, 27, 30, 33, 35, 36, 37, 40, 42, 43, 46, 48, 49, 52, 54, 57, 60
-	*/
 	a & {
 		font-family: 'Inconsolata';
 	}
 }
 .sans {
-	font-family: 'DIN', Helvetica, Arial, sans-serif; 
+	font-family: 'Karla', Helvetica, Arial, sans-serif; 
 	text-transform: uppercase;
 }
 
@@ -208,13 +174,13 @@ h1, h2, h3, h4, h5, h6 {
 	left: 10px;
 	margin-top: 0;
 	margin-bottom: -48px;
-	padding: 10px;
-	top: -45px;
+	padding: 4px 10px 12px;
+	top: -40px;
 	z-index: -1;
 
 	@media screen and (max-width: $med) {
 		font-size: 20px;
-		top: -40px;
+		top: -36px;
 	}
 }
 
@@ -248,8 +214,13 @@ body {
 }
 
 #main {
-	margin-top: 4%;
-	margin-bottom: 6%; // a little more to make room for 'Latest News'
+	margin-top: 50px;
+	margin-bottom: 30px;
+
+	@media screen and (max-width: $med) {
+		margin-top: 30px;
+		margin-top: 20px;
+	}
 }
 
 
@@ -330,10 +301,17 @@ header {
 
 		img {
 			display: block;
+			left: -20px;		// push to left to compensate for text on right
 			margin: 0 auto;
 			max-width: 100%;
 			width: auto;
 		}
+	}
+}
+
+@media screen and (max-width: $v-small) {
+	.logo img {
+		left: 0;				// back to normal when logo fills screen
 	}
 }
 
@@ -342,16 +320,17 @@ header {
 .central {
 	background: $bg-blue;
 	color: $dk-blue;
-	font-size: 33px;
+	font-size: 36px;
 	text-align: center;
-	padding: 40px 20% 8px;
+	line-height: 1.2;
+	padding: 40px 20% 12px;
 	margin-top: 0;
 	margin-bottom: -10px;
 	top: -26px;
 	z-index: -1;
 
 	@media screen and (max-width: $large) {
-		font-size: 28px;
+		font-size: 30px;
 	}
 
 	@media screen and (max-width: $med) {
@@ -373,7 +352,7 @@ header {
 #capabilities {
 	@include border;
 	height: 600px;
-	margin-bottom: 220px;
+	margin-bottom: 200px;
 	overflow: visible;
 	padding-bottom: 10%;
 	@include transit;
@@ -399,7 +378,6 @@ header {
 
 		@media screen and (max-width: $small) {
 			margin-bottom: 20px;
-			max-height: none;
 		}
 	}
 
@@ -457,7 +435,7 @@ header {
 	@media screen and (max-width: $med) {
 		border-bottom: 0 none;
 		height: auto !important;
-		margin-bottom: 120px;
+		margin-bottom: 100px;
 		padding-bottom: 0;
 	}
 }
@@ -523,7 +501,7 @@ header {
 	@media screen and (max-width: $small) {
 		padding: 0 20px;
 	}
-	@media screen and (max-width: $v-small) {
+	@media screen and (max-width: $vv-small) {
 		width: 45%;
 	}
 
@@ -578,16 +556,26 @@ header {
 	}
 
 	h3 {
-		font-size: 16px;
+		font-size: 20px;
 		left: 5%;
 		position: absolute;
 		width: 90%;
+
+		@media screen and (max-width: 1100px) {
+			font-size: 18px; // they start running into each other a little here...
+		}
+
+		@media screen and (max-width: $med) {
+			font-size: 20px; // ... but then icons shift and we can make them big again
+		}
 	}
 }
 
 .product {
-	margin-bottom: 1%;
-	width: 100%;
+
+	@media screen and (max-width: $v-small) {
+		margin-bottom: 40px;
+	}
 
 	.colorbox { 
 		&:hover,
@@ -598,18 +586,14 @@ header {
 		}
 	}
 
-	img {
-		@include border;
+	.left {
 		float: left;
-		margin: 0 40px 1% 0;
+		margin: 0 4% 3% 0;
 		width: 32%;
-		@include transit;
-		z-index: 10; 
-
+		z-index: 1;
 		@media screen and (max-width: $med) {
-			width: 49%;
+			width: 48%;
 		}
-
 		@media screen and (max-width: $v-small) {
 			float: none;
 			margin-right: 0;
@@ -617,17 +601,17 @@ header {
 		}
 	}
 
+	img {
+		@include border;
+		@include transit;		
+	}
+
 	.pointers {
-		padding-right: 16px;
-		position: absolute;
-		width: 32%;
-		z-index: 11;
-		@media screen and (max-width: $med) {
-			width: 49%;
-		}
-		@media screen and (max-width: $v-small) {
-			width: 100%;
-		}
+		height: 30px;
+		margin-bottom: -30px;
+		padding-right: 15px;
+		top: -29px;
+		width: 100%;
 	}
 
 	.pointer {
@@ -643,7 +627,8 @@ header {
 		font-size: 30px;
 		margin-top: 10px;
 		padding-right: 75px;
-		z-index: 1;
+		z-index: 0;
+		@include hyphens(auto);
 
 		@media screen and (max-width: $large) {
 			font-size: 26px;
@@ -665,7 +650,12 @@ header {
 	}
 
 	p {
-		z-index: 1;
+		z-index: 0;
+
+		&.last {
+			margin-bottom: 3%;
+		}
+
 		@media screen and (max-width: $large) {
 			font-size: 14px;
 		}
@@ -684,6 +674,10 @@ header {
 		@include opacity(0);
 		height: 0;
 		margin: 0;
+
+		.left {
+			margin: 0;
+		}
 	}
 
 	.close {
@@ -691,19 +685,20 @@ header {
 		cursor: pointer;
 		font-size: 20px;
 		height: 34px;
-		padding-top: 4px;
+		padding-top: 6px;
 		position: absolute;
 		text-align: center;
 		top: 10px;
 		right: 2px;
 		width: 34px;
+		z-index: 2; // must be higher than .left
 
 		.bg-hover {
 			height: 32px;
 			left: 5px;
 			position: absolute;
 			width: 32px;
-			top: -6px;
+			top: -4px;
 			@include transit;
 		}
 
@@ -712,37 +707,38 @@ header {
 		}
 
 		@media screen and (max-width: $v-small) {
-			top: 10px;
-			right: 10px;
+			top: 12px;
+			right: 12px;
 		}
 
 		.border-clone {
 			height: 34px;
-			left: 0;			
-			top: -2px;	// compensates for padding-top
+			left: 0;
 			width: 34px;
 		}
 	}
 }
 
+#samples { clear: left; }
+
 .sample {
 	float: left;
-	margin-right: 2%;
-	margin-bottom: 2%;
-	width: 9.333%;
+	margin-right: 3%;
+	margin-bottom: 3%;
+	width: 8.666%;
 
 	@media screen and (max-width: $large) {
-		width: 15%;
+		width: 14.5%;
 		&.sample-6 { margin-right: 0; }
 	}
 
 	@media screen and (max-width: $small) {
-		width: 23.5%;
-		&.sample-6 { margin-right: 2%; }
+		width: 22.5%;
+		&.sample-6 { margin-right: 3%; }
 		&.sample-4 { margin-right: 0; }
 	}
 
-	@media screen and (max-width: 480px) {
+	@media screen and (max-width: $vv-small) {
 		margin-right: 4%;
 		margin-bottom: 4%;
 		width: 30.666%;
@@ -786,22 +782,21 @@ header {
 
 #full_capabilities {
 	@include border;
-	height: 600px; // baseline for viewing... set actual height with javascript
+	height: 440px; // baseline for viewing... set actual height with javascript
 	margin-left: #{$icon/2};
 	margin-bottom: 40px;
 	
 	@media screen and (max-width: $small) {
 		height: auto !important;
 		margin-left: 0;
-		margin-bottom: #{$icon * 2 + 70};
-	}
-
-	@media screen and (max-width: $cap-break) {
-		margin-bottom: #{$icon_small * 2 + 70};
 	}
 
 	.central {
-		margin-bottom: 30px;
+		margin-bottom: 15px;
+
+		@media screen and (max-width: $small) {
+			margin-bottom: 0px;
+		}
 	}
 
 	.content {
@@ -855,72 +850,23 @@ header {
 		}
 	}
 
-	& + div { // "Learn about our process"
-		text-align: center;
-		width: 100%;
-
-		a {
-			display: block;
-			font-size: 21px;
-			padding: 10px;
-
-			@media screen and (max-width: $v-small) {
-				font-size: 16px;
-			}
-		}
-	}
-
-	.indicator { // indicator "default" is found in process section... some stylistic overrides here
-		background-color: $bg-blue;
-		@include border-radius(150px);
-		height: $icon;
-		left: 5px;
-		padding: 0 20px;
-		top: -5px;
-		width: $icon;
-
-		@media screen and (max-width: $small) {
-			left: 5px !important; // prevent animating at smaller sizes
-			top: -5px !important;
-		}
-
-		@media screen and (max-width: $cap-break) {
-			height: $icon_small;
-			width: $icon_small;
-		}
-	}
-
 	& > .border-clone { // here only needed at the top, where the .central headers cover the border
 		border-left: 0;
 		border-bottom: 0;
 		border-right: 0;
+		height: 2px;
 		top: -2px;
 	}
 }
 
 .icons {
 	position: absolute;
-	left: -#{$icon/2};
-	top: 120px;
+	left: 0;
+	top: 160px;
 	width: $icon;
 	z-index: 10;
 
 	.active .sol-hover { display: none; }
-
-	@media screen and (max-width: $small) {
-		height: #{$icon * 2};
-		margin-bottom: -#{$icon * 2};
-		position: relative;
-		left: 0;
-		text-align: center;
-		top: 25px;
-		width: auto;
-	}
-
-	@media screen and (max-width: $cap-break) {
-		height: #{$icon_small * 2};
-		margin-bottom: -#{$icon_small * 2};
-	}
 
 	a,
 	.border-clone {
@@ -934,18 +880,8 @@ header {
 		margin-bottom: 20px;
 		text-align: center;
 		width: $icon; // redundant here but nice to carry into smaller sizes
-
-		@media screen and (max-width: $small) {
-			display: inline-block;
-			margin-left: 2.5%;
-			margin-right: 2.5%;
-		}
-
-		@media screen and (max-width: $cap-break) {
-			height: $icon_small;
-			width: $icon_small;
-		}
 	}
+
 	a { 
 		border: 0;
 		left: -2px;
@@ -955,17 +891,84 @@ header {
 	}
 	.border-clone { 
 		background: transparent; 
-		font-size: 54px;
-		padding-top: 16px;
+		padding-top: 15%;
+	}
+
+	.indicator { // indicator "default" is found in process section... some stylistic overrides here
+		background-color: $bg-blue;
+		@include border-radius(150px);
+		height: $icon;
+		left: 5px;
+		padding: 0 20px;
+		top: -5px;
+		width: $icon;
 	}
 
 	.sol-hoverable {
 		height: $icon;
 		width: $icon;
+	}
 
-		@media screen and (max-width: $cap-break) {
-			height: $icon_small;
-			width: $icon_small;
+	@media screen and (max-width: $small) {
+		padding: 0 10px;
+		position: relative;
+		text-align: center;
+		top: 0;
+		width: auto;
+
+		a {
+			display: inline-block;
+			height: 100%;
+			margin-bottom: 5%;
+			padding: 0 20px;
+			width: 30%;
+		}
+
+		.border-clone { 
+			height: 100%;
+			left: 0; 
+			margin-bottom: 0;
+		}
+
+		.border-clone {
+			left: 20px;
+			right: 20px;
+			width: auto;
+		}
+
+		.sol-hoverable {
+			height: 100%;
+			padding-top: 100%;
+			width: 100%;
+		}
+
+		.indicator {
+			height: 100%;
+			left: 25px !important; // prevents animating
+			top: -10px !important;
+			right: 10px !important;
+			width: auto;
+		}
+	}
+
+	@media screen and (max-width: $vv-small) {
+		a {
+			width: 45%;
+		}
+	}
+}
+
+.learn { // "Learn about our process"
+	text-align: center;
+	width: 100%;
+
+	a {
+		display: block;
+		font-size: 21px;
+		padding: 10px;
+
+		@media screen and (max-width: $v-small) {
+			font-size: 16px;
 		}
 	}
 }
@@ -973,7 +976,10 @@ header {
 // ----- process
 
 .page-template-pagesprocess-php #main {
-	margin-top: 2%;
+	margin-top: 40px;
+	@media screen and (max-width: $med) {
+		margin-top: 20px;
+	}
 }
 
 .indicator {
@@ -996,9 +1002,11 @@ header {
 		height: 60px;
 		font-size: 28px;
 		margin: 0 auto -60px;
-		padding-top: 13px;
+		padding-top: 11px;
 		width: 60px;
 		z-index: 1;
+
+		.icon-pencil { top: 2px; }
 
 		@media screen and (max-width: $med) {
 			margin: 0 0 -60px;
@@ -1086,6 +1094,7 @@ header {
 			content: '';
 			display: block;
 			height: 2px;
+			left: 0;
 			position: absolute;
 			top: 30px;
 			width: 17%;
@@ -1149,6 +1158,14 @@ header {
 }
 
 // ----- news
+
+.blog #main,
+.single #main {
+	margin-top: 36px;
+	@media screen and (max-width: $med) {
+		margin-top: 16px;
+	}
+}
 
 .title {
 	font-size: 30px;
@@ -1343,9 +1360,17 @@ header {
 // ----- contact
 
 .page-template-pagescontact-php {
+	#main {
+		margin-top: 67px;
+		@media screen and (max-width: $med) {
+			margin-top: 47px;
+		}
+	}
+
 	h2.huge {
 		font-family: 'Inconsolata';
 		letter-spacing: 0.05em;
+		margin-top: 0;
 		margin-bottom: 1em;
 		@media screen and (max-width: $med) {
 			font-size: 2.2em;
@@ -1456,6 +1481,7 @@ header {
 	}
 }
 section.team {
+	margin-bottom: 20px;
 
 	img {
 		@include border;
@@ -1475,6 +1501,10 @@ section.team {
 
 	h3 {
 		margin: 0;
+	}
+
+	p {
+		font-size: 15px;
 	}
 }
 

@@ -64,36 +64,46 @@ if (get_field('products')) {
 			// Full images with titles and descriptions
 			while (has_sub_field('products')) { ?>
 				<div data-n="<?php echo $p; ?>" class="product clearfix <?php if ($p > 0) { echo 'gone'; } ?>">
-					<?php 
-					$images = get_sub_field('images'); ?>
-					<?php if (count($images) == 1) { ?>
-						<img src="<?php echo $images[0]['image']; ?>">
-					<?php } else { ?>
-						<a class="colorbox" href="<?php echo $images[0]['image']; ?>" rel="<?php echo $p; ?>">
+					<div class="left">
+						<?php 
+						$images = get_sub_field('images'); ?>
+						<?php 
+						// If just one image, just show it
+						if (count($images) == 1) { ?>
 							<img src="<?php echo $images[0]['image']; ?>">
-						</a>
 						<?php 
-						$i = 0;
-						foreach ($images as $image) { 
-							if ($i > 0) { ?>
-								<a href="<?php echo $images[$i]['image']; ?>" class="colorbox" rel="<?php echo $p; ?>"></a>
+						// If multiple images, set up the colorbox
+						} else { ?>
+							<a class="colorbox" href="<?php echo $images[0]['image']; ?>" rel="<?php echo $p; ?>">
+								<img src="<?php echo $images[0]['image']; ?>">
+							</a>
 							<?php 
-							}
-							$i++;
-						}
-					} ?>
-					<div class="pointers">
-						<?php 
-						if (count($images) > 1) { 
+							// For each image (after the initial one, shown above),
+							// need a link so that it will show in slideshow
 							$i = 0;
 							foreach ($images as $image) { 
-								if ($i > 0) {
-									echo '<div class="pointer"></div>';
+								if ($i > 0) { ?>
+									<a href="<?php echo $images[$i]['image']; ?>" class="colorbox hidden" rel="<?php echo $p; ?>"></a>
+								<?php 
 								}
 								$i++;
 							}
-						} ?>
-					</div>
+						} 
+						// Whether or not there's more than one image, have a div ready for pointers
+						// (the indicators to show that there's more than one image)
+						?>
+						<div class="pointers">
+							<?php 
+							if (count($images) > 1) { 
+								$i = 0;
+								foreach ($images as $image) { 
+									if ($i > 0) { echo '<div class="pointer"></div>'; }
+									$i++;
+								}
+							} ?>
+						</div>
+					</div><!-- .left -->
+
 					<h3><?php the_sub_field('name'); ?></h3>
 					<?php the_sub_field('description'); ?>
 				</div>

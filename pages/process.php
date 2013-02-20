@@ -136,13 +136,12 @@ jQuery(document).ready(function($){
 					'height': '100%'
 				}, 200, function(){
 					next.find('h3').fadeIn(200, function(){
-						next.addClass('active').find('.bar').stop().animate({
+						next.addClass('active').find('.bar').animate({
 							'margin-left': 0,
 							'width': barWidth
 						}, 200, function(){
-							next.find('section').fadeIn(200).css({
-								'top': -next.find('section').height/2 + 30
-							});
+							next.find('section').fadeIn(200);
+							next.find('.bar').show(); // for IE8
 							isShowing = false;
 
 							// If scrolled all the way to bottom of page, keep movin' on

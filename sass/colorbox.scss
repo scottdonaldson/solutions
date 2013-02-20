@@ -40,18 +40,11 @@
         .cboxIframe{background:#fff;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxLoadedContent{margin-bottom: 36px;}
-        #cboxTitle {
-            position:absolute; 
-            bottom: 4px; 
-            left: 0; 
-            padding: 0 60px 0 220px;
-            text-align: center; 
-            width: 100%; 
-        }
         #cboxCurrent{
             position: absolute; 
-            bottom: 5px; 
-            left: 98px; 
+            bottom: 5px;
+            text-align: center; 
+            width: 100%;
         }
         #cboxSlideshow{position:absolute; bottom:4px; right:30px; }
         #cboxPrevious{

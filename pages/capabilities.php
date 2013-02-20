@@ -23,28 +23,28 @@ include( MAIN . 'caps.php'); ?>
 				</div>
 			<?php } ?>
 		</div>
-	<?php } 
-	// Icons go after capabilities so that they bump to the bottom
-	// at our breakpoint
-	?>
+	<?php } ?>
 	<div class="border-clone"></div>
-	<div class="icons">
-		<?php 
-		$c = 0;
-		foreach ($capabilities as $cap=>$name) { ?>
-			<a class="round" href="#<?php echo $cap; ?>">
-				<div class="sol-hoverable "></div>
-				<div class="border-clone icon-<?php echo $cap; ?>"></div>
-			</a>
-			<?php if ($c == 2) { echo '<div class="clearfix"></div>'; } ?>
-		<?php 
-		$c++;
-		} ?> 
-	</div>	
+	
 </section>
 
-<div class="border">
-	<a class="blacklink sol-hoverable sans" href="<?php echo home_url(); ?>/process">Learn about our process</a>
+<?php
+// Icons go after capabilities so that they bump to the bottom at our breakpoint ?>
+<div class="icons clearfix">
+	<?php 
+	$c = 0;
+	foreach ($capabilities as $cap=>$name) { ?>
+		<a class="round" href="#<?php echo $cap; ?>">
+			<div class="sol-hoverable"></div>
+			<div class="border-clone icon-<?php echo $cap; ?>"></div>
+		</a>
+	<?php 
+	$c++;
+	} ?> 
+</div>
+
+<div class="learn">
+	<a class="border blacklink sol-hoverable sans" href="<?php echo home_url(); ?>/process">Learn about our process</a>
 </div>
 
 <script>
@@ -74,6 +74,9 @@ jQuery(document).ready(function($){
 		height = 0,
 		icons = $('.icons a'),
 		oldActive;
+
+	// Put some FitText on the icons
+	icons.find('.border-clone').fitText(0.17);	
 	
 	// Set the right one to active and set indicator
 	icons.each(function(){
@@ -96,8 +99,8 @@ jQuery(document).ready(function($){
 			}
 		});	
 		// factor in the height of the icons
-		if (parseInt(icons.closest('.icons').css('top')) + 6 * icons.height() + 6 * parseInt(icons.css('margin-bottom')) > height) {
-			height = parseInt(icons.closest('.icons').css('top')) + 6 * icons.height() + 6 * parseInt(icons.css('margin-bottom'));
+		if (parseInt(icons.closest('.icons').css('top')) + 6 * (icons.height() + parseInt(icons.css('margin-bottom'))) > height) {
+			height = parseInt(icons.closest('.icons').css('top')) + 6 * (icons.height() + parseInt(icons.css('margin-bottom')));
 		}
 		// Set height of container equal to the height of the tallest content
 		container.height(height);

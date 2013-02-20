@@ -67,15 +67,7 @@ the_post(); ?>
 		container = map.find('.container'),
 		x, y;
 
-	$('.map')/*.mouseenter(function(e){
-		$this = $(this);
-		x = e.pageX - $this.offset().left;
-		y = e.pageY - $this.offset().top;
-		container.animate({
-			'left': x,
-			'top': y
-		}, 500);
-	})*/.mousemove(function(e){
+	$('.map').mousemove(function(e){
 		$this = $(this);
 		x = e.pageX - $this.offset().left;
 		y = e.pageY - $this.offset().top;

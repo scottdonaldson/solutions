@@ -88,7 +88,7 @@ jQuery(document).ready(function($){
 		target, targetHeight,
 		n;
 
-	products.find('img, .right').hide();
+	products.find('img, h3, p').hide();
 
 	// Colorbox
 	var colorbox = $('.colorbox');
@@ -107,11 +107,13 @@ jQuery(document).ready(function($){
 					    '<div class="icon-close"></div>'+
 					    '<div class="border-clone"></div>'+
 					'</div>');
+	products.find('p:last').addClass('last');
+
 	$('.close').click(function(){
 		$this = $(this);
 		target = $this.closest('.product');
 		target.fadeOut({queue: false}).slideUp(800, function(){
-			target.find('img, .right').hide();
+			target.find('img, h3, p').hide();
 		});
 
 		n = target.attr('data-n');
@@ -128,23 +130,6 @@ jQuery(document).ready(function($){
 		$this.closest('#featured').removeAttr('style');
 	});
 
-	var pointer = $('.pointers');
-	var pointerPos = function(){
-		pointer.each(function(){
-			$this = $(this);
-			$this.css({
-				'top': $this.closest('.product').find('.colorbox img').height() - 32
-			});
-		});
-	}
-	if (pointer) {
-		$(window).load(function(){
-			pointerPos();
-		}).resize(function(){
-			pointerPos();
-		});
-	}
-
 	samples.click(function(){
 		$this = $(this);
 		// Fade out the image
@@ -156,10 +141,9 @@ jQuery(document).ready(function($){
 		// Time to show the featured product
 		target = products.eq($this.index());
 		setTimeout(function(){
-			target.appendTo(fulls).find('img').fadeIn();
+			target.appendTo(fulls).find('img, h3, p').fadeIn();
 			target.slideDown().animate({
-				'height': '100%',
-				'margin-bottom': '1.667%'
+				'height': '100%'
 			}, function(){
 				target.removeClass('gone').fadeIn();
 			});

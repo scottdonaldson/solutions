@@ -34,6 +34,7 @@
 
 	.menu {
 		a {
+			padding: 3px 25px 5px;
 			&:active,
 			&:hover {
 				background: $safe-yellow;
@@ -59,11 +60,11 @@
 				background-color: $safe-yellow;
 			}
 		}
-		padding-bottom: 80px;
+		padding-bottom: 110px;
 	}
 
 	.capabilities {
-		bottom: -35px;
+		bottom: -40px;
 	}
 
 	.capability { // Image fallbacks for just about everything since border-radius isn't supported
@@ -136,23 +137,25 @@
 
 	}
 
-	// ----- Capabilities
-
-	#full_capabilities {
-		margin-left: #{$icon_ie/2};
-
-		& + div { // "Learn more about our process"
-			color: #000;
-			&:hover,
-			&:active {
-				background-color: $safe-yellow;
+	.sample {
+		span { // icon-plus
+			display: none;
+		}
+		&:hover,
+		&:active {
+			span {
+				display: block;
 			}
 		}
 	}
 
+	// ----- Capabilities
+
+	#full_capabilities {
+		margin-left: #{$icon_ie/2};
+	}
 	
 	.icons {
-		left: -#{$icon_ie/2};
 		width: $icon_ie;
 
 		a {
@@ -165,8 +168,9 @@
 				background-repeat: no-repeat;
 				border: 0; 
 				height: $icon_ie;
-				font-size: 0; // this is where the icon would normally come in, but we're using images
 				width: $icon_ie;
+
+				&:before { content: '' !important; } // don't show icomoon - use images instead
 			}
 			&[href="#support"] { .border-clone { background-image: url(../images/circle-support.png); } }
 			&[href="#design"] { .border-clone { background-image: url(../images/circle-design.png); } }
@@ -185,13 +189,20 @@
 			}
 
 		}
-		
 	}
 
+	.learn { // "Learn more about our process"
+		color: #000;
+		&:hover,
+		&:active {
+			background-color: $safe-yellow;
+		}
+	}
 
 	// ----- process
 
 	#process {
+
 		h3 {
 			background-image: url(../images/circle-55-white.png);
 			height: 55px;
@@ -210,6 +221,11 @@
 				width: 55px;
 			}
 		}
+
+		.bar { 
+			display: none; // problems with animating, so hide and show instead
+		}
+		.step-1 .bar { display: block; } // first one must be shown, of course
 
 		.active {
 			h3 {
