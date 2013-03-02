@@ -27,7 +27,8 @@
 
 	#page {
 		margin: 0 auto;
-		width: 960px;
+		padding: 0 40px;
+		width: 1000px;
 	}
 
 	// ----- Header
@@ -76,7 +77,7 @@
 		background-repeat: no-repeat;
 		border: 0 none;
 		padding: 0;
-		width: 144px; // set width
+		width: 130px; // set width
 		span { 
 			background-repeat: no-repeat; 
 			background-position: center center;
@@ -108,6 +109,10 @@
 			right: 0;
 		}
 		.border-clone { display: none; } // no need for it because of images
+
+		h3 {
+			font-size: 18px;
+		}
 	}
 
 	.product {
@@ -118,7 +123,11 @@
 			font-size: 27px;
 		}
 
-		p { font-size: 15px; }
+		p { 
+			float: right;
+			font-size: 15px; 
+			width: 562px;
+		}
 
 		&.gone {
 			display: none;
@@ -140,6 +149,14 @@
 		.border-clone { display: none; }
 
 	}
+
+	#cboxPrevious,
+    #cboxNext,
+    #cboxClose {
+        &:hover {
+            background: $safe-yellow; 
+        }
+    }  
 
 	.sample {
 		span { // icon-plus
@@ -206,6 +223,17 @@
 	// ----- process
 
 	#process {
+
+		.step {
+			height: 220px;
+			margin-bottom: -220px;
+
+			&.shown { margin-bottom: 0; } // need to reiterate
+		}
+
+		.line {
+			height: 220px;
+		}
 
 		h3 {
 			background-image: url(../images/circle-55-white.png);
@@ -347,15 +375,333 @@
 
 .lt-ie8 {
 
+	.ie7 { display: block; }
+
+	// ----- General
+
+	.header {
+		display: inline;
+	}
+
+	#page {
+		width: 960px;
+	}
+
+	// ----- Header
+
+	.menu {
+		li { // The top border doesn't show up on the links, so switching it to the li here
+			@include border;
+			&:active,
+			&:hover {
+				background: $safe-yellow;
+			}
+
+			a {
+				background: transparent !important;
+				border: 0;
+			}
+			&.current-menu-item,
+			&.current_page_parent {
+				background: $safe-bg-blue !important; // !important to override hovers, as above
+			}
+		}
+	}
+
 	// ----- Main page
+
+	#capabilities {
+		& > .border-clone { // lets the header text show properly
+			border-right: 0;
+			border-bottom: 0;
+			border-left: 0;
+			height: 2px;
+			display: block;
+			top: -2px;
+		}
+	}
 
 	.capability {
 		float: left;
 		margin: 0 6px;
+		width: 144px;
 
 		span {
 			height: 120px;
+
+			span {
+				display: none;
+			}
 		}
 	}
+
+	#featured {
+		& > .border-clone {
+			border-right: 0;
+			border-bottom: 0;
+			border-left: 0;
+			height: 2px;
+			display: block;
+			top: -2px;
+		}
+	}
+
+	#fulls {
+		padding-top: 60px;
+
+		.border-clone {
+			border-right: 0;
+			border-bottom: 0;
+			border-left: 0;
+			height: 2px;
+			display: block;
+			top: -4px;
+		}
+	}
+
+	.product {
+		p {
+			width: 614px;
+		}
+	}
+
+	.pointers {
+		top: -30px;
+	}
+
+	.pointer {
+		left: -5px;
+	}
+
+	#cboxLoadedContent {
+		margin-bottom: 42px;
+	}
+
+	#cboxPrevious,
+	#cboxNext,
+	#cboxClose {
+		background-repeat: no-repeat;
+		background-position: 5px 5px;
+		display: block;
+		height: 30px;
+	}
+
+	#cboxPrevious {
+		background-image: url(../images/prev-ie7.png);
+		width: 45px;
+	}
+
+	#cboxNext {
+		background-image: url(../images/next-ie7.png);
+		left: 55px;
+		width: 45px;
+	}
+
+	#cboxClose {
+		background-image: url(../images/close-ie7.png);
+		right: 8px;
+		width: 30px;
+	}
+
+	.close {
+		background-image: url(../images/close-ie7.png);
+		background-position: 5px 5px;
+		background-repeat: no-repeat;
+		@include border;
+		height: 30px;
+		padding: 0;
+		width: 30px;
+
+		&:hover,
+		&:active {
+			background-color: $safe-yellow;
+		}
+
+		.bg-hover {
+			display: none;
+		}
+		.border-clone { display: none !important; }
+	}
+
+	// ----- Capabilities
+
+	.page-template-pagescapabilities-php #main {
+		margin-top: 110px; // section not adding in margin-top for some reason?
+	}					   // so adding it to #main instead
+
+	.icons {
+		span { 
+			display: none;
+		}
+	}
+
+	#full_capabilities {
+		p.point {
+			width: 200px;
+		}
+
+		p.description {
+			width: 480px;
+		}
+	}
+
+	.icons {
+		top: 90px;
+	}
+
+	.learn {
+		@include border;
+		&:active,
+		&:hover {
+			background: $safe-yellow;
+		}
+
+		a { border: 0; }
+	}
+
+	// ----- Process
+
+	.page-template-pagesprocess-php #main { margin-top: 105px; }
+
+	#process {
+
+		h3, span { 
+			background-repeat: no-repeat; 
+			height: 47px; // no box-sizing, remember? but still need that padding
+		}
+
+		.step {
+			.border-clone {
+				border-right: 0;
+				border-bottom: 0;
+				border-left: 0;
+				height: 2px;
+				display: block;
+				top: -2px;
+			}
+
+			h3 .border-clone { display: none; } // inserted via jQuery to help with indicator
+
+			h4.header { width: 250px; }
+			.bar { width: 120px; }
+
+			&.step-2, &.step-3, &.step-4, &.step-5, &.step-6, &.step-7 {
+				.bar {
+					left: 360px;
+				}
+			}
+		}
+	}
+
+	// ----- News
+
+	.blog #main { margin-top: 35px; }
+
+	.date {
+		margin-bottom: -25px;
+	}
+
+	.share > a {
+		width: 70px;
+	}
+
+	.meta {
+		.link {
+			@include border;
+			&:active,
+			&:hover {
+				background: $safe-yellow;
+			}
+
+			a { 
+				background: transparent !important;
+				border: 0;
+			}
+		}
+	}
+
+	.pagination {
+		.wrapper {
+			@include border;
+			float: left;
+
+			&:active,
+			&:hover {
+				background: $safe-yellow;
+			}
+			a { 
+				border: 0;
+				background: transparent !important; 
+			}
+		}
+	}
+
+	// ----- Contact
+
+	section.team {
+
+		.border-clone {
+			border-right: 0;
+			border-bottom: 0;
+			border-left: 0;
+			height: 2px;
+			display: block;
+			top: -2px;
+		}
+
+		.member.first {
+			margin-top: 40px;
+		}
+	}
+
+	// ----- Footer
+
+	.primary {
+		margin-bottom: 70px;
+	}
+
+	#footer-news,
+	#contact {
+
+		& > .border-clone {
+			border-right: 0;
+			border-bottom: 0;
+			border-left: 0;
+			height: 2px;
+			display: block;
+			top: -2px;
+		}
+	}
+
+	#footer-news > .clearfix,
+	#contact .contact {
+		border: 0;
+		margin-top: 30px;
+	}
+
+	.footer-news {
+		@include border;
+		padding-right: 20px;
+		width: 283px;
+
+		a { border: 0; }
+
+		.border-clone {
+			display: none;
+		}
+	}
+
+	.archive {
+		@include border;
+		clear: both;
+		margin-top: 20px;
+
+		a { 
+			border: 0; 
+			margin-bottom: 0;
+		}
+	}
+
+	.secondary { height: 44px; }
 
 }

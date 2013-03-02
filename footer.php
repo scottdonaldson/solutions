@@ -21,9 +21,11 @@
 			<?php $i++; endwhile; wp_reset_postdata(); ?>
 		</div>
 
-		<div>
-			<a class="archive sol-hoverable sans" href="<?php echo home_url(); ?>/news">Visit the Archive</a>
+		<div class="archive">
+			<a class="sol-hoverable sans" href="<?php echo home_url(); ?>/news">Visit the Archive</a>
 		</div>
+
+		<div class="ie7 border-clone"></div>
 	</section>
 
 	<section id="contact">
@@ -37,6 +39,9 @@
 			<a href="mailto:info@solutions-eng.com">info@solutions-eng.com</a>
 			<h3>Phone</h3>
 			<p>651.789.0469</p>
+		</div>
+
+		<div class="ie7 border-clone"></div>
 	</section>
 </footer>
 

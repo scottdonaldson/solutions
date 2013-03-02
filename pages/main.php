@@ -51,6 +51,9 @@ include( MAIN . 'caps.php'); ?>
 			<?php } ?>
 		</div>
 	</nav>
+
+	<?php // anything with a class of ie7 will show up only in ie7 (duh) ?>
+	<div class="ie7 border-clone"></div>
 </section>
 
 <?php 
@@ -58,7 +61,8 @@ if (get_field('products')) {
 	$p = 0; ?>
 	<section id="featured" class="clearfix">
 		<h2 class="header">Featured Products</h2>
-
+		<div class="ie7 border-clone"></div>
+		
 		<div id="fulls">
 			<?php 
 			// Full images with titles and descriptions

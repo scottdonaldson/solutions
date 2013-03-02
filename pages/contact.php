@@ -5,7 +5,7 @@ Template Name: Contact
 get_header(); 
 the_post(); ?>
 
-<h1 class="visuallyhidden">Contact</h1>
+<h1 class="visuallyhidden"><?php the_title(); ?></h1>
 
 <h2 class="huge aligncenter">
 	<a href="#contact">
@@ -38,7 +38,7 @@ the_post(); ?>
 	if (get_field('team')) {
 		$t = 0;
 		while (has_sub_field('team')) { ?>
-			<div class="member">
+			<div class="member <?php if ($t == 0) { echo 'first'; } ?>">
 				<img src="<?php the_sub_field('photo'); ?>" alt="<?php the_sub_field('name'); ?>">
 				
 				<div class="right">
@@ -51,6 +51,8 @@ the_post(); ?>
 		$t++;
 		}
 	} ?>
+
+	<div class="ie7 border-clone"></div>
 </section>
 
 <script>

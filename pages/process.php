@@ -5,7 +5,7 @@ Template Name: Process
 get_header(); 
 the_post(); ?>
 
-<h1 class="visuallyhidden">Process</h1>
+<h1 class="visuallyhidden"><?php the_title(); ?></h1>
 
 <section id="process" class="clearfix">
 	<div class="step step-1">
@@ -14,7 +14,12 @@ the_post(); ?>
 		<h3><span>1</span></h3>
 		<section>
 			<h4 class="header">Project Initiation</h4>
-			<p>Proposal, feasibility assessment customer purchase order</p>
+			<?php if (get_field('initiation')) { 
+				echo '<p>';
+				the_field('initiation');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
 		</section>
 	</div>
 	<div class="step step-2">
@@ -23,14 +28,22 @@ the_post(); ?>
 		<h3><span>2</span></h3>
 		<section>
 			<h4 class="header">Planning Phase</h4>
-			<p>Develop plan and design inputs (requirements)</p>
+			<?php if (get_field('planning')) { 
+				echo '<p>';
+				the_field('planning');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
 		</section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
 		<h3><span class="icon-pencil"></span></h3>
-		<section><h4 class="header">Design Review</h4></section>
+		<section>
+			<h4 class="header">Design Review</h4>
+			<div class="border-clone ie7"></div>
+		</section>
 	</div>
 	<div class="step step-3">
 		<div class="bar"></div>
@@ -38,14 +51,22 @@ the_post(); ?>
 		<h3><span>3</span></h3>
 		<section>
 			<h4 class="header">Design Phase</h4>
-			<p>System, electronic, software and mechanical design descriptions</p>
+			<?php if (get_field('design')) { 
+				echo '<p>';
+				the_field('design');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
 		</section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
 		<h3><span class="icon-pencil"></span></h3>
-		<section><h4 class="header">Design Review</h4></section>
+		<section>
+			<h4 class="header">Design Review</h4>
+			<div class="border-clone ie7"></div>
+		</section>
 	</div>
 	<div class="step step-4">
 		<div class="bar"></div>
@@ -53,14 +74,22 @@ the_post(); ?>
 		<h3><span>4</span></h3>
 		<section>
 			<h4 class="header">Implementation Phase</h4>
-			<p>Schematics, drawings, software code, manufacturing procedures, part specifications, vendor selection, etc.</p>
+			<?php if (get_field('implementation')) { 
+				echo '<p>';
+				the_field('implementation');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
 		</section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
 		<h3><span class="icon-pencil"></span></h3>
-		<section><h4 class="header">Design Review</h4></section>
+		<section>
+			<h4 class="header">Design Review</h4>
+			<div class="border-clone ie7"></div>
+		</section>
 	</div>
 	<div class="step step-5">
 		<div class="bar"></div>
@@ -68,33 +97,57 @@ the_post(); ?>
 		<h3><span>5</span></h3>
 		<section>
 			<h4 class="header">Verification Phase</h4>
-			<p>Electronic, software, mechanical and integration testing</p>
+			<?php if (get_field('verification')) { 
+				echo '<p>';
+				the_field('verification');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
 		</section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
 		<h3><span class="icon-pencil"></span></h3>
-		<section><h4 class="header">Design Review</h4></section>
+		<section>
+			<h4 class="header">Design Review</h4>
+			<div class="border-clone ie7"></div>
+		</section>
 	</div>
 	<div class="step step-6">
 		<div class="bar"></div>
 		<div class="line"></div>
 		<h3><span>6</span></h3>
-		<section><h4 class="header">Validation</h4></section>
+		<section>
+			<h4 class="header">Validation</h4>
+			<?php if (get_field('validation')) { 
+				echo '<p>';
+				the_field('validation');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
+		</section>
 	</div>
 	<div class="step design">
 		<div class="bar"></div>
 		<div class="line"></div>
 		<h3><span class="icon-pencil"></span></h3>
-		<section><h4 class="header">Design Review</h4></section>
+		<section>
+			<h4 class="header">Design Review</h4>
+			<div class="border-clone ie7"></div>
+		</section>
 	</div>
 	<div class="step step-7 final">
 		<div class="bar"></div>
 		<h3><span>7</span></h3>
 		<section>
 			<h4 class="header">Release to Production</h4>
-			<p>Design transfer to customer</p>
+			<?php if (get_field('release')) { 
+				echo '<p>';
+				the_field('release');
+				echo '</p>';
+			} ?>
+			<div class="border-clone ie7"></div>
 		</section>
 	</div>
 </section>
@@ -127,27 +180,26 @@ jQuery(document).ready(function($){
 				// move the indicator
 				current.find('.indicator').animate({
 					'top': current.height()
-				}, 350, 'linear', function(){
+				}, 300, 'linear', function(){
 					current.find('.indicator').prependTo(next.find('h3')).removeAttr('style');
 				});
 
 				// animate the line and show content
 				current.removeClass('active').find('.line').animate({
 					'height': '100%'
-				}, 200, function(){
-					next.find('h3').fadeIn(200, function(){
+				}, 150, function(){
+					next.find('h3').fadeIn(150, function(){
 						next.addClass('active').find('.bar').animate({
 							'margin-left': 0,
 							'width': barWidth
-						}, 200, function(){
-							next.find('section').fadeIn(200);
+						}, 150, function(){
+							next.find('section').fadeIn(150);
 							next.find('.bar').show(); // for IE8
 							isShowing = false;
 
-							// If scrolled all the way to bottom of page, keep movin' on
-							if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+							setTimeout(function(){
 								nextStep(next);
-							}
+							}, 500);
 						});
 					});
 				});

@@ -17,6 +17,8 @@ define('MAIN', dirname(__FILE__) . '/'); ?>
     
     <link rel="author" href="<?php echo bloginfo('template_url'); ?>/humans.txt">
 
+    <link rel="icon" href="<?php echo bloginfo('template_url'); ?>/favicon.ico">
+
     <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/style.css">
     <link rel="stylesheet" href="<?php echo bloginfo('template_url'); ?>/css/style.css">

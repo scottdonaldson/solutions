@@ -9,13 +9,17 @@ the_post(); ?>
 // Include capabilities
 include( MAIN . 'caps.php'); ?>
 
-<h1 class="visuallyhidden">Contact</h1>
+<h1 class="visuallyhidden"><?php the_title(); ?></h1>
 
 <section id="full_capabilities" class="clearfix">
 	<?php
 	foreach ($capabilities as $cap=>$name) { ?>
 		<div class="content" id="<?php echo $cap; ?>">
 			<h3 class="central"><?php echo $name; ?></h3>
+			<strong class="aligncenter">
+				<?php echo get_field($cap.'_tagline', get_page_by_title('Main')->ID); ?>
+			</strong>
+
 			<?php while (has_sub_field($cap)) { ?>
 				<div class="clearfix">
 					<p class="point"><?php the_sub_field('point'); ?></p>
