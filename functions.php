@@ -31,6 +31,7 @@ function my_remove_menus() {
 	remove_menu_page( 'edit-comments.php' );
 	remove_menu_page( 'upload.php' );
 	remove_menu_page( 'link-manager.php' );
+    remove_menu_page( 'tools.php' );
 }
 
 // Admin footer
