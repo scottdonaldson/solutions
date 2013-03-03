@@ -1221,6 +1221,13 @@ header {
 
 	.content {
 
+		.half {
+			float: left;
+			margin-right: 2%;
+			width: 49%;
+			&.last { margin-right: 0; }
+		}
+
 		p:first-child { // if there's no featured image, give starting content more space
 			padding-top: 20px;
 		}

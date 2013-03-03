@@ -25,11 +25,13 @@ the_post();
 					<img src="<?php the_sub_field('image'); ?>">
 				<?php }
 			} elseif ($count == 2) {
+				echo '<div class="clearfix">';
 				while (has_sub_field('featured_images')) { ?>
-					<div class="image image-<?php echo $i; ?>" style="background-image: url(<?php the_sub_field('image'); ?>)"></div>
+					<img class="half <?php if ($i != 0) { echo 'last'; } ?>" src="<?php the_sub_field('image'); ?>">
 				<?php 
 				$i++;
 				}
+				echo '</div>';
 			}
 		} 
 		the_content();
