@@ -32,13 +32,11 @@
 		<h2 class="header">Contact</h2>
 		<div class="contact">
 			<h3>Address</h3>
-			<p>287 East Sixth Street<br>
-			   Suite 140<br>
-			   St. Paul, MN 55101</p> 
+			<p><?php the_field('address', get_page_by_title('Contact')->ID); ?></p> 
 			<h3>Email</h3>
-			<a href="mailto:info@solutions-eng.com">info@solutions-eng.com</a>
+			<a href="mailto:<?php the_field('email', get_page_by_title('Contact')->ID); ?>"><?php the_field('email', get_page_by_title('Contact')->ID); ?></a>
 			<h3>Phone</h3>
-			<p>651.789.0469</p>
+			<p><?php the_field('phone', get_page_by_title('Contact')->ID); ?></p>
 		</div>
 
 		<div class="ie7 border-clone"></div>
