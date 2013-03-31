@@ -27,7 +27,7 @@ include( MAIN . 'caps.php'); ?>
 			<div class="right">
 				<p><?php the_field($cap.'_description'); ?></p>
 				<div class="box more">
-					<a class="sol-hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo $cap; ?>">Learn more</a>
+					<a class="sol-hoverable sans" href="<?php echo home_url(); ?>/capabilities/#<?php echo $cap; ?>">Read more</a>
 				</div>
 			</div>
 		</div>
