@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
 
+	console.log('contact page js');
+
 	// "Get in touch!"
 	$('h2.huge a').click(function(e){
 		e.preventDefault();
@@ -24,8 +26,8 @@ jQuery(document).ready(function($){
 		});
 	}).mouseleave(function(){
 		container.animate({
-			'left': '62%',
-			'top': '28%'
+			'left': '47%',
+			'top': '43%'
 		}, 500);
 	}); 
 
