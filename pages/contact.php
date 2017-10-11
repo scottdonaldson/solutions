@@ -5,33 +5,9 @@ Template Name: Contact
 get_header(); 
 the_post(); 
 
-function helper_js() { ?>
-	<script src="<?php echo bloginfo('template_url'); ?>/js/contact.js"></script>
-<?php } 
-add_action('wp_footer', 'helper_js');
 ?>
 
 <h1 class="visuallyhidden"><?php the_title(); ?></h1>
-
-<h2 class="huge aligncenter">
-	<a href="#contact">
-		Get in touch with us!
-	</a>
-</h2>
-
-<div id="directions" class="clearfix">
-	<div class="map">
-		<img class="the-map" src="<?php echo bloginfo('template_url'); ?>/images/map.png">
-		<div class="container">
-			<div class="cover-left"></div>
-			<div class="cover-container">
-				<div class="cover"></div>
-			</div>
-			<div class="cover-right"></div>
-		</div>
-	</div>
-	<?php the_field('parking_directions'); ?>
-</div>
 
 <?php 
 if (get_field('team')) { 
